@@ -1,4 +1,4 @@
-baseURL = ""
+baseURL = "https://atreezilla.com"
 languageCode = "ru-ru"
 title = "Мой сайт"
 theme = "minimal"
