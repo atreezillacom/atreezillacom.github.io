@@ -1,5 +1,5 @@
 baseURL = "https://atreezilla.com/"
-languageCode = "en-us"
-title = "My New Hugo Site"
+languageCode = "ru-ru"
+title = "Мой сайт"
 theme = "minimal"
-publishDir = "./docs"
+publishDir = "docs"
