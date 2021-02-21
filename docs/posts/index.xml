@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Мой сайт</title>
+    <link>https://atreezilla.com/posts/</link>
+    <description>Recent content in Posts on Мой сайт</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ru-ru</language>
+    <lastBuildDate>Fri, 19 Feb 2021 21:46:05 +0300</lastBuildDate><atom:link href="https://atreezilla.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My First PostXXX</title>
+      <link>https://atreezilla.com/posts/my-first-post/</link>
+      <pubDate>Fri, 19 Feb 2021 21:46:05 +0300</pubDate>
+      
+      <guid>https://atreezilla.com/posts/my-first-post/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
