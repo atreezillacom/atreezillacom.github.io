@@ -8,3 +8,4 @@ draft: true
 
 Hello!
 Привет!
+![Great alpaca picture](https://upload.wikimedia.org/wikipedia/commons/c/c4/Alpaka_33444.jpg)
