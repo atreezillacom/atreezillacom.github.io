@@ -10,7 +10,7 @@ publishDir = "docs"
 [Author]
   name = "elkrot"
   bio = "elkrot"
-  #avatar = "img/avatar.png"
+  avatar = "img/avatar.png"
 
 [Params]
   description = "desc" # 
@@ -22,7 +22,7 @@ publishDir = "docs"
   post_meta = ["date", "categories"] # Order of post meta information
 
 [Params.logo]
-  subtitle = "Just another site" # Logo subtitle
+  subtitle = "Наш сайт" # Logo subtitle
 
 [Params.sidebar]
   home = "right"   # Configure layout for home page
