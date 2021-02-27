@@ -16,10 +16,7 @@ A notice disclaimer
 {{%/* /notice */%}}
 ```
 
-**Result:**
-{{% notice note %}}
-A notice disclaimer
-{{% /notice %}}
+
 
 
 You could **custom title** :
