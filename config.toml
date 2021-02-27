@@ -10,7 +10,7 @@ googleAnalytics = "" # Enable Google Analytics by entering your tracking id
 [Author] # Used in authorbox
   name = "Elkrot"
   bio = "Elcrot and Co"
-  avatar = "img/avatar.png"
+  #avatar = "img/avatar.png"
 
 [Params]
   subtitle = "" 
@@ -42,7 +42,7 @@ googleAnalytics = "" # Enable Google Analytics by entering your tracking id
   fontFamilySecondary = "SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
 
 [Params.logo]
-  image = "img/placeholder.png" 
+  #image = "img/placeholder.png" 
   title = "Mainroad" 
   subtitle = "Subbbbb" 
 
@@ -74,8 +74,8 @@ googleAnalytics = "" # Enable Google Analytics by entering your tracking id
 # Custom social links
 [[Params.widgets.social.custom]]
   title = "Youtube"
-  url = "https://youtube.com/user/username"
-  icon = "youtube.svg" # Optional. Path relative to "layouts/partials"
+  #url = "https://youtube.com/user/username"
+  #icon = "youtube.svg" # Optional. Path relative to "layouts/partials"
 
 [[Params.widgets.social.custom]]
   title = "My Home Page"
