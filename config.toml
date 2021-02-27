@@ -61,19 +61,19 @@ googleAnalytics = "" # Enable Google Analytics by entering your tracking id
 
 [Params.widgets.social]
   # Enable parts of social widget
-  facebook = "username"
-  twitter = "username"
-  instagram = "username"
-  linkedin = "username"
-  telegram = "username"
-  github = "username"
-  gitlab = "username"
-  bitbucket = "username"
-  email = "example@example.com"
+  #facebook = "username"
+  #twitter = "username"
+  #instagram = "username"
+  #linkedin = "username"
+  #telegram = "username"
+  #github = "username"
+  #gitlab = "username"
+  #bitbucket = "username"
+  email = "atreezilla@gmail.com"
 
 # Custom social links
 [[Params.widgets.social.custom]]
-  title = "Youtube"
+  #title = "Youtube"
   #url = "https://youtube.com/user/username"
   #icon = "youtube.svg" # Optional. Path relative to "layouts/partials"
 
