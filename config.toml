@@ -1,5 +1,5 @@
 baseURL = "https://atreezilla.com"
 languageCode = "ru-ru"
-title = "atreezilla.com"
+title = "atreezilla"
 theme = "mini"
 publishDir = "docs"
