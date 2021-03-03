@@ -26,5 +26,4 @@ jobs:
         uses: peaceiris/actions-github-pages@v3
         with:
           github_token: ${{ secrets.GH_TOKEN }}
-          external_repository:  atreezillacom/atreezillacom.github.io 
           publish_dir: ./docs
