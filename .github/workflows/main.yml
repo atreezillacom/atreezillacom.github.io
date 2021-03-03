@@ -23,7 +23,7 @@ jobs:
         run: hugo --minify
 
       - name: Deploy
-        uses: peaceiris/actions-github-pages@v3.7.3
+        uses: peaceiris/actions-github-pages@v3
         with:
           github_token: ${{ secrets.GH_TOKEN }}
           external_repository:  atreezillacom/atreezillacom.github.io 
