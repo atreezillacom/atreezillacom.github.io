@@ -1,3 +1,5 @@
+relativeURLs = true
+uglyURLs = true
 baseURL = "https://atreezilla.com"
 languageCode = "ru-ru"
 title = "atreezilla"
