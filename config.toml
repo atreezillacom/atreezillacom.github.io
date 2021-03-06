@@ -5,3 +5,4 @@ languageCode = "ru-ru"
 title = "atreezilla"
 theme = "mini"
 publishDir = "docs"
+ignoreErrors = ["error-remote-getjson"]
