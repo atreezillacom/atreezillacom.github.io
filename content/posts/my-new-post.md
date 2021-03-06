@@ -1,6 +1,7 @@
 ---
+author: elkrot
 title: "My New Post"
-date: 2021-03-06T21:03:52+03:00
+date: 2021-03-06
 draft: true
 description : "Lorem Ipsum Dolor Si Amet"
 tags : [
@@ -9,13 +10,13 @@ tags : [
 ]
 categories : ["cat1","cat2"]
 ---
-![](/images/avatar.png)
-{{< youtube  ZhWabRcpQ28>}}
+#[![](/images/avatar.png)
+#{{< youtube  ZhWabRcpQ28>}}
 
-{{< instagram BWNjjyYFxVx>}}
+#{{< instagram BWNjjyYFxVx>}}
 
-{{< gist spf13 7896402 "img.html" >}}
+#{{< gist spf13 7896402 "img.html" >}}
 
-{{< highlight go >}}
-perem:= func(x,y,z)
-{{< /highlight >}}
+#{{< highlight go >}}
+#perem:= func(x,y,z)
+#{{< /highlight >}}](url)
