@@ -2,11 +2,12 @@
 title: "My New Post"
 date: 2021-03-06T21:03:52+03:00
 draft: true
-description = "Lorem Ipsum Dolor Si Amet"
-tags = [
+description : "Lorem Ipsum Dolor Si Amet"
+tags : [
     "markdown",
     "text",
 ]
+categories : ["cat1","cat2"]
 ---
 ![](/images/avatar.png)
 {{< youtube  ZhWabRcpQ28>}}
