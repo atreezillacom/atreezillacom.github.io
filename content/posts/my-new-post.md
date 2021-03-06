@@ -1,4 +1,4 @@
----
++++
 title: "My New Post"
 date: 2021-03-06
 draft: true
@@ -8,7 +8,7 @@ tags : [
     "text",
 ]
 categories : ["cat1","cat2"]
----
++++
 ![](/images/avatar.png)
  {{< youtube  ZhWabRcpQ28 >}}
 
