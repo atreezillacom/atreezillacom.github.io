@@ -6,3 +6,8 @@ title = "atreezilla"
 theme = "mini"
 publishDir = "docs"
 ignoreErrors = ["error-remote-getjson"]
+disqusShortname = "atreezillacom"
+googleAnalytics = "266950395"
+[params]
+  enableComments = true
+  enableGoogleAnalytics = true
