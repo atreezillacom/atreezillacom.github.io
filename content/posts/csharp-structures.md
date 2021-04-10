@@ -25,7 +25,9 @@ enum Time : byte
 ## Кортежи
 
 ```csharp
-var tuple = (5, 10);
+(int,int) t1 = (5, 10);
+(int x, int y) t2 = (x:1, y:2);
+var t3 = (x:3, y:4);
 private static (int, int) GetValues()
 {
     var result = (1, 3);
