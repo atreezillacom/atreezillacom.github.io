@@ -3,7 +3,7 @@
 <a href=../tags>Tags</a>
 <a href=../about>About</a></nav><main class=main><section id=single><h1 class=title>Структуры C#</h1><div class=tip><span>Mar 27, 2021 00:00</span>
 <span class=split>·</span>
-<span>476 words</span>
+<span>489 words</span>
 <span class=split>·</span>
 <span>3 minute read</span></div><div class=content><p>Описание структуры, кортежи, перечисления</p><h2 id=перечисления-enum>Перечисления enum <a href=#%d0%bf%d0%b5%d1%80%d0%b5%d1%87%d0%b8%d1%81%d0%bb%d0%b5%d0%bd%d0%b8%d1%8f-enum class=anchor>🔗</a></h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#66d9ef>enum</span> Time : <span style=color:#66d9ef>byte</span>
 {
@@ -12,7 +12,9 @@
     Evening,
     Night
 }
-</code></pre></div><h2 id=кортежи>Кортежи <a href=#%d0%ba%d0%be%d1%80%d1%82%d0%b5%d0%b6%d0%b8 class=anchor>🔗</a></h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#66d9ef>var</span> tuple = (<span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>10</span>);
+</code></pre></div><h2 id=кортежи>Кортежи <a href=#%d0%ba%d0%be%d1%80%d1%82%d0%b5%d0%b6%d0%b8 class=anchor>🔗</a></h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp>(<span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span>) t1 = (<span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>10</span>);
+(<span style=color:#66d9ef>int</span> x, <span style=color:#66d9ef>int</span> y) t2 = (x:<span style=color:#ae81ff>1</span>, y:<span style=color:#ae81ff>2</span>);
+<span style=color:#66d9ef>var</span> t3 = (x:<span style=color:#ae81ff>3</span>, y:<span style=color:#ae81ff>4</span>);
 <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> (<span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>int</span>) GetValues()
 {
     <span style=color:#66d9ef>var</span> result = (<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>3</span>);
