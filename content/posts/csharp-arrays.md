@@ -12,7 +12,8 @@ tags = [
 
 Описаны типы массивов C#, **способы инициализации массивов** .<!--more-->
 
-##Одномерные массивы
+Одномерные массивы
+------------------
 
 ```csharp
 var r1 = new int[3] { 1, 2, 3 };
@@ -122,10 +123,10 @@ Console.Write(i);
 }
 ```
 
-[dotnetfiddle.net](https://dotnetfiddle.net/)
-[arrays.workbook](https://drive.google.com/file/d/18q5UI8bbMxEDr8yULPnAnXyifB0dyJHZ/view?usp=sharing)
-[metanit.com](https://metanit.com/sharp/tutorial/2.4.php)
-[professorweb.ru](https://professorweb.ru/my/csharp/charp_theory/level4/4_1.php)
-[w3schools.com](https://www.w3schools.com/cs/cs_arrays.asp)
-[microsoft.com](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/arrays/)
-[google.com](https://www.google.com/search?q=arrays+csharp)
+- [dotnetfiddle.net](https://dotnetfiddle.net/)
+- [arrays.workbook](https://drive.google.com/file/d/18q5UI8bbMxEDr8yULPnAnXyifB0dyJHZ/view?usp=sharing)
+- [metanit.com](https://metanit.com/sharp/tutorial/2.4.php)
+- [professorweb.ru](https://professorweb.ru/my/csharp/charp_theory/level4/4_1.php)
+- [w3schools.com](https://www.w3schools.com/cs/cs_arrays.asp)
+- [microsoft.com](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/arrays/)
+- [google.com](https://www.google.com/search?q=arrays+csharp)
