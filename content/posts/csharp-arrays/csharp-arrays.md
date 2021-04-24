@@ -28,7 +28,7 @@ for ( int i=0; i < r4.Length; i++ )
 }
 ```
 
-<iframe width="100%" height="475" src="https://dotnetfiddle.net/Widget/G18XCd" frameborder="0"></iframe>
+{{< difrx "https://dotnetfiddle.net/Widget/G18XCd" >}}
 
 ## Многомерные массивы - Multidimensional Arrays
 ![Многомерные массивы](multiply_array.webp "Multidimensional Arrays")
@@ -55,7 +55,8 @@ foreach (var i in r6){
     Console.Write("{0} ", i);
 }
 ```
-<iframe width="100%" height="475" src="https://dotnetfiddle.net/Widget/FCZAJa" frameborder="0"></iframe>
+
+{{< difrx "https://dotnetfiddle.net/Widget/FCZAJa" >}}
 
 ## Массив массивов - Jagged Arrays
 ![Массив массивов](jagged_array.webp "Multidimensional Arrays")
@@ -89,7 +90,8 @@ foreach (var a1 in r3)
     }
 }
 ```
-<iframe width="100%" height="475" src="https://dotnetfiddle.net/Widget/ZVtzzv" frameborder="0"></iframe>
+
+{{< difrx "https://dotnetfiddle.net/Widget/ZVtzzv" >}}
 
 ```csharp
 int[] r0 = 
