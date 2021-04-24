@@ -10,10 +10,11 @@ tags = [
 ]
 +++
 
-Описаны типы массивов C#, **способы инициализации массивов** .<!--more-->
+Описаны **типы массивов C#** (одномерные массивы, многомерные массивы, массив массивов), **способы инициализации массивов** .<!--more-->
 
-Одномерные массивы
-------------------
+Одномерные массивы - Single-Dimensional Arrays
+----------------------------------------------
+![Одномерные массивы](simple_array.webp "Single-Dimensional Arrays")
 
 ```csharp
 var r1 = new int[3] { 1, 2, 3 };
@@ -27,7 +28,10 @@ for ( int i=0; i < r4.Length; i++ )
 }
 ```
 
-## Многомерные массивы
+<iframe width="100%" height="475" src="https://dotnetfiddle.net/Widget/G18XCd" frameborder="0"></iframe>
+
+## Многомерные массивы - Multidimensional Arrays
+![Многомерные массивы](multiply_array.webp "Multidimensional Arrays")
 
 ```csharp
 int[,] r2 = new int[2, 3];
@@ -45,14 +49,16 @@ int[,] r6 =
    { { 0, 1, 2 }, { 3, 4, 5 } };
    
 r6[1,2] = 7;
-Console.WriteLine("r3.Rank = {0} ", r3.Rank);
+Console.WriteLine("r6.Rank = {0} ", r3.Rank);
 
 foreach (var i in r6){
     Console.Write("{0} ", i);
 }
 ```
+<iframe width="100%" height="475" src="https://dotnetfiddle.net/Widget/FCZAJa" frameborder="0"></iframe>
 
-## Массив массивов
+## Массив массивов - Jagged Arrays
+![Массив массивов](jagged_array.webp "Multidimensional Arrays")
 
 ```csharp
 int[][] r = new int[2][];
@@ -71,7 +77,8 @@ char[][,] r3 =
     new char[,] 
     { {'l','l'}, {'o',' '} },
     new char[,] 
-    { {'w','o'}, {'r','l'}, {'d', '!'} } 
+    { {'w','o'}, {'r','l'},
+	{'d', '!'} } 
 };
 
 foreach (var a1 in r3)
@@ -82,6 +89,7 @@ foreach (var a1 in r3)
     }
 }
 ```
+<iframe width="100%" height="475" src="https://dotnetfiddle.net/Widget/ZVtzzv" frameborder="0"></iframe>
 
 ```csharp
 int[] r0 = 
@@ -100,7 +108,7 @@ int[,,] r2 =
     };
 for (int i = 0; i < r2.Rank; i++)
 {
-         Console.Write( r2.GetLength(i)+",");       
+   Console.Write( r2.GetLength(i)+",");       
 }
 var l = 1;
 Console.WriteLine( l);
@@ -110,12 +118,15 @@ for (int i = 0; i < r2.Rank; i++)
  
 }
 Console.WriteLine("");
-Console.WriteLine("Length {0}=={1}",l,r2.Length);
+Console.WriteLine(
+"Length {0}=={1}",l,r2.Length);
 
-
-Console.WriteLine("r0.Rank = {0} ", r0.Rank);
-Console.WriteLine("r1.Rank = {0} ", r1.Rank);
-Console.WriteLine("r2.Rank = {0} ", r2.Rank);   
+Console.WriteLine(
+"r0.Rank = {0} ", r0.Rank);
+Console.WriteLine(
+"r1.Rank = {0} ", r1.Rank);
+Console.WriteLine(
+"r2.Rank = {0} ", r2.Rank);   
 
 foreach (int i in r2)
 {
@@ -125,8 +136,9 @@ Console.Write(i);
 
 - [dotnetfiddle.net](https://dotnetfiddle.net/)
 - [arrays.workbook](https://drive.google.com/file/d/18q5UI8bbMxEDr8yULPnAnXyifB0dyJHZ/view?usp=sharing)
-- [metanit.com](https://metanit.com/sharp/tutorial/2.4.php)
-- [professorweb.ru](https://professorweb.ru/my/csharp/charp_theory/level4/4_1.php)
-- [w3schools.com](https://www.w3schools.com/cs/cs_arrays.asp)
-- [microsoft.com](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/arrays/)
-- [google.com](https://www.google.com/search?q=arrays+csharp)
+
+1. [metanit.com](https://metanit.com/sharp/tutorial/2.4.php)
+2. [professorweb.ru](https://professorweb.ru/my/csharp/charp_theory/level4/4_1.php)
+3. [w3schools.com](https://www.w3schools.com/cs/cs_arrays.asp)
+4. [microsoft.com](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/arrays/)
+5. [google.com](https://www.google.com/search?q=arrays+csharp)
