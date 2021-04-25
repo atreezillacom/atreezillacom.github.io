@@ -14,7 +14,8 @@ tags = [
 
 Одномерные массивы - Single-Dimensional Arrays
 ----------------------------------------------
-![Одномерные массивы](simple_array.webp "Single-Dimensional Arrays")
+
+![Одномерные массивы](csharp-arrays/simple_array.webp "Single-Dimensional Arrays")
 
 ```csharp
 var r1 = new int[3] { 1, 2, 3 };
@@ -31,7 +32,7 @@ for ( int i=0; i < r4.Length; i++ )
 {{< difrx "https://dotnetfiddle.net/Widget/G18XCd" >}}
 
 ## Многомерные массивы - Multidimensional Arrays
-![Многомерные массивы](multiply_array.webp "Multidimensional Arrays")
+![Многомерные массивы](csharp-arrays/multiply_array.webp "Multidimensional Arrays")
 
 ```csharp
 int[,] r2 = new int[2, 3];
@@ -59,7 +60,7 @@ foreach (var i in r6){
 {{< difrx "https://dotnetfiddle.net/Widget/FCZAJa" >}}
 
 ## Массив массивов - Jagged Arrays
-![Массив массивов](jagged_array.webp "Multidimensional Arrays")
+![Массив массивов](csharp-arrays/jagged_array.webp "Multidimensional Arrays")
 
 ```csharp
 int[][] r = new int[2][];
@@ -136,11 +137,6 @@ Console.Write(i);
 }
 ```
 
-- [dotnetfiddle.net](https://dotnetfiddle.net/)
 - [arrays.workbook](https://drive.google.com/file/d/18q5UI8bbMxEDr8yULPnAnXyifB0dyJHZ/view?usp=sharing)
 
-1. [metanit.com](https://metanit.com/sharp/tutorial/2.4.php)
-2. [professorweb.ru](https://professorweb.ru/my/csharp/charp_theory/level4/4_1.php)
-3. [w3schools.com](https://www.w3schools.com/cs/cs_arrays.asp)
-4. [microsoft.com](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/arrays/)
-5. [google.com](https://www.google.com/search?q=arrays+csharp)
+
