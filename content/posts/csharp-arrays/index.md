@@ -138,5 +138,3 @@ Console.Write(i);
 ```
 
 - [arrays.workbook](https://drive.google.com/file/d/18q5UI8bbMxEDr8yULPnAnXyifB0dyJHZ/view?usp=sharing)
-
-
