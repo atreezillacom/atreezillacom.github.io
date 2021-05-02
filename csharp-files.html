@@ -5,7 +5,7 @@
 <span class=split>·</span>
 <span>207 words</span>
 <span class=split>·</span>
-<span>1 minute read</span></div><div class=content><p>Примеры работы с бинарными и текстовыми файлами C#</p><p>#Способы создания:</p><p>FileStream(string filename, FileMode mode) , FileMode(Append,Create,CreateNew,Open,OpenOrCreate,Truncate)
+<span>1 minute read</span></div><div class=content><p>Примеры работы с бинарными и текстовыми файлами C#</p><h2 id=способы-создания>Способы создания: <a href=#%d1%81%d0%bf%d0%be%d1%81%d0%be%d0%b1%d1%8b-%d1%81%d0%be%d0%b7%d0%b4%d0%b0%d0%bd%d0%b8%d1%8f class=anchor>🔗</a></h2><p>FileStream(string filename, FileMode mode) , FileMode(Append,Create,CreateNew,Open,OpenOrCreate,Truncate)
 File.Open(string file, FileMode mode), File.OpenRead(string file), File.OpenWrite(string file);
 Основные свойства: Length, Position
 Основные методы: CopyTo(Stream destination),int Read(byte[] array, int offset, int count),long Seek(long offset, SeekOrigin origin), void Write(byte[] array, int offset, int count)
@@ -13,7 +13,7 @@ ValueTask WriteAsync(byte[] array, int offset, int count), Task CopyToAsync(Stre
 Вспомогательные классы: <strong>StreamReader</strong> и <strong>StreamWriter</strong> текст
 <strong>BinaryWriter</strong>, <strong>BinaryReader</strong> бинарные данные
 SeekOrigin.Begin: начало файла, SeekOrigin.End: конец файла, SeekOrigin.Current: текущая позиция в файле
-fstream.Seek(-5, SeekOrigin.End);</p><p>#Способы использования:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#66d9ef>try</span>
+fstream.Seek(-5, SeekOrigin.End);</p><h2 id=способы-использования>Способы использования: <a href=#%d1%81%d0%bf%d0%be%d1%81%d0%be%d0%b1%d1%8b-%d0%b8%d1%81%d0%bf%d0%be%d0%bb%d1%8c%d0%b7%d0%be%d0%b2%d0%b0%d0%bd%d0%b8%d1%8f class=anchor>🔗</a></h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#66d9ef>try</span>
 {
     fstream = 
 	<span style=color:#66d9ef>new</span> FileStream(<span style=color:#e6db74>@&#34;f.dat&#34;</span>, 

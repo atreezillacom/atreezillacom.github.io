@@ -3,7 +3,7 @@
 <a href=../tags>Tags</a>
 <a href=../about>About</a></nav><main class=main><section id=single><h1 class=title>Условные конструкции C#</h1><div class=tip><span>Mar 26, 2021 00:00</span>
 <span class=split>·</span>
-<span>62 words</span>
+<span>64 words</span>
 <span class=split>·</span>
 <span>1 minute read</span></div><div class=content><p>Рассмотрены варианты использования <strong>условных конструкций C#</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#66d9ef>var</span> x=<span style=color:#ae81ff>11</span>;
 <span style=color:#66d9ef>if</span>(x &gt; <span style=color:#ae81ff>2</span>){ 
@@ -17,10 +17,12 @@ Console.WriteLine(
 <span style=color:#66d9ef>switch</span> (selection)
 {
     <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#34;Y&#34;</span>:
-        Console.WriteLine(<span style=color:#e6db74>&#34;Вы нажали букву Y&#34;</span>);
+        Console.WriteLine(
+		<span style=color:#e6db74>&#34;Вы нажали букву Y&#34;</span>);
         <span style=color:#66d9ef>break</span>;
     <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#34;N&#34;</span>:
-        Console.WriteLine(<span style=color:#e6db74>&#34;Вы нажали букву N&#34;</span>);
+        Console.WriteLine(
+		<span style=color:#e6db74>&#34;Вы нажали букву N&#34;</span>);
         <span style=color:#66d9ef>break</span>;
     <span style=color:#66d9ef>default</span>:
         Console.WriteLine(
