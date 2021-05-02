@@ -1,11 +1,11 @@
 <!doctype html><html lang=ru-ru><head><title>Структуры C# | atreezilla</title><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,minimum-scale=1"><meta name=description content="Арфметические операции C#"><meta name=generator content="Hugo 0.79.0"><meta name=ROBOTS content="INDEX, FOLLOW"><link rel=stylesheet href=../css/style.css><link rel="shortcut icon" href=../images/favicon.ico type=image/x-icon><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','266950395','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></head><body><nav class=navigation><a href=../><span class=arrow>←</span>Home</a>
 <a href=../posts>Archive</a>
 <a href=../tags>Tags</a>
-<a href=../about>About</a></nav><main class=main><section id=single><h1 class=title>Структуры C#</h1><div class=tip><span>Mar 27, 2021 00:00</span>
+<a href=../about>About</a></nav><main class=main><section id=single><h1 class=title>Структуры C#</h1><div class=tip><span>May 2, 2021 00:00</span>
 <span class=split>·</span>
-<span>489 words</span>
+<span>146 words</span>
 <span class=split>·</span>
-<span>3 minute read</span></div><div class=content><p>Описание структуры, кортежи, перечисления</p><h2 id=перечисления-enum>Перечисления enum <a href=#%d0%bf%d0%b5%d1%80%d0%b5%d1%87%d0%b8%d1%81%d0%bb%d0%b5%d0%bd%d0%b8%d1%8f-enum class=anchor>🔗</a></h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#66d9ef>enum</span> Time : <span style=color:#66d9ef>byte</span>
+<span>1 minute read</span></div><div class=content><p>Описание структуры, кортежи, перечисления</p><h2 id=перечисления-enum>Перечисления enum <a href=#%d0%bf%d0%b5%d1%80%d0%b5%d1%87%d0%b8%d1%81%d0%bb%d0%b5%d0%bd%d0%b8%d1%8f-enum class=anchor>🔗</a></h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#66d9ef>enum</span> Time : <span style=color:#66d9ef>byte</span>
 {
     Morning,
     Afternoon,
@@ -20,77 +20,50 @@
     <span style=color:#66d9ef>var</span> result = (<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>3</span>);
     <span style=color:#66d9ef>return</span> result;
 }
-</code></pre></div><h2 id=структуры>Структуры <a href=#%d1%81%d1%82%d1%80%d1%83%d0%ba%d1%82%d1%83%d1%80%d1%8b class=anchor>🔗</a></h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp>
-<span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>User</span>
-    {
-        <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>string</span> name;
-        <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>int</span> age;
-
-        <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> DisplayInfo()
-        {
-            Console.WriteLine(<span style=color:#e6db74>$&#34;Name: {name}  Age: {age}&#34;</span>);
-        }
-    }
-            User tom;
-            tom.name = <span style=color:#e6db74>&#34;Tom&#34;</span>;
-            tom.age = <span style=color:#ae81ff>34</span>;
-            tom.DisplayInfo();
+</code></pre></div><h2 id=структуры>Структуры <a href=#%d1%81%d1%82%d1%80%d1%83%d0%ba%d1%82%d1%83%d1%80%d1%8b class=anchor>🔗</a></h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>User</span>
+{
+	<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>string</span> name;
+	<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>int</span> age;
+	<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> DisplayInfo()
+	{
+	Console.WriteLine(
+	<span style=color:#e6db74>$&#34;Name: {name}  Age: {age}&#34;</span>);
+	}
+}
+User tom;
+tom.name = <span style=color:#e6db74>&#34;Tom&#34;</span>;
+tom.age = <span style=color:#ae81ff>34</span>;
+tom.DisplayInfo();
 </code></pre></div><h2 id=классы>Классы <a href=#%d0%ba%d0%bb%d0%b0%d1%81%d1%81%d1%8b class=anchor>🔗</a></h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>User</span>
-    {
-        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>string</span> _name;
-        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>int</span> _age;
-        <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>string</span> Name {<span style=color:#66d9ef>get</span> {<span style=color:#66d9ef>return</span> _name;} <span style=color:#66d9ef>set</span> {_name =<span style=color:#66d9ef>value</span>;}}
-        <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>int</span> Age {<span style=color:#66d9ef>get</span> {<span style=color:#66d9ef>return</span> _age;} }
-
-        <span style=color:#66d9ef>public</span> User(<span style=color:#66d9ef>string</span> name,<span style=color:#66d9ef>int</span> age){
-        _name =name;
-        _age = age;
-        }
-        <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> DisplayInfo( <span style=color:#66d9ef>params</span> <span style=color:#66d9ef>int</span>[]  ar)
-        {
-            <span style=color:#66d9ef>foreach</span>(<span style=color:#66d9ef>var</span> item <span style=color:#66d9ef>in</span> ar){
-            Console.WriteLine(item);    
-            }
-            Console.WriteLine(<span style=color:#e6db74>$&#34;Name: {Name}  Age: {Age}&#34;</span>);
-        }
-    }
-            User tom = <span style=color:#66d9ef>new</span> User(<span style=color:#e6db74>&#34;Serg&#34;</span>,<span style=color:#ae81ff>44</span>);
-            tom.DisplayInfo(<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>2</span>,<span style=color:#ae81ff>3</span>,<span style=color:#ae81ff>4</span>);
-</code></pre></div><h1 id=коллекции>Коллекции <a href=#%d0%ba%d0%be%d0%bb%d0%bb%d0%b5%d0%ba%d1%86%d0%b8%d0%b8 class=anchor>🔗</a></h1><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#66d9ef>using</span> System.Collections;
-<span style=color:#66d9ef>using</span> System.Collections.Generic;
-ArrayList objectList = 
-<span style=color:#66d9ef>new</span> ArrayList() { <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#e6db74>&#34;string&#34;</span>, <span style=color:#e6db74>&#39;c&#39;</span>, <span style=color:#ae81ff>2.0f</span> };
-List&lt;<span style=color:#66d9ef>int</span>&gt; numbers = <span style=color:#66d9ef>new</span> List&lt;<span style=color:#66d9ef>int</span>&gt;() { <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>45</span> };
-LinkedList&lt;<span style=color:#66d9ef>int</span>&gt; numbers1 = <span style=color:#66d9ef>new</span> LinkedList&lt;<span style=color:#66d9ef>int</span>&gt;();
-Queue&lt;<span style=color:#66d9ef>int</span>&gt; numbers2 = <span style=color:#66d9ef>new</span> Queue&lt;<span style=color:#66d9ef>int</span>&gt;();
-Stack&lt;<span style=color:#66d9ef>int</span>&gt; numbers3 = <span style=color:#66d9ef>new</span> Stack&lt;<span style=color:#66d9ef>int</span>&gt;();
-Dictionary&lt;<span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>string</span>&gt; countries = 
-<span style=color:#66d9ef>new</span> Dictionary&lt;<span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>string</span>&gt;(<span style=color:#ae81ff>5</span>);
-IEnumerable&lt;<span style=color:#66d9ef>int</span>&gt; squares = 
-Enumerable.Range(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>10</span>).Select(x =&gt; x * x);	
-Random.Range(<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>10</span>);
-</code></pre></div><p>IEnumerable: определяет метод GetEnumerator, с помощью которого можно получать элементы любой коллекции</p><p>Реализация данного интерфейса позволяет перебирать элементы коллекции с помощью цикла foreach
-IEnumerator: определяет методы, с помощью которых потом можно получить содержимое коллекции по очереди</p><p>ICollection: представляет ряд общих свойств и методов для всех обобщенных коллекций (например, методы CopyTo, Add, Remove, Contains, свойство Count)</p><p>IList: предоставляет функционал для создания последовательных списков</p><p>IComparer: определяет метод Compare для сравнения двух однотипных объектов</p><p>IDictionary&lt;TKey, TValue>: определяет поведение коллекции, при котором она должна хранить объекты в виде пар ключ-значение: для каждого объекта определяется уникальный ключ типа, указанного в параметре TKey, и этому ключу соответствует определенное значение, имеющее тип, указанный в параметре TValue</p><p>IEqualityComparer: определяет методы, с помощью которых два однотипных объекта сравниваются на предмет равенства</p><p>Эти интерфейсы реализуются следующими классами коллекций в пространстве имен System.Collections.Generic:</p><p>List: класс, представляющий последовательный список. Реализует интерфейсы IList, ICollection, IEnumerable&lt;T></p><p>Dictionary&lt;TKey, TValue>: класс коллекции, хранящей наборы пар &ldquo;ключ-значение&rdquo;. Реализует интерфейсы ICollection, IEnumerable, IDictionary&lt;TKey, TValue></p><p>LinkedList: класс двухсвязанного списка. Реализует интерфейсы ICollection и IEnumerable&lt;T></p><p>Queue: класс очереди объектов, работающей по алгоритму FIFO(&ldquo;первый вошел -первый вышел&rdquo;). Реализует интерфейсы ICollection, IEnumerable&lt;T></p><p>SortedSet: класс отсортированной коллекции однотипных объектов. Реализует интерфейсы ICollection, ISet, IEnumerable&lt;T></p><p>SortedList&lt;TKey, TValue>: класс коллекции, хранящей наборы пар &ldquo;ключ-значение&rdquo;, отсортированных по ключу. Реализует интерфейсы ICollection, IEnumerable, IDictionary&lt;TKey, TValue></p><p>SortedDictionary&lt;TKey, TValue>: класс коллекции, хранящей наборы пар &ldquo;ключ-значение&rdquo;, отсортированных по ключу. В общем похож на класс SortedList&lt;TKey, TValue>, основные отличия состоят лишь в использовании памяти и в скорости вставки и удаления</p><p>Stack: класс стека однотипных объектов. Реализует интерфейсы ICollection и IEnumerable&lt;T></p><h2 id=итераторы-и-оператор-yield>Итераторы и оператор yield <a href=#%d0%b8%d1%82%d0%b5%d1%80%d0%b0%d1%82%d0%be%d1%80%d1%8b-%d0%b8-%d0%be%d0%bf%d0%b5%d1%80%d0%b0%d1%82%d0%be%d1%80-yield class=anchor>🔗</a></h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp> <span style=color:#66d9ef>using</span> System.Collections;
-
-
- Numbers numbers = <span style=color:#66d9ef>new</span> Numbers();
-            <span style=color:#66d9ef>foreach</span> (<span style=color:#66d9ef>int</span> n <span style=color:#66d9ef>in</span> numbers)
-            {
-                Console.WriteLine(n);
-            }
-            
-
-  <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Numbers</span>
-    {
-        <span style=color:#66d9ef>public</span> IEnumerator GetEnumerator()
-        {
-            <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt; <span style=color:#ae81ff>6</span>; i++)
-            {
-                <span style=color:#66d9ef>yield</span> <span style=color:#66d9ef>return</span> i * i;
-            }
-        }
-    }
-</code></pre></div></div><div class=tags><a href=https://atreezilla.com/tags/csharp>csharp</a></div><div id=comment><div id=disqus_thread></div><script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return;}
+{
+	<span style=color:#66d9ef>private</span> <span style=color:#66d9ef>string</span> _name;
+	<span style=color:#66d9ef>private</span> <span style=color:#66d9ef>int</span> _age;
+	<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>string</span> Name {
+	<span style=color:#66d9ef>get</span> {<span style=color:#66d9ef>return</span> _name;} 
+	<span style=color:#66d9ef>set</span> {_name =<span style=color:#66d9ef>value</span>;}}
+	<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>int</span> Age {
+	<span style=color:#66d9ef>get</span> {<span style=color:#66d9ef>return</span> _age;} }
+	<span style=color:#66d9ef>public</span> User(<span style=color:#66d9ef>string</span> name
+	,<span style=color:#66d9ef>int</span> age)
+	{
+	_name =name;
+	_age = age;
+	}
+	<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> DisplayInfo( 
+	<span style=color:#66d9ef>params</span> <span style=color:#66d9ef>int</span>[]  ar)
+	{
+		<span style=color:#66d9ef>foreach</span>(<span style=color:#66d9ef>var</span> item <span style=color:#66d9ef>in</span> ar)
+		{
+			Console.WriteLine(item);    
+		}
+		Console.WriteLine(
+		<span style=color:#e6db74>$&#34;Name: {Name}  Age: {Age}&#34;</span>);
+	}
+}
+User tom = <span style=color:#66d9ef>new</span> User(<span style=color:#e6db74>&#34;Serg&#34;</span>,<span style=color:#ae81ff>44</span>);
+tom.DisplayInfo(<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>2</span>,<span style=color:#ae81ff>3</span>,<span style=color:#ae81ff>4</span>);
+</code></pre></div></div><div class=tags><a href=https://atreezilla.com/tags/csharp>csharp</a>
+<a href=https://atreezilla.com/tags/structures>structures</a></div><div id=comment><div id=disqus_thread></div><script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return;}
 var d=document,s=d.createElement('script');s.async=true;s.src='//'+"atreezilla"+'.disqus.com/embed.js';s.setAttribute('data-timestamp',+new Date());(d.head||d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></section></main><footer id=footer><p class=copyright>© Copyright
 2021
 <span class=split><svg fill="#bbb" width="15" height="15" id="heart-15" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15"><path d="M13.91 6.75c-1.17 2.25-4.3 5.31-6.07 6.94-.1903.1718-.4797.1718-.67.0C5.39 12.06 2.26 9 1.09 6.75-1.48 1.8 5-1.5 7.5 3.45 10-1.5 16.48 1.8 13.91 6.75z"/></svg></span></p><p class=powerby>Powered by <a href=http://www.gohugo.io/>Hugo</a> Theme By <a href=https://github.com/nodejh/hugo-theme-cactus-plus>nodejh</a></p></footer><script async src="https://www.googletagmanager.com/gtag/js?id=G-4B4NE8EHC3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}

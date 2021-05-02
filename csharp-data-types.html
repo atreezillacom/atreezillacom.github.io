@@ -3,43 +3,66 @@
 <a href=../tags>Tags</a>
 <a href=../about>About</a></nav><main class=main><section id=single><h1 class=title>Типы данных C#</h1><div class=tip><span>Mar 26, 2021 00:00</span>
 <span class=split>·</span>
-<span>363 words</span>
+<span>368 words</span>
 <span class=split>·</span>
 <span>2 minute read</span></div><div class=content><p>Типы данных в C# описано в сжатом формате .</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#75715e>//(1 байт) System.Boolean
 </span><span style=color:#75715e></span><span style=color:#66d9ef>bool</span> isStupid = <span style=color:#66d9ef>false</span>; <span style=color:#66d9ef>bool</span> isSmarty = <span style=color:#66d9ef>true</span>;  
 <span style=color:#75715e>//(1 байт) от 0 до 255 System.Byte 
 </span><span style=color:#75715e></span><span style=color:#66d9ef>byte</span> _month = <span style=color:#ae81ff>1</span>; <span style=color:#66d9ef>byte</span> DayOfWeek = <span style=color:#ae81ff>102</span>;  
-<span style=color:#75715e>//(1 байт) целое число от -128 до 127 System.SByte       
+<span style=color:#75715e>//(1 байт) целое число от -128 до 127 
+</span><span style=color:#75715e>//System.SByte       
 </span><span style=color:#75715e></span><span style=color:#66d9ef>sbyte</span> t1 = -<span style=color:#ae81ff>101</span>; <span style=color:#66d9ef>sbyte</span> t2 = <span style=color:#ae81ff>102</span>;
-<span style=color:#75715e>//(2 байта) целое число от -32768 до 32767  System.Int16               
+<span style=color:#75715e>//(2 байта) целое число от -32768 до 32767  
+</span><span style=color:#75715e>//System.Int16               
 </span><span style=color:#75715e></span><span style=color:#66d9ef>short</span> n1 = <span style=color:#ae81ff>1</span>; <span style=color:#66d9ef>short</span> n2 = <span style=color:#ae81ff>102</span>;       
-<span style=color:#75715e>//(2 байта) целое число от 0 до 65535 System.UInt16           
+<span style=color:#75715e>//(2 байта) целое число от 0 до 65535 
+</span><span style=color:#75715e>//System.UInt16           
 </span><span style=color:#75715e></span><span style=color:#66d9ef>ushort</span> un1 = <span style=color:#ae81ff>1</span>; <span style=color:#66d9ef>ushort</span> un2 = <span style=color:#ae81ff>102</span>; 
-<span style=color:#75715e>//(4 байта) целое число от -2147483648 до 2147483647 System.Int32             
+<span style=color:#75715e>//(4 байта) целое число 
+</span><span style=color:#75715e>//от -2147483648 до 2147483647 System.Int32             
 </span><span style=color:#75715e></span><span style=color:#66d9ef>int</span> age = <span style=color:#ae81ff>10</span>; <span style=color:#66d9ef>int</span> b = <span style=color:#ae81ff>0</span>b101; <span style=color:#66d9ef>int</span> c = <span style=color:#ae81ff>0</span>xFF; 
-<span style=color:#75715e>//(4 байта) целое число от 0 до 4294967295 System.UInt32    
+<span style=color:#75715e>//(4 байта) целое число от 0 до 4294967295 
+</span><span style=color:#75715e>//System.UInt32    
 </span><span style=color:#75715e></span><span style=color:#66d9ef>uint</span> ua = <span style=color:#ae81ff>10</span>; <span style=color:#66d9ef>uint</span> ub = <span style=color:#ae81ff>0</span>b101; 
 <span style=color:#66d9ef>uint</span> uc = <span style=color:#ae81ff>0</span>xFF; <span style=color:#66d9ef>uint</span> xa = <span style=color:#ae81ff>10</span>U;                 
-<span style=color:#75715e>//(8 байт) целое число от –9 223 372 036 854 775 808 
-</span><span style=color:#75715e>// до 9 223 372 036 854 775 807 System.Int64
-</span><span style=color:#75715e></span><span style=color:#66d9ef>long</span> la = -<span style=color:#ae81ff>10</span>; <span style=color:#66d9ef>long</span> lb = <span style=color:#ae81ff>0</span>b101; <span style=color:#66d9ef>long</span> lc = <span style=color:#ae81ff>0</span>xFF; <span style=color:#66d9ef>long</span> xb = <span style=color:#ae81ff>20L</span>;    
-<span style=color:#75715e>//(8 байт) целое число от 0 до 18 446 744 073 709 551 615 System.UInt64  
-</span><span style=color:#75715e></span><span style=color:#66d9ef>ulong</span> ga = <span style=color:#ae81ff>10</span>; <span style=color:#66d9ef>ulong</span> gb = <span style=color:#ae81ff>0</span>b101; <span style=color:#66d9ef>ulong</span> gc = <span style=color:#ae81ff>0</span>xFF; <span style=color:#66d9ef>ulong</span> xc = <span style=color:#ae81ff>30</span>UL;      
-<span style=color:#75715e>//(4 байта)число с плавающей точкой от -3.4*1038 до 3.4*1038 System.Single
+<span style=color:#75715e>//(8 байт) целое число 
+</span><span style=color:#75715e>// от –9 223 372 036 854 775 808 
+</span><span style=color:#75715e>// до 9 223 372 036 854 775 807 
+</span><span style=color:#75715e>//System.Int64
+</span><span style=color:#75715e></span><span style=color:#66d9ef>long</span> la = -<span style=color:#ae81ff>10</span>; <span style=color:#66d9ef>long</span> lb = <span style=color:#ae81ff>0</span>b101; 
+<span style=color:#66d9ef>long</span> lc = <span style=color:#ae81ff>0</span>xFF; <span style=color:#66d9ef>long</span> xb = <span style=color:#ae81ff>20L</span>;    
+<span style=color:#75715e>//(8 байт) целое число 
+</span><span style=color:#75715e>// от 0 до 18 446 744 073 709 551 615 
+</span><span style=color:#75715e>//System.UInt64  
+</span><span style=color:#75715e></span><span style=color:#66d9ef>ulong</span> ga = <span style=color:#ae81ff>10</span>; <span style=color:#66d9ef>ulong</span> gb = <span style=color:#ae81ff>0</span>b101; 
+<span style=color:#66d9ef>ulong</span> gc = <span style=color:#ae81ff>0</span>xFF; <span style=color:#66d9ef>ulong</span> xc = <span style=color:#ae81ff>30</span>UL;      
+<span style=color:#75715e>//(4 байта)число с плавающей точкой 
+</span><span style=color:#75715e>//от -3.4*1038 до 3.4*1038 System.Single
 </span><span style=color:#75715e></span><span style=color:#66d9ef>float</span> fa = <span style=color:#ae81ff>3.14F</span>; <span style=color:#66d9ef>float</span> fb = <span style=color:#ae81ff>30.6f</span>;
-<span style=color:#75715e>//(8 байт)число с плавающей точкой от ±5.0*10-324 до ±1.7*10308 System.Double         
+<span style=color:#75715e>//(8 байт)число с плавающей точкой 
+</span><span style=color:#75715e>// от ±5.0*10-324 до ±1.7*10308 System.Double         
 </span><span style=color:#75715e></span><span style=color:#66d9ef>double</span> db =<span style=color:#ae81ff>10.222</span>;                       
-<span style=color:#75715e>//(16 байт)десятичное дробное число. Если употребляется без десятичной запятой, 
+<span style=color:#75715e>//(16 байт)десятичное дробное число. 
+</span><span style=color:#75715e>// Если употребляется без десятичной запятой, 
 </span><span style=color:#75715e>// имеет значение от ±1.0*10-28 до ±7.9228*1028, 
-</span><span style=color:#75715e>// может хранить 28 знаков после запятой System.Decimal   
+</span><span style=color:#75715e>// может хранить 28 знаков после запятой 
+</span><span style=color:#75715e>// System.Decimal   
 </span><span style=color:#75715e></span><span style=color:#66d9ef>decimal</span> fc = <span style=color:#ae81ff>1005.8</span>M;<span style=color:#66d9ef>decimal</span> d = <span style=color:#ae81ff>334.8</span>m;    
-<span style=color:#75715e>//(2 байта)хранит одиночный символ в кодировке Unicode System.Char
-</span><span style=color:#75715e></span><span style=color:#66d9ef>char</span> ca = <span style=color:#e6db74>&#39;A&#39;</span>; <span style=color:#66d9ef>char</span> cb = <span style=color:#960050;background-color:#1e0010>&#39;\</span>x5A<span style=color:#960050;background-color:#1e0010>&#39;</span>; <span style=color:#66d9ef>char</span> cc = <span style=color:#960050;background-color:#1e0010>&#39;\</span>u0420<span style=color:#960050;background-color:#1e0010>&#39;</span>; . 
-<span style=color:#66d9ef>string</span> name = <span style=color:#e6db74>&#34;Tom&#34;</span>; <span style=color:#75715e>//хранит набор символов Unicode System.String
-</span><span style=color:#75715e></span><span style=color:#75715e>/*может хранить значение любого типа данных и занимает 4 байта 
-</span><span style=color:#75715e>на 32-разрядной платформе и 8 байт на 64-разрядной платформе. 
-</span><span style=color:#75715e>System.Object , является базовым для всех других типов и классов .NET*/</span>
-<span style=color:#66d9ef>object</span> oa = <span style=color:#ae81ff>22</span>; <span style=color:#66d9ef>object</span> ob = <span style=color:#ae81ff>3.14</span>; <span style=color:#66d9ef>object</span> oc = <span style=color:#e6db74>&#34;hello code&#34;</span>; 
+<span style=color:#75715e>//(2 байта)хранит одиночный символ 
+</span><span style=color:#75715e>//в кодировке Unicode System.Char
+</span><span style=color:#75715e></span><span style=color:#66d9ef>char</span> ca = <span style=color:#e6db74>&#39;A&#39;</span>; <span style=color:#66d9ef>char</span> cb = <span style=color:#960050;background-color:#1e0010>&#39;\</span>x5A<span style=color:#960050;background-color:#1e0010>&#39;</span>; 
+<span style=color:#66d9ef>char</span> cc = <span style=color:#960050;background-color:#1e0010>&#39;\</span>u0420<span style=color:#960050;background-color:#1e0010>&#39;</span>; 
+<span style=color:#75715e>//хранит набор символов Unicode 
+</span><span style=color:#75715e>//System.String
+</span><span style=color:#75715e></span><span style=color:#66d9ef>string</span> name = <span style=color:#e6db74>&#34;Tom&#34;</span>; 
+<span style=color:#75715e>/*может хранить значение любого типа 
+</span><span style=color:#75715e>данных и занимает 4 байта 
+</span><span style=color:#75715e>на 32-разрядной платформе и 8 байт 
+</span><span style=color:#75715e>на 64-разрядной платформе. 
+</span><span style=color:#75715e>System.Object , является базовым для 
+</span><span style=color:#75715e>всех других типов и классов .NET*/</span>
+<span style=color:#66d9ef>object</span> oa = <span style=color:#ae81ff>22</span>; <span style=color:#66d9ef>object</span> ob = <span style=color:#ae81ff>3.14</span>; 
+<span style=color:#66d9ef>object</span> oc = <span style=color:#e6db74>&#34;hello code&#34;</span>; 
 
 Console.WriteLine(<span style=color:#e6db74>$&#34;Имя: {name} \n Возраст: {age}&#34;</span>);
 <span style=color:#75715e>//Неявная типизация
@@ -50,7 +73,7 @@ Console.WriteLine(xhello.GetType().ToString());
 
 Console.WriteLine(Convert.ToString(<span style=color:#ae81ff>123</span>, <span style=color:#ae81ff>2</span>).PadLeft(<span style=color:#ae81ff>16</span>, <span style=color:#e6db74>&#39;0&#39;</span>)) ;   
 Console.WriteLine(<span style=color:#e6db74>&#34;Size of bool {0}&#34;</span>,<span style=color:#66d9ef>sizeof</span>(<span style=color:#66d9ef>bool</span>));
-</code></pre></div></div><div class=tags><a href=https://atreezilla.com/tags/csharp>csharp</a></div><div id=comment><div id=disqus_thread></div><script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return;}
+</code></pre></div><ul><li><a href="https://drive.google.com/file/d/1LeM6Q7G5EyNZlM9JIILfE-m5yRcpGex-/view?usp=sharing" target=_blank rel=noopener>data_types.workbook</a></li></ul></div><div class=tags><a href=https://atreezilla.com/tags/csharp>csharp</a></div><div id=comment><div id=disqus_thread></div><script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return;}
 var d=document,s=d.createElement('script');s.async=true;s.src='//'+"atreezilla"+'.disqus.com/embed.js';s.setAttribute('data-timestamp',+new Date());(d.head||d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></section></main><footer id=footer><p class=copyright>© Copyright
 2021
 <span class=split><svg fill="#bbb" width="15" height="15" id="heart-15" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15"><path d="M13.91 6.75c-1.17 2.25-4.3 5.31-6.07 6.94-.1903.1718-.4797.1718-.67.0C5.39 12.06 2.26 9 1.09 6.75-1.48 1.8 5-1.5 7.5 3.45 10-1.5 16.48 1.8 13.91 6.75z"/></svg></span></p><p class=powerby>Powered by <a href=http://www.gohugo.io/>Hugo</a> Theme By <a href=https://github.com/nodejh/hugo-theme-cactus-plus>nodejh</a></p></footer><script async src="https://www.googletagmanager.com/gtag/js?id=G-4B4NE8EHC3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
