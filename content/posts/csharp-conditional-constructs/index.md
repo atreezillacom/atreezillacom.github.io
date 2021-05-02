@@ -23,10 +23,12 @@ string selection="";
 switch (selection)
 {
     case "Y":
-        Console.WriteLine("Вы нажали букву Y");
+        Console.WriteLine(
+		"Вы нажали букву Y");
         break;
     case "N":
-        Console.WriteLine("Вы нажали букву N");
+        Console.WriteLine(
+		"Вы нажали букву N");
         break;
     default:
         Console.WriteLine(

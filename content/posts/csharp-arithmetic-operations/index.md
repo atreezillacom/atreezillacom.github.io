@@ -56,7 +56,9 @@ float f =101;
 uint.TryParse(f.ToString(),out u);
 Console.WriteLine(u);
 y++;
-Console.WriteLine("16 - ричное представление числа {0} - {1}"
+Console.WriteLine(
+"16 - ричное представление числа {0} - {1}"
 ,y , Convert.ToString(y,16));
-Console.WriteLine(Convert.ToUInt16(++f));
+Console.WriteLine(
+Convert.ToUInt16(++f));
 ```

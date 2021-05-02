@@ -11,7 +11,8 @@ tags = [
  
 Примеры работы с бинарными и текстовыми файлами C# <!--more-->
 
-#Способы создания: 
+Способы создания: 
+-----------------
 
 FileStream(string filename, FileMode mode) , FileMode(Append,Create,CreateNew,Open,OpenOrCreate,Truncate)
 File.Open(string file, FileMode mode), File.OpenRead(string file), File.OpenWrite(string file);
@@ -23,8 +24,8 @@ ValueTask WriteAsync(byte[] array, int offset, int count), Task CopyToAsync(Stre
 SeekOrigin.Begin: начало файла, SeekOrigin.End: конец файла, SeekOrigin.Current: текущая позиция в файле
 fstream.Seek(-5, SeekOrigin.End);
 
-#Способы использования:
-
+Способы использования:
+----------------------
 ```csharp
 try
 {

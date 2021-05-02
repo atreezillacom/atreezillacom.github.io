@@ -21,11 +21,16 @@ using System.Collections.Specialized;
 BitArray bits1 = new BitArray(10);
 var bits2 = new BitVector32 () ;
 ArrayList objectList = 
-new ArrayList() { 1, 2, "string", 'c', 2.0f };
-List<int> numbers = new List<int>() { 1, 2, 3, 45 };
-LinkedList<int> numbers1 = new LinkedList<int>();
-Queue<int> numbers2 = new Queue<int>();
-Stack<int> numbers3 = new Stack<int>();
+new ArrayList() 
+{ 1, 2, "string", 'c', 2.0f };
+List<int> numbers = 
+new List<int>() { 1, 2, 3, 45 };
+LinkedList<int> numbers1 = 
+new LinkedList<int>();
+Queue<int> numbers2 = 
+new Queue<int>();
+Stack<int> numbers3 = 
+new Stack<int>();
 Dictionary<int, string> countries = 
 new Dictionary<int, string>(5);
 IEnumerable<int> squares = 
@@ -75,25 +80,21 @@ Stack<T>: класс стека однотипных объектов. Реал�
 ## Итераторы и оператор yield
 
 ```csharp
- using System.Collections;
-
-
- Numbers numbers = new Numbers();
-            foreach (int n in numbers)
-            {
-                Console.WriteLine(n);
-            }
-            
-
-  class Numbers
-    {
-        public IEnumerator GetEnumerator()
-        {
-            for(int i = 0; i < 6; i++)
-            {
-                yield return i * i;
-            }
-        }
-    }
+using System.Collections;
+Numbers numbers = new Numbers();
+foreach (int n in numbers)
+{
+Console.WriteLine(n);
+}
+class Numbers
+{
+	public IEnumerator GetEnumerator()
+	{
+	for(int i = 0; i < 6; i++)
+	{
+	yield return i * i;
+	}
+	}
+}
 ```
 - [collections.workbook](https://drive.google.com/file/d/1X4LkJRAIRowx8Ge7WdH4FvUzrM1YrJRl/view?usp=sharing)
