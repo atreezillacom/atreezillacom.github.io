@@ -3,7 +3,7 @@
 <a href=../tags>Tags</a>
 <a href=../about>About</a></nav><main class=main><section id=single><h1 class=title>Типы данных C#</h1><div class=tip><span>Mar 26, 2021 00:00</span>
 <span class=split>·</span>
-<span>368 words</span>
+<span>373 words</span>
 <span class=split>·</span>
 <span>2 minute read</span></div><div class=content><p>Типы данных в C# описано в сжатом формате .</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#75715e>//(1 байт) System.Boolean
 </span><span style=color:#75715e></span><span style=color:#66d9ef>bool</span> isStupid = <span style=color:#66d9ef>false</span>; <span style=color:#66d9ef>bool</span> isSmarty = <span style=color:#66d9ef>true</span>;  
@@ -44,7 +44,8 @@
 </span><span style=color:#75715e></span><span style=color:#66d9ef>double</span> db =<span style=color:#ae81ff>10.222</span>;                       
 <span style=color:#75715e>//(16 байт)десятичное дробное число. 
 </span><span style=color:#75715e>// Если употребляется без десятичной запятой, 
-</span><span style=color:#75715e>// имеет значение от ±1.0*10-28 до ±7.9228*1028, 
+</span><span style=color:#75715e>// имеет значение 
+</span><span style=color:#75715e>// от ±1.0*10-28 до ±7.9228*1028, 
 </span><span style=color:#75715e>// может хранить 28 знаков после запятой 
 </span><span style=color:#75715e>// System.Decimal   
 </span><span style=color:#75715e></span><span style=color:#66d9ef>decimal</span> fc = <span style=color:#ae81ff>1005.8</span>M;<span style=color:#66d9ef>decimal</span> d = <span style=color:#ae81ff>334.8</span>m;    
@@ -64,15 +65,19 @@
 <span style=color:#66d9ef>object</span> oa = <span style=color:#ae81ff>22</span>; <span style=color:#66d9ef>object</span> ob = <span style=color:#ae81ff>3.14</span>; 
 <span style=color:#66d9ef>object</span> oc = <span style=color:#e6db74>&#34;hello code&#34;</span>; 
 
-Console.WriteLine(<span style=color:#e6db74>$&#34;Имя: {name} \n Возраст: {age}&#34;</span>);
+Console.WriteLine(
+<span style=color:#e6db74>$&#34;Имя: {name} \n Возраст: {age}&#34;</span>);
 <span style=color:#75715e>//Неявная типизация
 </span><span style=color:#75715e></span><span style=color:#66d9ef>var</span> xhello = <span style=color:#e6db74>&#34;Hell to World&#34;</span>;
 <span style=color:#66d9ef>var</span> xc2 = <span style=color:#ae81ff>20</span>;     
 Console.WriteLine(c.GetType().ToString());
-Console.WriteLine(xhello.GetType().ToString());
+Console.WriteLine(
+xhello.GetType().ToString());
 
-Console.WriteLine(Convert.ToString(<span style=color:#ae81ff>123</span>, <span style=color:#ae81ff>2</span>).PadLeft(<span style=color:#ae81ff>16</span>, <span style=color:#e6db74>&#39;0&#39;</span>)) ;   
-Console.WriteLine(<span style=color:#e6db74>&#34;Size of bool {0}&#34;</span>,<span style=color:#66d9ef>sizeof</span>(<span style=color:#66d9ef>bool</span>));
+Console.WriteLine(
+Convert.ToString(<span style=color:#ae81ff>123</span>, <span style=color:#ae81ff>2</span>).PadLeft(<span style=color:#ae81ff>16</span>, <span style=color:#e6db74>&#39;0&#39;</span>)) ;   
+Console.WriteLine(
+<span style=color:#e6db74>&#34;Size of bool {0}&#34;</span>,<span style=color:#66d9ef>sizeof</span>(<span style=color:#66d9ef>bool</span>));
 </code></pre></div><ul><li><a href="https://drive.google.com/file/d/1LeM6Q7G5EyNZlM9JIILfE-m5yRcpGex-/view?usp=sharing" target=_blank rel=noopener>data_types.workbook</a></li></ul></div><div class=tags><a href=https://atreezilla.com/tags/csharp>csharp</a></div><div id=comment><div id=disqus_thread></div><script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return;}
 var d=document,s=d.createElement('script');s.async=true;s.src='//'+"atreezilla"+'.disqus.com/embed.js';s.setAttribute('data-timestamp',+new Date());(d.head||d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></section></main><footer id=footer><p class=copyright>© Copyright
 2021
