@@ -50,7 +50,8 @@ float fa = 3.14F; float fb = 30.6f;
 double db =10.222;                       
 //(16 байт)десятичное дробное число. 
 // Если употребляется без десятичной запятой, 
-// имеет значение от ±1.0*10-28 до ±7.9228*1028, 
+// имеет значение 
+// от ±1.0*10-28 до ±7.9228*1028, 
 // может хранить 28 знаков после запятой 
 // System.Decimal   
 decimal fc = 1005.8M;decimal d = 334.8m;    
@@ -70,14 +71,18 @@ System.Object , является базовым для
 object oa = 22; object ob = 3.14; 
 object oc = "hello code"; 
 
-Console.WriteLine($"Имя: {name} \n Возраст: {age}");
+Console.WriteLine(
+$"Имя: {name} \n Возраст: {age}");
 //Неявная типизация
 var xhello = "Hell to World";
 var xc2 = 20;     
 Console.WriteLine(c.GetType().ToString());
-Console.WriteLine(xhello.GetType().ToString());
+Console.WriteLine(
+xhello.GetType().ToString());
 
-Console.WriteLine(Convert.ToString(123, 2).PadLeft(16, '0')) ;   
-Console.WriteLine("Size of bool {0}",sizeof(bool));
+Console.WriteLine(
+Convert.ToString(123, 2).PadLeft(16, '0')) ;   
+Console.WriteLine(
+"Size of bool {0}",sizeof(bool));
 ```
 - [data_types.workbook](https://drive.google.com/file/d/1LeM6Q7G5EyNZlM9JIILfE-m5yRcpGex-/view?usp=sharing)

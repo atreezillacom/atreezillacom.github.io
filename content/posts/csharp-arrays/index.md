@@ -138,3 +138,5 @@ Console.Write(i);
 ```
 
 - [arrays.workbook](https://drive.google.com/file/d/18q5UI8bbMxEDr8yULPnAnXyifB0dyJHZ/view?usp=sharing)
+- [Задачи](https://drive.google.com/file/d/1_oepNCTizGlTF574MAIpe_tFdoMfK1MK/view?usp=sharing)
+- [Пример решения](https://drive.google.com/file/d/11zdDKdYzBpq275XVmI0CdBMyv1JLFEFl/view?usp=sharing)
