@@ -10,5 +10,4 @@ disqusShortname = "atreezilla"
 googleAnalytics = "266950395"
 [params]
   description = "На сайте будет размещена информация о программировании на C#, python , 3D, рисовании, музыке и других интересных вещах"
-  enableComments = true
   enableGoogleAnalytics = true
