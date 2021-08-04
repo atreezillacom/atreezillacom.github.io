@@ -1,83 +1,151 @@
 +++
 author = "elkrot"
-title = "Коллекции C#"
+title = "Коллекции C#. Определение , примеры использования. Аналогии. "
 date = "2021-05-02"
-description = "Коллекции C#"
+description = "Коллекции C#. Определение , примеры использования. Аналогии из реального мира."
 tags = [
     "csharp",
 	"collections"
 ]
 +++
 
-Описание Коллекции C# <!--more-->
+Описание Коллекций C#. Определение , примеры использования. Аналогии  <!--more-->
 
 # Коллекции
 
-```csharp
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.Specialized;
+Коллекция это объект, содержащий набор значений и позволяющий взаимодействовать с этими значениями (просматривать, добавлять, изменять, удалять, сортировать ...) . 
 
-BitArray bits1 = new BitArray(10);
-var bits2 = new BitVector32 () ;
-ArrayList objectList = 
-new ArrayList() 
-{ 1, 2, "string", 'c', 2.0f };
-List<int> numbers = 
-new List<int>() { 1, 2, 3, 45 };
-LinkedList<int> numbers1 = 
-new LinkedList<int>();
-Queue<int> numbers2 = 
-new Queue<int>();
-Stack<int> numbers3 = 
-new Stack<int>();
-Dictionary<int, string> countries = 
-new Dictionary<int, string>(5);
-IEnumerable<int> squares = 
-Enumerable.Range(1, 10).Select(x => x * x);	
-Random.Range(1,10);
-```
-BitArray(byte[] bytes)
-And(),Get(),Not(),Or(),Set(),SetAll(),Xor()
 
-BitVector32
-CreateMask()
-CreateSelection()
+## Классификация коллекций по характеристикам
 
-IEnumerable<T>: определяет метод GetEnumerator, с помощью которого можно получать элементы любой коллекции
+ - Постоянные , динамические 
+ - Может хранить объекты одного типа или объекты различных типов
+ 
+## Классификация коллекций по логике организации
 
-Реализация данного интерфейса позволяет перебирать элементы коллекции с помощью цикла foreach
-IEnumerator<T>: определяет методы, с помощью которых потом можно получить содержимое коллекции по очереди
+ - Вектор - Массив 
+ - Матрица - Двумерный массив
+ - Многомерный массив  
+ - Список - Упорядоченная коллекция объектов
+ - Стек - последним пришёл — первым вышел LIFO
+ - Очередь - первым пришёл — первым вышел FIFO
+ - Ассоциативный массив (словарь) - неупорядоченная коллекция, хранящая пары «ключ — значение»
+ - Множество - неупорядоченная коллекция, хранящая набор уникальных значений
+ - Мультимножество — множество, допускающее наличие одновременно нескольких одинаковых значений.
+	
+## Классификация коллекций по реализации
 
-ICollection<T>: представляет ряд общих свойств и методов для всех обобщенных коллекций (например, методы CopyTo, Add, Remove, Contains, свойство Count)
+### Интерфейсы коллекций
+
+IEnumerable<T>: определяет метод GetEnumerator, можно получать элементы любой коллекции Реализация интерфейса позволяет перебирать элементы коллекции с помощью foreach
+
+ICollection<T>: представляет общие свойства и методы для всех обобщенных коллекций (например, методы CopyTo, Add, Remove, Contains, свойство Count)
 
 IList<T>: предоставляет функционал для создания последовательных списков
 
 IComparer<T>: определяет метод Compare для сравнения двух однотипных объектов
 
-IDictionary\<TKey, TValue>: определяет поведение коллекции, при котором она должна хранить объекты в виде пар ключ-значение: для каждого объекта определяется уникальный ключ типа, указанного в параметре TKey, и этому ключу соответствует определенное значение, имеющее тип, указанный в параметре TValue
+IDictionary<TKey, TValue>: коллекция должна хранить объекты в виде пар ключ-значение TKey, TValue
 
 IEqualityComparer<T>: определяет методы, с помощью которых два однотипных объекта сравниваются на предмет равенства
 
-Эти интерфейсы реализуются следующими классами коллекций в пространстве имен System.Collections.Generic:
+реализуются классами коллекций в пространстве имен System.Collections.Generic:
+ 
+### Необходимые пространства имен
 
-List<T>: класс, представляющий последовательный список. Реализует интерфейсы IList<T>, ICollection<T>, IEnumerable\<T>
+```csharp
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+```
 
-Dictionary\<TKey, TValue>: класс коллекции, хранящей наборы пар "ключ-значение". Реализует интерфейсы ICollection<T>, IEnumerable<T>, IDictionary<TKey, TValue>
+### Типы коллекций C#
 
-LinkedList<T>: класс двухсвязанного списка. Реализует интерфейсы ICollection<T> и IEnumerable<T>
+- Массив
+ 
+```csharp
+ArrayList objectList = 
+new ArrayList() 
+{ 1, 2, "string", 'c', 2.0f };
+```
+ 
+ 
+- Односвязный список
+`List<T>`: последовательный список. Реализует интерфейсы `IList<T>, ICollection<T>, IEnumerable<T>` 
 
-Queue<T>: класс очереди объектов, работающей по алгоритму FIFO("первый вошел -первый вышел"). Реализует интерфейсы ICollection, IEnumerable<T>
+```csharp
+List<int> numbers = 
+new List<int>() { 1, 2, 3, 45 };
+``` 
+ 
+`SortedSet<T>`: отсортированная коллекция однотипных объектов. Реализует интерфейсы `ICollection<T>, ISet<T>, IEnumerable<T>`
 
-SortedSet<T>: класс отсортированной коллекции однотипных объектов. Реализует интерфейсы ICollection<T>, ISet<T>, IEnumerable<T>
+`SortedList<TKey, TValue>`: хранит наборы пар "ключ-значение", отсортированные по ключу. Реализует интерфейсы `ICollection<T>, IEnumerable<T>, IDictionary<TKey, TValue>`
 
-SortedList<TKey, TValue>: класс коллекции, хранящей наборы пар "ключ-значение", отсортированных по ключу. Реализует интерфейсы ICollection<T>, IEnumerable<T>, IDictionary<TKey, TValue>
+- Двусвязный список
+`LinkedList<T>`: двухсвязанный список. Реализует интерфейсы `ICollection<T> , IEnumerable<T>`
+```csharp
+LinkedList<int> numbers1 = 
+new LinkedList<int>();
+```
+- Стек
+`Stack<T>`: стек однотипных объектов. Реализует интерфейсы `ICollection<T> , IEnumerable<T>`
+```csharp
+Stack<int> numbers3 = 
+new Stack<int>();
+```
+- Хеш-таблица
+```csharp
+Hashtable
+```
+- Битовый массив
+`BitArray(byte[] bytes)`
+`And(),Get(),Not(),Or(),Set(),SetAll(),Xor()`
 
-SortedDictionary<TKey, TValue>: класс коллекции, хранящей наборы пар "ключ-значение", отсортированных по ключу. В общем похож на класс SortedList<TKey, TValue>, основные отличия состоят лишь в использовании памяти и в скорости вставки и удаления
+`BitVector32`
+`CreateMask()`
+`CreateSelection()`
+ 
+```csharp
+BitArray bits1 = new BitArray(10);
+var bits2 = new BitVector32 () ;
+```
+ 
+- Очередь
+`Queue<T>`: FIFO("первый вошел -первый вышел"). Реализует интерфейсы `ICollection, IEnumerable<T>`
+```csharp
+Queue<int> numbers2 = 
+new Queue<int>();
+```
+ 
+- Словарь 
+`Dictionary<TKey, TValue>`: "ключ-значение". Реализует интерфейсы `ICollection<T>, IEnumerable<T>, IDictionary<TKey, TValue>`
+```csharp
+Dictionary<int, string> countries = 
+new Dictionary<int, string>(5);
+```
+`SortedDictionary<TKey, TValue>`: хранит наборы пар "ключ-значение", отсортированных по ключу. Похож на класс `SortedList<TKey, TValue>`, основные отличия состоят лишь в использовании памяти и в скорости вставки и удаления
+ 
+- Способы создания коллекций 
+```csharp
 
-Stack<T>: класс стека однотипных объектов. Реализует интерфейсы ICollection<T> и IEnumerable\<T>
 
-## Итераторы и оператор yield
+IEnumerable<int> randomCol =
+Enumerable.Range(1, 10);
+
+foreach (var item in randomCol)
+ {
+  Console.WriteLine((item.ToString());
+ }
+		
+var r = new Random(Seed:5); 
+var rVal = r.Next(minValue:1,maxValue:10);
+		
+IEnumerable<int> squares =
+Enumerable.Range(20, 30).Select(x => x * rVal);		
+```
+
+### Итераторы и оператор yield
 
 ```csharp
 using System.Collections;
