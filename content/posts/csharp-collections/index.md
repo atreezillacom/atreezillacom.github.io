@@ -37,19 +37,19 @@ tags = [
 
 ### Интерфейсы коллекций
 
-IEnumerable<T>: определяет метод GetEnumerator, можно получать элементы любой коллекции Реализация интерфейса позволяет перебирать элементы коллекции с помощью foreach
+`IEnumerable<T>`: определяет метод GetEnumerator, можно получать элементы любой коллекции Реализация интерфейса позволяет перебирать элементы коллекции с помощью foreach
 
-ICollection<T>: представляет общие свойства и методы для всех обобщенных коллекций (например, методы CopyTo, Add, Remove, Contains, свойство Count)
+`ICollection<T>`: представляет общие свойства и методы для всех обобщенных коллекций (например, методы `CopyTo, Add, Remove, Contains, свойство Count`)
 
-IList<T>: предоставляет функционал для создания последовательных списков
+`IList<T>`: предоставляет функционал для создания последовательных списков
 
-IComparer<T>: определяет метод Compare для сравнения двух однотипных объектов
+`IComparer<T>`: определяет метод Compare для сравнения двух однотипных объектов
 
-IDictionary<TKey, TValue>: коллекция должна хранить объекты в виде пар ключ-значение TKey, TValue
+`IDictionary<TKey, TValue>`: коллекция должна хранить объекты в виде пар ключ-значение TKey, TValue
 
-IEqualityComparer<T>: определяет методы, с помощью которых два однотипных объекта сравниваются на предмет равенства
+`IEqualityComparer<T>`: определяет методы, с помощью которых два однотипных объекта сравниваются на предмет равенства
 
-реализуются классами коллекций в пространстве имен System.Collections.Generic:
+реализуются классами коллекций в пространстве имен `System.Collections.Generic`:
  
 ### Необходимые пространства имен
 
@@ -68,8 +68,7 @@ ArrayList objectList =
 new ArrayList() 
 { 1, 2, "string", 'c', 2.0f };
 ```
- 
- 
+
 - Односвязный список
 `List<T>`: последовательный список. Реализует интерфейсы `IList<T>, ICollection<T>, IEnumerable<T>` 
 
@@ -84,10 +83,12 @@ new List<int>() { 1, 2, 3, 45 };
 
 - Двусвязный список
 `LinkedList<T>`: двухсвязанный список. Реализует интерфейсы `ICollection<T> , IEnumerable<T>`
+
 ```csharp
 LinkedList<int> numbers1 = 
 new LinkedList<int>();
 ```
+
 - Стек
 `Stack<T>`: стек однотипных объектов. Реализует интерфейсы `ICollection<T> , IEnumerable<T>`
 ```csharp
@@ -95,8 +96,10 @@ Stack<int> numbers3 =
 new Stack<int>();
 ```
 - Хеш-таблица
+`Hashtable` реализуются интерфейсы `IDictionary, ICollection, IEnumerable, ISerializable, IDeserializationCallback и ICloneable`
 ```csharp
-Hashtable
+Hashtable htbl = new Hashtable();
+htbl.Add("name", "key123");
 ```
 - Битовый массив
 `BitArray(byte[] bytes)`
@@ -128,8 +131,6 @@ new Dictionary<int, string>(5);
  
 - Способы создания коллекций 
 ```csharp
-
-
 IEnumerable<int> randomCol =
 Enumerable.Range(1, 10);
 
