@@ -9,7 +9,9 @@ tags = [
 +++
 
 Рассмотрены варианты использования **условных конструкций C#**<!--more-->
-{{< difrx "https://dotnetfiddle.net/Widget/ZVtzzv" >}}
+
+{{< difrx "https://dotnetfiddle.net/ggAnYl" >}}
+
 ```csharp
 var x=11;
 if(x > 2){ 
@@ -37,4 +39,4 @@ switch (selection)
 }
 int z = selection=="Y"? (1+2) : (3-1);
 ```
-{{< difrx "https://dotnetfiddle.net/sTyuY5" >}}
+{{< difrx "https://dotnetfiddle.net/ggAnYl" >}}
