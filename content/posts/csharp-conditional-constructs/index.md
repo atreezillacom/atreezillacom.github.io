@@ -9,7 +9,7 @@ tags = [
 +++
 
 Рассмотрены варианты использования **условных конструкций C#**<!--more-->
-
+{{< difrx "https://dotnetfiddle.net/Widget/ZVtzzv" >}}
 ```csharp
 var x=11;
 if(x > 2){ 
