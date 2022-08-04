@@ -39,4 +39,4 @@ switch (selection)
 }
 int z = selection=="Y"? (1+2) : (3-1);
 ```
-{{< difrx "https://dotnetfiddle.net/widget/ggAnYl" >}}
+{{< difrx "https://dotnetfiddle.net/widget/sTyuY5" >}}
