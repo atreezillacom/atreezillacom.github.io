@@ -86,3 +86,4 @@ string result =
 - \u 	(UTF-16) (0000 - FFFF; \u00E7 = "ç")
 - \U 	(UTF-32) ( 000000 - 10FFFF; \U0001F47D = "👽")
 - \x 	 \xH[H][H][H] ( 0 - FFFF;  \x00E7 or \x0E7 or \xE7 = "ç")
+{{< difrx "https://dotnetfiddle.net/widget/7a1kAg" >}} 
