@@ -49,16 +49,12 @@ tags = [
 ```csharp
 int x=500;
 long y=(int)x;
-Console.WriteLine(y);
-
 uint u =10;
 float f =101;
-uint.TryParse(f.ToString(),out u);
-Console.WriteLine(u);
-y++;
+if (uint.TryParse(f.ToString(),out u)){
 Console.WriteLine(
 "16 - ричное представление числа {0} - {1}"
-,y , Convert.ToString(y,16));
-Console.WriteLine(
-Convert.ToUInt16(++f));
+,u , Convert.ToString(u,16));
+
 ```
+{{< difrx "https://dotnetfiddle.net/widget/GwTNxT" >}}  
