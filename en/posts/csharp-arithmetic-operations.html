@@ -1,0 +1,109 @@
+<!doctype html><html lang=ru-ru><head><title>Arrays in C#. Initialization | atreezilla en</title><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,minimum-scale=1"><meta name=description content="Array types in C#. Array initialization. One-dimensional arrays. Multidimensional arrays. Array of arrays."><meta name=generator content="Hugo 0.79.0"><meta name=ROBOTS content="INDEX, FOLLOW"><link rel=stylesheet href=../../css/style.css><link rel="shortcut icon" href=../../images/favicon.ico type=image/x-icon><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','266950395','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></head><body><nav class=navigation><a href=../../><span class=arrow>←</span>Home</a>
+<a href=../../posts>Archive</a>
+<a href=../../tags>Tags</a>
+<a href=../../about>About</a></nav><main class=main><section id=single><h1 class=title>Arrays in C#. Initialization</h1><div class=tip><span>Mar 11, 2023 00:00</span>
+<span class=split>·</span>
+<span>392 words</span>
+<span class=split>·</span>
+<span>2 minute read</span></div><div class=content><p>Described <strong>types of C# arrays</strong> (one-dimensional arrays, multidimensional arrays, array of arrays), <strong>methods of initializing arrays</strong> .</p><h2 id=single-dimensional-arrays>Single-Dimensional Arrays <a href=#single-dimensional-arrays class=anchor>🔗</a></h2><p><p class=markdown-image><img src=csharp-arrays/simple_array.webp alt="Одномерные массивы" title="Single-Dimensional Arrays"></p></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#66d9ef>var</span> r1 = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[<span style=color:#ae81ff>3</span>] { <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span> };
+<span style=color:#66d9ef>var</span> r2 = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[] { <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span> };
+<span style=color:#66d9ef>var</span> r3 = <span style=color:#66d9ef>new</span>[] { <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>,  <span style=color:#ae81ff>5</span> };
+<span style=color:#66d9ef>int</span>[] r4 = { <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>5</span> };
+r4[<span style=color:#ae81ff>0</span>] = <span style=color:#ae81ff>7</span>;
+<span style=color:#66d9ef>for</span> ( <span style=color:#66d9ef>int</span> i=<span style=color:#ae81ff>0</span>; i &lt; r4.Length; i++ )
+{
+    Console.Write( r4[i] );
+}
+</code></pre></div><iframe width=100% height=475 src=https://dotnetfiddle.net/Widget/G18XCd frameborder=0></iframe><h2 id=multidimensional-arrays>Multidimensional Arrays <a href=#multidimensional-arrays class=anchor>🔗</a></h2><p><p class=markdown-image><img src=csharp-arrays/multiply_array.webp alt="Multidimensional Arrays" title="Multidimensional Arrays"></p></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#66d9ef>int</span>[,] r2 = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>];
+
+<span style=color:#66d9ef>var</span> r3 = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>] 
+   { { <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span> }, { <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span> } };
+
+<span style=color:#66d9ef>var</span> r4 = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[,] 
+   { { <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span> }, { <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span> } };
+
+<span style=color:#66d9ef>var</span> r5 = <span style=color:#66d9ef>new</span> [,]
+   { { <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span> }, { <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span> } };
+
+<span style=color:#66d9ef>int</span>[,] r6 = 
+   { { <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span> }, { <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span> } };
+   
+r6[<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>2</span>] = <span style=color:#ae81ff>7</span>;
+Console.WriteLine(<span style=color:#e6db74>&#34;r6.Rank = {0} &#34;</span>, r3.Rank);
+
+<span style=color:#66d9ef>foreach</span> (<span style=color:#66d9ef>var</span> i <span style=color:#66d9ef>in</span> r6){
+    Console.Write(<span style=color:#e6db74>&#34;{0} &#34;</span>, i);
+}
+</code></pre></div><iframe width=100% height=475 src=https://dotnetfiddle.net/Widget/FCZAJa frameborder=0></iframe><h2 id=jagged-arrays>Jagged Arrays <a href=#jagged-arrays class=anchor>🔗</a></h2><p><p class=markdown-image><img src=csharp-arrays/jagged_array.webp alt="ged Arrays" title="Multidimensional Arrays"></p></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#66d9ef>int</span>[][] r = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[<span style=color:#ae81ff>2</span>][];
+r[<span style=color:#ae81ff>0</span>] = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[<span style=color:#ae81ff>2</span>] { <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span> };          
+r[<span style=color:#ae81ff>1</span>] = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[<span style=color:#ae81ff>3</span>] { <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span> };       
+
+<span style=color:#66d9ef>var</span> r2 = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[<span style=color:#ae81ff>3</span>][];
+r2[<span style=color:#ae81ff>0</span>] = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[<span style=color:#ae81ff>2</span>] { <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span> };          
+r2[<span style=color:#ae81ff>1</span>] = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[<span style=color:#ae81ff>1</span>] { <span style=color:#ae81ff>1</span> };       
+r2[<span style=color:#ae81ff>2</span>] = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[<span style=color:#ae81ff>5</span>] {  <span style=color:#ae81ff>4</span>,<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>5</span> }; 
+
+<span style=color:#66d9ef>char</span>[][,] r3 =  
+{
+    <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>char</span>[,] 
+    { {<span style=color:#e6db74>&#39;H&#39;</span>,<span style=color:#e6db74>&#39;e&#39;</span>} },
+    <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>char</span>[,] 
+    { {<span style=color:#e6db74>&#39;l&#39;</span>,<span style=color:#e6db74>&#39;l&#39;</span>}, {<span style=color:#e6db74>&#39;o&#39;</span>,<span style=color:#e6db74>&#39; &#39;</span>} },
+    <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>char</span>[,] 
+    { {<span style=color:#e6db74>&#39;w&#39;</span>,<span style=color:#e6db74>&#39;o&#39;</span>}, {<span style=color:#e6db74>&#39;r&#39;</span>,<span style=color:#e6db74>&#39;l&#39;</span>},
+	{<span style=color:#e6db74>&#39;d&#39;</span>, <span style=color:#e6db74>&#39;!&#39;</span>} } 
+};
+
+<span style=color:#66d9ef>foreach</span> (<span style=color:#66d9ef>var</span> a1 <span style=color:#66d9ef>in</span> r3)
+{
+    <span style=color:#66d9ef>foreach</span> (<span style=color:#66d9ef>var</span> a2 <span style=color:#66d9ef>in</span> a1)
+    {      
+       Console.Write(a2); 
+    }
+}
+</code></pre></div><iframe width=100% height=475 src=https://dotnetfiddle.net/Widget/ZVtzzv frameborder=0></iframe><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#66d9ef>int</span>[] r0 = 
+   {  <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span> };
+
+<span style=color:#66d9ef>int</span>[,] r1 = 
+   { { <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span> }, { <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span> } };
+
+<span style=color:#66d9ef>int</span>[,,] r2 = 
+   { 
+        { {<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>}, {<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>} }
+       ,{ {<span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span>}, {<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>} } 
+       ,{ {<span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span>}, {<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>} }
+       ,{ {<span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span>}, {<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>} }
+       ,{ {<span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span>}, {<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>} }
+    };
+<span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt; r2.Rank; i++)
+{
+   Console.Write( r2.GetLength(i)+<span style=color:#e6db74>&#34;,&#34;</span>);       
+}
+<span style=color:#66d9ef>var</span> l = <span style=color:#ae81ff>1</span>;
+Console.WriteLine( l);
+<span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt; r2.Rank; i++)
+{
+    l*=r2.GetLength(i);
+ 
+}
+Console.WriteLine(<span style=color:#e6db74>&#34;&#34;</span>);
+Console.WriteLine(
+<span style=color:#e6db74>&#34;Length {0}=={1}&#34;</span>,l,r2.Length);
+
+Console.WriteLine(
+<span style=color:#e6db74>&#34;r0.Rank = {0} &#34;</span>, r0.Rank);
+Console.WriteLine(
+<span style=color:#e6db74>&#34;r1.Rank = {0} &#34;</span>, r1.Rank);
+Console.WriteLine(
+<span style=color:#e6db74>&#34;r2.Rank = {0} &#34;</span>, r2.Rank);   
+
+<span style=color:#66d9ef>foreach</span> (<span style=color:#66d9ef>int</span> i <span style=color:#66d9ef>in</span> r2)
+{
+Console.Write(i);
+}
+</code></pre></div><ul><li><a href="https://drive.google.com/file/d/18q5UI8bbMxEDr8yULPnAnXyifB0dyJHZ/view?usp=sharing" target=_blank rel=noopener>arrays.workbook</a></li><li><a href="https://drive.google.com/file/d/1_oepNCTizGlTF574MAIpe_tFdoMfK1MK/view?usp=sharing" target=_blank rel=noopener>Tasks</a></li><li><a href="https://drive.google.com/file/d/11zdDKdYzBpq275XVmI0CdBMyv1JLFEFl/view?usp=sharing" target=_blank rel=noopener>Solution example</a></li></ul></div><div class=tags><a href=https://atreezilla.com/tags/csharp>csharp</a>
+<a href=https://atreezilla.com/tags/arrays>arrays</a>
+<a href=https://atreezilla.com/tags/collections>collections</a></div></section></main><footer id=footer><p class=copyright>© Copyright
+2023
+<span class=split><svg fill="#bbb" width="15" height="15" id="heart-15" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15"><path d="M13.91 6.75c-1.17 2.25-4.3 5.31-6.07 6.94-.1903.1718-.4797.1718-.67.0C5.39 12.06 2.26 9 1.09 6.75-1.48 1.8 5-1.5 7.5 3.45 10-1.5 16.48 1.8 13.91 6.75z"/></svg></span></p><p class=powerby>Powered by <a href=http://www.gohugo.io/>Hugo</a> Theme By <a href=https://github.com/nodejh/hugo-theme-cactus-plus>nodejh</a></p></footer><script async src="https://www.googletagmanager.com/gtag/js?id=G-4B4NE8EHC3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-4B4NE8EHC3');</script></body></html>
