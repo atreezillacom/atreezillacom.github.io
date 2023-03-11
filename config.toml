@@ -2,12 +2,51 @@ relativeURLs = true
 uglyURLs = true
 baseURL = "https://atreezilla.com"
 languageCode = "ru-ru"
-title = "atreezilla"
 theme = "mini"
 publishDir = "docs"
 ignoreErrors = ["error-remote-getjson"]
 disqusShortname = "atreezilla"
 googleAnalytics = "266950395"
-[params]
+
+DefaultContentLanguage = "ru"
+[Languages]
+[Languages.en]
+title = "atreezilla en"
+weight = 0
+languagename = "English"
+languageFlag = "EN"
+[Languages.en.params]
+  description = "The site will include information about programming in C#, python, 3D, drawing, music and other interesting things"
+  
+[[Languages.en.menu.main]]
+url = "/"
+name = "Home"
+weight = 1
+[[Languages.en.menu.main]]
+url = "/about/"
+name = "About"
+weight = 0
+[Languages.ru]
+title = "atreezilla ru"
+weight = 0
+languagename = "Russian"
+languageFlag = "RU"
+[Languages.ru.params]
   description = "На сайте будет размещена информация о программировании на C#, python , 3D, рисовании, музыке и других интересных вещах"
+[[Languages.ru.menu.main]]
+url = "/"
+name = "Home"
+weight = 1
+[[Languages.ru.menu.main]]
+url = "/about/"
+name = "About"
+weight = 0
+[Languages.uk]
+title = "atreezilla ukr"
+weight = 0
+languagename = "Ukrainian"
+languageFlag = "UK"
+[Languages.uk.params]
+  description = "На сайті буде розміщена інформація про програмування на C#, python, 3D, малювання, музику та інші цікаві речі"
+[params]
   enableGoogleAnalytics = true
