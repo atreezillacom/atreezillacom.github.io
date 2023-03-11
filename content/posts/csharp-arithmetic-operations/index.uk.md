@@ -1,8 +1,8 @@
 +++
 author = "elkrot"
-title = "Массивы C#. Инициализация"
-date = "2021-03-27"
-description = "Типы массивов C#. Инициализация массивов. Одномерные массивы. Многомерные массивы. Массив массивов."
+title = "Масиви в C#. Ініціалізація"
+date = "2023-03-11"
+description = "Типи масивів C#. Ініціалізація масивів. Одновимірні масиви. Багатовимірні масиви. Масив масивів."
 tags = [
     "csharp",
 	"arrays",
@@ -10,9 +10,9 @@ tags = [
 ]
 +++
 
-Описаны **типы массивов C#** (одномерные массивы, многомерные массивы, массив массивов), **способы инициализации массивов** .<!--more-->
+Описані **типи масивів C#** (одномірні масиви, багатовимірні масиви, масив масивів), **способи ініціалізації масивів** .<!--more-->
 
-Одномерные массивы - Single-Dimensional Arrays
+Одновимірні масиви - Single-Dimensional Arrays
 ----------------------------------------------
 
 ![Одномерные массивы](csharp-arrays/simple_array.webp "Single-Dimensional Arrays")
@@ -31,8 +31,8 @@ for ( int i=0; i < r4.Length; i++ )
 
 {{< difrx "https://dotnetfiddle.net/Widget/G18XCd" >}}
 
-## Многомерные массивы - Multidimensional Arrays
-![Многомерные массивы](csharp-arrays/multiply_array.webp "Multidimensional Arrays")
+## Багатовимірні масиви - Multidimensional Arrays
+![Багатовимірні масиви](csharp-arrays/multiply_array.webp "Multidimensional Arrays")
 
 ```csharp
 int[,] r2 = new int[2, 3];
@@ -59,8 +59,8 @@ foreach (var i in r6){
 
 {{< difrx "https://dotnetfiddle.net/Widget/FCZAJa" >}}
 
-## Массив массивов - Jagged Arrays
-![Массив массивов](csharp-arrays/jagged_array.webp "Multidimensional Arrays")
+## Масив масивів - Jagged Arrays
+![Масив масивів](csharp-arrays/jagged_array.webp "Multidimensional Arrays")
 
 ```csharp
 int[][] r = new int[2][];
@@ -138,5 +138,5 @@ Console.Write(i);
 ```
 
 - [arrays.workbook](https://drive.google.com/file/d/18q5UI8bbMxEDr8yULPnAnXyifB0dyJHZ/view?usp=sharing)
-- [Задачи](https://drive.google.com/file/d/1_oepNCTizGlTF574MAIpe_tFdoMfK1MK/view?usp=sharing)
-- [Пример решения](https://drive.google.com/file/d/11zdDKdYzBpq275XVmI0CdBMyv1JLFEFl/view?usp=sharing)
+- [Завдання](https://drive.google.com/file/d/1_oepNCTizGlTF574MAIpe_tFdoMfK1MK/view?usp=sharing)
+- [Приклад рішення](https://drive.google.com/file/d/11zdDKdYzBpq275XVmI0CdBMyv1JLFEFl/view?usp=sharing)
