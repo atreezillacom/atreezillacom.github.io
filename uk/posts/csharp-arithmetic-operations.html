@@ -1,112 +1,28 @@
-<!doctype html><html lang=ru-ru><head><title>Масиви в C#. Ініціалізація | atreezilla</title><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,minimum-scale=1"><meta name=description content="Типи масивів C#. Ініціалізація масивів. Одновимірні масиви. Багатовимірні масиви. Масив масивів."><meta name=generator content="Hugo 0.79.0"><meta name=ROBOTS content="INDEX, FOLLOW"><link rel=stylesheet href=../../css/style.css><link rel="shortcut icon" href=../../images/favicon.ico type=image/x-icon><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','266950395','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></head><body><nav class=navigation><a class=flagnoselect href=../../en/posts/csharp-arithmetic-operations.html>EN</a>
+<!doctype html><html lang=ru-ru><head><title>Арифметичні операції C# | atreezilla</title><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,minimum-scale=1"><meta name=description content="Арифметичні операції C#"><meta name=generator content="Hugo 0.79.0"><meta name=ROBOTS content="INDEX, FOLLOW"><link rel=stylesheet href=../../css/style.css><link rel="shortcut icon" href=../../images/favicon.ico type=image/x-icon><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','266950395','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></head><body><nav class=navigation><a class=flagnoselect href=../../en/posts/csharp-arithmetic-operations.html>EN</a>
 <a class=flagselect href=../../uk/posts/csharp-arithmetic-operations.html>UK</a>
 <a class=flagnoselect href=../../posts/csharp-arithmetic-operations.html>RU</a>
 <a href=../../><span class=arrow>←</span>Home</a>
 <a href=../../posts>Archive</a>
 <a href=../../tags>Tags</a>
-<a href=../../about>About</a></nav><main class=main><section id=single><h1 class=title>Масиви в C#. Ініціалізація</h1><div class=tip><span>Mar 11, 2023 00:00</span>
+<a href=../../about>About</a></nav><main class=main><section id=single><h1 class=title>Арифметичні операції C#</h1><div class=tip><span>Mar 26, 2021 00:00</span>
 <span class=split>·</span>
-<span>398 words</span>
+<span>169 words</span>
 <span class=split>·</span>
-<span>2 minute read</span></div><div class=content><p>Описані <strong>типи масивів C#</strong> (одномірні масиви, багатовимірні масиви, масив масивів), <strong>способи ініціалізації масивів</strong> .</p><h2 id=одновимірні-масиви---single-dimensional-arrays>Одновимірні масиви - Single-Dimensional Arrays <a href=#%d0%be%d0%b4%d0%bd%d0%be%d0%b2%d0%b8%d0%bc%d1%96%d1%80%d0%bd%d1%96-%d0%bc%d0%b0%d1%81%d0%b8%d0%b2%d0%b8---single-dimensional-arrays class=anchor>🔗</a></h2><p><p class=markdown-image><img src=csharp-arrays/simple_array.webp alt="Одномерные массивы" title="Single-Dimensional Arrays"></p></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#66d9ef>var</span> r1 = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[<span style=color:#ae81ff>3</span>] { <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span> };
-<span style=color:#66d9ef>var</span> r2 = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[] { <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span> };
-<span style=color:#66d9ef>var</span> r3 = <span style=color:#66d9ef>new</span>[] { <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>,  <span style=color:#ae81ff>5</span> };
-<span style=color:#66d9ef>int</span>[] r4 = { <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>5</span> };
-r4[<span style=color:#ae81ff>0</span>] = <span style=color:#ae81ff>7</span>;
-<span style=color:#66d9ef>for</span> ( <span style=color:#66d9ef>int</span> i=<span style=color:#ae81ff>0</span>; i &lt; r4.Length; i++ )
-{
-    Console.Write( r4[i] );
-}
-</code></pre></div><iframe width=100% height=475 src=https://dotnetfiddle.net/Widget/G18XCd frameborder=0></iframe><h2 id=багатовимірні-масиви---multidimensional-arrays>Багатовимірні масиви - Multidimensional Arrays <a href=#%d0%b1%d0%b0%d0%b3%d0%b0%d1%82%d0%be%d0%b2%d0%b8%d0%bc%d1%96%d1%80%d0%bd%d1%96-%d0%bc%d0%b0%d1%81%d0%b8%d0%b2%d0%b8---multidimensional-arrays class=anchor>🔗</a></h2><p><p class=markdown-image><img src=csharp-arrays/multiply_array.webp alt="Багатовимірні масиви" title="Multidimensional Arrays"></p></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#66d9ef>int</span>[,] r2 = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>];
+<span>1 minute read</span></div><div class=content><p>У статті коротко описані <strong>арифметичні операції C#</strong> а також способи конвертації типів</p><p><code>+ , - , * , / , % , ++ , --</code></p><h2 id=порозрядні-операції>Порозрядні операції <a href=#%d0%bf%d0%be%d1%80%d0%be%d0%b7%d1%80%d1%8f%d0%b4%d0%bd%d1%96-%d0%be%d0%bf%d0%b5%d1%80%d0%b0%d1%86%d1%96%d1%97 class=anchor>🔗</a></h2><p><code>&</code>(логічне множення),<br><code>|</code>(логічне додавання),<br><em><code>^</code></em>(логічне виключне АБО),<br><code>~</code> (логічне заперечення чи інверсія)</p><h2 id=операції-присвоєння>Операції присвоєння <a href=#%d0%be%d0%bf%d0%b5%d1%80%d0%b0%d1%86%d1%96%d1%97-%d0%bf%d1%80%d0%b8%d1%81%d0%b2%d0%be%d1%94%d0%bd%d0%bd%d1%8f class=anchor>🔗</a></h2><p><code>+= , -= , *= , /= , %= , &= , |= , ^= , &lt;&lt;= , >>=</code></p><h2 id=умовні-вирази>Умовні вирази <a href=#%d1%83%d0%bc%d0%be%d0%b2%d0%bd%d1%96-%d0%b2%d0%b8%d1%80%d0%b0%d0%b7%d0%b8 class=anchor>🔗</a></h2><p><code>==,!=,&lt;,>,&lt;=,>=,|,^,&,||,&&,!</code></p><h2 id=в-які-типи-безпечно-перетворюється>В які типи безпечно перетворюється <a href=#%d0%b2-%d1%8f%d0%ba%d1%96-%d1%82%d0%b8%d0%bf%d0%b8-%d0%b1%d0%b5%d0%b7%d0%bf%d0%b5%d1%87%d0%bd%d0%be-%d0%bf%d0%b5%d1%80%d0%b5%d1%82%d0%b2%d0%be%d1%80%d1%8e%d1%94%d1%82%d1%8c%d1%81%d1%8f class=anchor>🔗</a></h2><p><strong>byte &#187;</strong> short, ushort, int, uint, long, ulong, float, double, decimal<br><strong>sbyte &#187;</strong> short, int, long, float, double, decimal<br><strong>short &#187;</strong> int, long, float, double, decimal<br><strong>ushort &#187;</strong> int, uint, long, ulong, float, double, decimal<br><strong>int &#187;</strong> long, float, double, decimal<br><strong>uint &#187;</strong> long, ulong, float, double, decimal<br><strong>long &#187;</strong> float, double, decimal<br><strong>ulong &#187;</strong> float, double, decimal<br><strong>float &#187;</strong> double<br><strong>char &#187;</strong> ushort, int, uint, long, ulong, float, double, decimal</p><h2 id=конвертація>Конвертація <a href=#%d0%ba%d0%be%d0%bd%d0%b2%d0%b5%d1%80%d1%82%d0%b0%d1%86%d1%96%d1%8f class=anchor>🔗</a></h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#66d9ef>int</span> x=<span style=color:#ae81ff>500</span>;
+<span style=color:#66d9ef>long</span> y=(<span style=color:#66d9ef>int</span>)x;
+Console.WriteLine(y);
 
-<span style=color:#66d9ef>var</span> r3 = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>] 
-   { { <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span> }, { <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span> } };
-
-<span style=color:#66d9ef>var</span> r4 = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[,] 
-   { { <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span> }, { <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span> } };
-
-<span style=color:#66d9ef>var</span> r5 = <span style=color:#66d9ef>new</span> [,]
-   { { <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span> }, { <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span> } };
-
-<span style=color:#66d9ef>int</span>[,] r6 = 
-   { { <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span> }, { <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span> } };
-   
-r6[<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>2</span>] = <span style=color:#ae81ff>7</span>;
-Console.WriteLine(<span style=color:#e6db74>&#34;r6.Rank = {0} &#34;</span>, r3.Rank);
-
-<span style=color:#66d9ef>foreach</span> (<span style=color:#66d9ef>var</span> i <span style=color:#66d9ef>in</span> r6){
-    Console.Write(<span style=color:#e6db74>&#34;{0} &#34;</span>, i);
-}
-</code></pre></div><iframe width=100% height=475 src=https://dotnetfiddle.net/Widget/FCZAJa frameborder=0></iframe><h2 id=масив-масивів---jagged-arrays>Масив масивів - Jagged Arrays <a href=#%d0%bc%d0%b0%d1%81%d0%b8%d0%b2-%d0%bc%d0%b0%d1%81%d0%b8%d0%b2%d1%96%d0%b2---jagged-arrays class=anchor>🔗</a></h2><p><p class=markdown-image><img src=csharp-arrays/jagged_array.webp alt="Масив масивів" title="Multidimensional Arrays"></p></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#66d9ef>int</span>[][] r = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[<span style=color:#ae81ff>2</span>][];
-r[<span style=color:#ae81ff>0</span>] = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[<span style=color:#ae81ff>2</span>] { <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span> };          
-r[<span style=color:#ae81ff>1</span>] = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[<span style=color:#ae81ff>3</span>] { <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span> };       
-
-<span style=color:#66d9ef>var</span> r2 = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[<span style=color:#ae81ff>3</span>][];
-r2[<span style=color:#ae81ff>0</span>] = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[<span style=color:#ae81ff>2</span>] { <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span> };          
-r2[<span style=color:#ae81ff>1</span>] = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[<span style=color:#ae81ff>1</span>] { <span style=color:#ae81ff>1</span> };       
-r2[<span style=color:#ae81ff>2</span>] = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[<span style=color:#ae81ff>5</span>] {  <span style=color:#ae81ff>4</span>,<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>5</span> }; 
-
-<span style=color:#66d9ef>char</span>[][,] r3 =  
-{
-    <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>char</span>[,] 
-    { {<span style=color:#e6db74>&#39;H&#39;</span>,<span style=color:#e6db74>&#39;e&#39;</span>} },
-    <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>char</span>[,] 
-    { {<span style=color:#e6db74>&#39;l&#39;</span>,<span style=color:#e6db74>&#39;l&#39;</span>}, {<span style=color:#e6db74>&#39;o&#39;</span>,<span style=color:#e6db74>&#39; &#39;</span>} },
-    <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>char</span>[,] 
-    { {<span style=color:#e6db74>&#39;w&#39;</span>,<span style=color:#e6db74>&#39;o&#39;</span>}, {<span style=color:#e6db74>&#39;r&#39;</span>,<span style=color:#e6db74>&#39;l&#39;</span>},
-	{<span style=color:#e6db74>&#39;d&#39;</span>, <span style=color:#e6db74>&#39;!&#39;</span>} } 
-};
-
-<span style=color:#66d9ef>foreach</span> (<span style=color:#66d9ef>var</span> a1 <span style=color:#66d9ef>in</span> r3)
-{
-    <span style=color:#66d9ef>foreach</span> (<span style=color:#66d9ef>var</span> a2 <span style=color:#66d9ef>in</span> a1)
-    {      
-       Console.Write(a2); 
-    }
-}
-</code></pre></div><iframe width=100% height=475 src=https://dotnetfiddle.net/Widget/ZVtzzv frameborder=0></iframe><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#66d9ef>int</span>[] r0 = 
-   {  <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span> };
-
-<span style=color:#66d9ef>int</span>[,] r1 = 
-   { { <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span> }, { <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span> } };
-
-<span style=color:#66d9ef>int</span>[,,] r2 = 
-   { 
-        { {<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>}, {<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>} }
-       ,{ {<span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span>}, {<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>} } 
-       ,{ {<span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span>}, {<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>} }
-       ,{ {<span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span>}, {<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>} }
-       ,{ {<span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span>}, {<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>} }
-    };
-<span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt; r2.Rank; i++)
-{
-   Console.Write( r2.GetLength(i)+<span style=color:#e6db74>&#34;,&#34;</span>);       
-}
-<span style=color:#66d9ef>var</span> l = <span style=color:#ae81ff>1</span>;
-Console.WriteLine( l);
-<span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt; r2.Rank; i++)
-{
-    l*=r2.GetLength(i);
- 
-}
-Console.WriteLine(<span style=color:#e6db74>&#34;&#34;</span>);
+<span style=color:#66d9ef>uint</span> u =<span style=color:#ae81ff>10</span>;
+<span style=color:#66d9ef>float</span> f =<span style=color:#ae81ff>101</span>;
+<span style=color:#66d9ef>uint</span>.TryParse(f.ToString(),<span style=color:#66d9ef>out</span> u);
+Console.WriteLine(u);
+y++;
 Console.WriteLine(
-<span style=color:#e6db74>&#34;Length {0}=={1}&#34;</span>,l,r2.Length);
-
+<span style=color:#e6db74>&#34;16 - річне подання числа {0} - {1}&#34;</span>
+,y , Convert.ToString(y,<span style=color:#ae81ff>16</span>));
 Console.WriteLine(
-<span style=color:#e6db74>&#34;r0.Rank = {0} &#34;</span>, r0.Rank);
-Console.WriteLine(
-<span style=color:#e6db74>&#34;r1.Rank = {0} &#34;</span>, r1.Rank);
-Console.WriteLine(
-<span style=color:#e6db74>&#34;r2.Rank = {0} &#34;</span>, r2.Rank);   
-
-<span style=color:#66d9ef>foreach</span> (<span style=color:#66d9ef>int</span> i <span style=color:#66d9ef>in</span> r2)
-{
-Console.Write(i);
-}
-</code></pre></div><ul><li><a href="https://drive.google.com/file/d/18q5UI8bbMxEDr8yULPnAnXyifB0dyJHZ/view?usp=sharing" target=_blank rel=noopener>arrays.workbook</a></li><li><a href="https://drive.google.com/file/d/1_oepNCTizGlTF574MAIpe_tFdoMfK1MK/view?usp=sharing" target=_blank rel=noopener>Завдання</a></li><li><a href="https://drive.google.com/file/d/11zdDKdYzBpq275XVmI0CdBMyv1JLFEFl/view?usp=sharing" target=_blank rel=noopener>Приклад рішення</a></li></ul></div><div class=tags><a href=https://atreezilla.com/tags/csharp>csharp</a>
-<a href=https://atreezilla.com/tags/arrays>arrays</a>
-<a href=https://atreezilla.com/tags/collections>collections</a></div></section></main><footer id=footer><p class=copyright>© Copyright
+Convert.ToUInt16(++f));
+</code></pre></div></div><div class=tags><a href=https://atreezilla.com/tags/csharp>csharp</a></div></section></main><footer id=footer><p class=copyright>© Copyright
 2023
 <span class=split><svg fill="#bbb" width="15" height="15" id="heart-15" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15"><path d="M13.91 6.75c-1.17 2.25-4.3 5.31-6.07 6.94-.1903.1718-.4797.1718-.67.0C5.39 12.06 2.26 9 1.09 6.75-1.48 1.8 5-1.5 7.5 3.45 10-1.5 16.48 1.8 13.91 6.75z"/></svg></span></p><p class=powerby>Powered by <a href=http://www.gohugo.io/>Hugo</a> Theme By <a href=https://github.com/nodejh/hugo-theme-cactus-plus>nodejh</a></p></footer><script async src="https://www.googletagmanager.com/gtag/js?id=G-4B4NE8EHC3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','G-4B4NE8EHC3');</script></body></html>
