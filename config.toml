@@ -11,7 +11,7 @@ googleAnalytics = "266950395"
 DefaultContentLanguage = "ru"
 [Languages]
 [Languages.en]
-title = "atreezilla en"
+title = "atreezilla"
 weight = 0
 languagename = "English"
 languageFlag = "EN"
@@ -27,7 +27,7 @@ url = "/about/"
 name = "About"
 weight = 0
 [Languages.ru]
-title = "atreezilla ru"
+title = "atreezilla"
 weight = 0
 languagename = "Russian"
 languageFlag = "RU"
@@ -42,7 +42,7 @@ url = "/about/"
 name = "About"
 weight = 0
 [Languages.uk]
-title = "atreezilla ukr"
+title = "atreezilla"
 weight = 0
 languagename = "Ukrainian"
 languageFlag = "UK"
