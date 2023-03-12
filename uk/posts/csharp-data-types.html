@@ -1,0 +1,87 @@
+<!doctype html><html lang=ru-ru><head><title>Типи даних C# | atreezilla</title><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,minimum-scale=1"><meta name=description content="Арифметичні операції C#"><meta name=generator content="Hugo 0.79.0"><meta name=ROBOTS content="INDEX, FOLLOW"><link rel=stylesheet href=../../css/style.css><link rel="shortcut icon" href=../../images/favicon.ico type=image/x-icon><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','266950395','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></head><body><nav class=navigation><a class=flagnoselect href=../../en/posts/csharp-data-types.html>EN</a>
+<a class=flagselect href=../../uk/posts/csharp-data-types.html>UK</a>
+<a class=flagnoselect href=../../posts/csharp-data-types.html>RU</a>
+<a href=../../><span class=arrow>←</span>Home</a>
+<a href=../../posts>Archive</a>
+<a href=../../tags>Tags</a>
+<a href=../../about>About</a></nav><main class=main><section id=single><h1 class=title>Типи даних C#</h1><div class=tip><span>Mar 26, 2021 00:00</span>
+<span class=split>·</span>
+<span>380 words</span>
+<span class=split>·</span>
+<span>2 minute read</span></div><div class=content><p>Типи даних C# описано в стислому форматі .</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#75715e>//(1 байт) System.Boolean
+</span><span style=color:#75715e></span><span style=color:#66d9ef>bool</span> isStupid = <span style=color:#66d9ef>false</span>; <span style=color:#66d9ef>bool</span> isSmarty = <span style=color:#66d9ef>true</span>;
+<span style=color:#75715e>//(1 байт) від 0 до 255 System.Byte
+</span><span style=color:#75715e></span><span style=color:#66d9ef>byte</span> _month = <span style=color:#ae81ff>1</span>; <span style=color:#66d9ef>byte</span> DayOfWeek = <span style=color:#ae81ff>102</span>;
+<span style=color:#75715e>//(1 байт) ціле число від -128 до 127
+</span><span style=color:#75715e>//System.SByte
+</span><span style=color:#75715e></span><span style=color:#66d9ef>sbyte</span> t1 = -<span style=color:#ae81ff>101</span>; <span style=color:#66d9ef>sbyte</span> t2 = <span style=color:#ae81ff>102</span>;
+<span style=color:#75715e>//(2 байти) ціле число від -32768 до 32767
+</span><span style=color:#75715e>//System.Int16
+</span><span style=color:#75715e></span><span style=color:#66d9ef>short</span> n1 = <span style=color:#ae81ff>1</span>; <span style=color:#66d9ef>short</span> n2 = <span style=color:#ae81ff>102</span>;
+<span style=color:#75715e>//(2 байти) ціле число від 0 до 65535
+</span><span style=color:#75715e>//System.UInt16
+</span><span style=color:#75715e></span><span style=color:#66d9ef>ushort</span> un1 = <span style=color:#ae81ff>1</span>; <span style=color:#66d9ef>ushort</span> un2 = <span style=color:#ae81ff>102</span>;
+<span style=color:#75715e>//(4 байти) ціле число
+</span><span style=color:#75715e>//від -2147483648 до 2147483647 System.Int32
+</span><span style=color:#75715e></span><span style=color:#66d9ef>int</span> age = <span style=color:#ae81ff>10</span>; <span style=color:#66d9ef>int</span> b = <span style=color:#ae81ff>0</span>b101; <span style=color:#66d9ef>int</span> c = <span style=color:#ae81ff>0</span>xFF;
+<span style=color:#75715e>//(4 байти) ціле число від 0 до 4294967295
+</span><span style=color:#75715e>//System.UInt32
+</span><span style=color:#75715e></span><span style=color:#66d9ef>uint</span> ua = <span style=color:#ae81ff>10</span>; <span style=color:#66d9ef>uint</span> ub = <span style=color:#ae81ff>0</span>b101;
+<span style=color:#66d9ef>uint</span> uc = <span style=color:#ae81ff>0</span>xFF; <span style=color:#66d9ef>uint</span> xa = <span style=color:#ae81ff>10</span>U;
+<span style=color:#75715e>//(8 байт) ціле число
+</span><span style=color:#75715e>// Від -9 223 372 036 854 775 808
+</span><span style=color:#75715e>// До 9 223 372 036 854 775 807
+</span><span style=color:#75715e>//System.Int64
+</span><span style=color:#75715e></span><span style=color:#66d9ef>long</span> la = -<span style=color:#ae81ff>10</span>; <span style=color:#66d9ef>long</span> lb = <span style=color:#ae81ff>0</span>b101;
+<span style=color:#66d9ef>long</span> lc=<span style=color:#ae81ff>0</span>xFF; <span style=color:#66d9ef>long</span> xb = <span style=color:#ae81ff>20L</span>;
+<span style=color:#75715e>//(8 байт) ціле число
+</span><span style=color:#75715e>// Від 0 до 18 446 744 073 709 551 615
+</span><span style=color:#75715e>//System.UInt64
+</span><span style=color:#75715e></span><span style=color:#66d9ef>ulong</span> ga = <span style=color:#ae81ff>10</span>; <span style=color:#66d9ef>ulong</span> gb = <span style=color:#ae81ff>0</span>b101;
+<span style=color:#66d9ef>ulong</span> gc = <span style=color:#ae81ff>0</span>xFF; <span style=color:#66d9ef>ulong</span> xc = <span style=color:#ae81ff>30</span>UL;
+<span style=color:#75715e>//(4 байти) число з плаваючою точкою
+</span><span style=color:#75715e>//від -3.4 * 1038 до 3.4 * 1038 System.Single
+</span><span style=color:#75715e></span><span style=color:#66d9ef>float</span> fa = <span style=color:#ae81ff>3.14F</span>; <span style=color:#66d9ef>float</span> fb = <span style=color:#ae81ff>30.6f</span>;
+<span style=color:#75715e>//(8 байт) число з плаваючою точкою
+</span><span style=color:#75715e>// Від ±5.0*10-324 до ±1.7*10308 System.Double
+</span><span style=color:#75715e></span><span style=color:#66d9ef>double</span> db = <span style=color:#ae81ff>10.222</span>;
+<span style=color:#75715e>//(16 байт)десяткове дробове число.
+</span><span style=color:#75715e>// Якщо вживається без десяткової коми,
+</span><span style=color:#75715e>// має значення
+</span><span style=color:#75715e>// від ±1.0*10-28 до ±7.9228*1028,
+</span><span style=color:#75715e>// може зберігати 28 знаків після коми
+</span><span style=color:#75715e>// System.Decimal
+</span><span style=color:#75715e></span><span style=color:#66d9ef>decimal</span> fc = <span style=color:#ae81ff>1005.8</span>M; <span style=color:#66d9ef>decimal</span> d = <span style=color:#ae81ff>334.8</span>m;
+<span style=color:#75715e>//(2 байти)зберігає одиночний символ
+</span><span style=color:#75715e>//У кодуванні Unicode System.Char
+</span><span style=color:#75715e></span><span style=color:#66d9ef>char</span> ca = <span style=color:#e6db74>&#39;A&#39;</span>; <span style=color:#66d9ef>char</span> cb = <span style=color:#960050;background-color:#1e0010>&#39;</span>x5A<span style=color:#960050;background-color:#1e0010>&#39;</span>;
+<span style=color:#66d9ef>char</span> cc = <span style=color:#960050;background-color:#1e0010>&#39;&#39;</span>;
+<span style=color:#75715e>//зберігає набір символів Unicode
+</span><span style=color:#75715e>//System.String
+</span><span style=color:#75715e></span><span style=color:#66d9ef>string</span> name = <span style=color:#e6db74>&#34;Tom&#34;</span>;
+<span style=color:#75715e>/*може зберігати значення будь-якого типу
+</span><span style=color:#75715e>даних і займає 4 байти
+</span><span style=color:#75715e>на 32-розрядній платформі та 8 байт
+</span><span style=color:#75715e>на 64-розрядній платформі.
+</span><span style=color:#75715e>System.Object , є базовим для
+</span><span style=color:#75715e>всіх інших типів та класів .NET*/</span>
+<span style=color:#66d9ef>object</span> oa = <span style=color:#ae81ff>22</span>; <span style=color:#960050;background-color:#1e0010>об&#39;єкт</span> ob = <span style=color:#ae81ff>3.14</span>;
+<span style=color:#66d9ef>object</span> oc = <span style=color:#e6db74>&#34;hello code&#34;</span>;
+
+Console.WriteLine(
+<span style=color:#e6db74>$&#34;Ім&#39;я: {name} \n Вік: {age}&#34;</span>);
+<span style=color:#75715e>//Неявна типізація
+</span><span style=color:#75715e></span><span style=color:#66d9ef>var</span> xhello = <span style=color:#e6db74>&#34;Hell to World&#34;</span>;
+<span style=color:#66d9ef>var</span> xc2 = <span style=color:#ae81ff>20</span>;
+Console.WriteLine(c.GetType().ToString());
+Console.WriteLine(
+xhello.GetType().ToString());
+
+Console.WriteLine(
+Convert.ToString(<span style=color:#ae81ff>123</span>, <span style=color:#ae81ff>2</span>).PadLeft(<span style=color:#ae81ff>16</span>, <span style=color:#e6db74>&#39;0&#39;</span>)) ;
+Console.WriteLine(
+<span style=color:#e6db74>&#34;Size of bool {0}&#34;</span>, <span style=color:#66d9ef>sizeof</span> (<span style=color:#66d9ef>bool</span>));
+</code></pre></div><ul><li><a href="https://drive.google.com/file/d/1LeM6Q7G5EyNZlM9JIILfE-m5yRcpGex-/view?usp=sharing" target=_blank rel=noopener>data_types.workbook</a></li></ul></div><div class=tags><a href=https://atreezilla.com/tags/csharp>csharp</a></div></section></main><footer id=footer><p class=copyright>© Copyright
+2023
+<span class=split><svg fill="#bbb" width="15" height="15" id="heart-15" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15"><path d="M13.91 6.75c-1.17 2.25-4.3 5.31-6.07 6.94-.1903.1718-.4797.1718-.67.0C5.39 12.06 2.26 9 1.09 6.75-1.48 1.8 5-1.5 7.5 3.45 10-1.5 16.48 1.8 13.91 6.75z"/></svg></span></p><p class=powerby>Powered by <a href=http://www.gohugo.io/>Hugo</a> Theme By <a href=https://github.com/nodejh/hugo-theme-cactus-plus>nodejh</a></p></footer><script async src="https://www.googletagmanager.com/gtag/js?id=G-4B4NE8EHC3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-4B4NE8EHC3');</script></body></html>
