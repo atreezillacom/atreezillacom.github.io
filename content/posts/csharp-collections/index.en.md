@@ -1,7 +1,7 @@
 +++
 author = "elkrot"
 title = "Collections C#. Definition, examples of use. Analogies. "
-date = "2021-05-02"
+date = "2023-03-11"
 description = "Collections C#. Definition, examples of use. Analogies from the real world."
 tags = [
     "csharp",
