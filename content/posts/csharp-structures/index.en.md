@@ -1,6 +1,6 @@
 +++
 author = "elkrot"
-title = "Структуры C#"
+title = "Structures C#"
 date = "2023-03-12"
 description = "C# structures. Enums, Tuples, Classes"
 tags=[

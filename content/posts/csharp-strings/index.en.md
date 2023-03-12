@@ -1,6 +1,6 @@
 +++
 author = "elkrot"
-title = "Строки C#"
+title = "Strings C#"
 date = "2023-03-12"
 description = "C# strings. String initialization. formats used"
 tags=[
