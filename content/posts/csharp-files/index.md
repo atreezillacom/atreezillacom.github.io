@@ -1,7 +1,7 @@
 +++
 author = "elkrot"
 title = "Файлы C#"
-date = "2021-05-02"
+date = "2023-03-12"
 description = "Файлы C#. Работа с классами FileStream, StreamReader, StreamWriter, BinaryReader, BinaryWriter"
 tags = [
     "csharp",
@@ -13,17 +13,27 @@ tags = [
 
 Способы создания: 
 -----------------
+```csharp
+FileStream(string filename, FileMode mode) , 
+FileMode(Append,Create,CreateNew,Open,OpenOrCreate,Truncate)
+File.Open(string file, FileMode mode), 
+File.OpenRead(string file), File.OpenWrite(string file);
 
-FileStream(string filename, FileMode mode) , FileMode(Append,Create,CreateNew,Open,OpenOrCreate,Truncate)
-File.Open(string file, FileMode mode), File.OpenRead(string file), File.OpenWrite(string file);
 Основные свойства: Length, Position
-Основные методы: CopyTo(Stream destination),int Read(byte[] array, int offset, int count),long Seek(long offset, SeekOrigin origin), void Write(byte[] array, int offset, int count)
-ValueTask WriteAsync(byte[] array, int offset, int count), Task CopyToAsync(Stream destination)
+
+Основные методы: CopyTo(Stream destination),
+int Read(byte[] array, int offset, int count),
+long Seek(long offset, SeekOrigin origin),
+void Write(byte[] array, int offset, int count)
+ValueTask WriteAsync(byte[] array, int offset, int count), 
+Task CopyToAsync(Stream destination)
+
 Вспомогательные классы: **StreamReader** и **StreamWriter** текст
 **BinaryWriter**, **BinaryReader** бинарные данные
+
 SeekOrigin.Begin: начало файла, SeekOrigin.End: конец файла, SeekOrigin.Current: текущая позиция в файле
 fstream.Seek(-5, SeekOrigin.End);
-
+```
 Способы использования:
 ----------------------
 ```csharp
