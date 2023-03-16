@@ -12,20 +12,14 @@
 FileMode(Append,Create,CreateNew,Open,OpenOrCreate,Truncate)
 File.Open(<span style=color:#66d9ef>string</span> file, FileMode mode), 
 File.OpenRead(<span style=color:#66d9ef>string</span> file), File.OpenWrite(<span style=color:#66d9ef>string</span> file);
-
-<span style=color:#960050;background-color:#1e0010>Основные</span> <span style=color:#960050;background-color:#1e0010>свойства</span>: Length, Position
-
-<span style=color:#960050;background-color:#1e0010>Основные</span> <span style=color:#960050;background-color:#1e0010>методы</span>: CopyTo(Stream destination),
+</code></pre></div><p>Основные свойства: Length, Position</p><p>Основные методы:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp>CopyTo(Stream destination),
 <span style=color:#66d9ef>int</span> Read(<span style=color:#66d9ef>byte</span>[] array, <span style=color:#66d9ef>int</span> offset, <span style=color:#66d9ef>int</span> count),
 <span style=color:#66d9ef>long</span> Seek(<span style=color:#66d9ef>long</span> offset, SeekOrigin origin),
 <span style=color:#66d9ef>void</span> Write(<span style=color:#66d9ef>byte</span>[] array, <span style=color:#66d9ef>int</span> offset, <span style=color:#66d9ef>int</span> count)
 ValueTask WriteAsync(<span style=color:#66d9ef>byte</span>[] array, <span style=color:#66d9ef>int</span> offset, <span style=color:#66d9ef>int</span> count), 
 Task CopyToAsync(Stream destination)
-
-<span style=color:#960050;background-color:#1e0010>Вспомогательные</span> <span style=color:#960050;background-color:#1e0010>классы</span>: **StreamReader** <span style=color:#960050;background-color:#1e0010>и</span> **StreamWriter** <span style=color:#960050;background-color:#1e0010>текст</span>
-**BinaryWriter**, **BinaryReader** <span style=color:#960050;background-color:#1e0010>бинарные</span> <span style=color:#960050;background-color:#1e0010>данные</span>
-
-SeekOrigin.Begin: <span style=color:#960050;background-color:#1e0010>начало</span> <span style=color:#960050;background-color:#1e0010>файла</span>, SeekOrigin.End: <span style=color:#960050;background-color:#1e0010>конец</span> <span style=color:#960050;background-color:#1e0010>файла</span>, SeekOrigin.Current: <span style=color:#960050;background-color:#1e0010>текущая</span> <span style=color:#960050;background-color:#1e0010>позиция</span> <span style=color:#960050;background-color:#1e0010>в</span> <span style=color:#960050;background-color:#1e0010>файле</span>
+</code></pre></div><p>Вспомогательные классы: <strong>StreamReader</strong> и <strong>StreamWriter</strong> текст
+<strong>BinaryWriter</strong>, <strong>BinaryReader</strong> бинарные данные</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp>SeekOrigin.Begin: <span style=color:#960050;background-color:#1e0010>начало</span> <span style=color:#960050;background-color:#1e0010>файла</span>, SeekOrigin.End: <span style=color:#960050;background-color:#1e0010>конец</span> <span style=color:#960050;background-color:#1e0010>файла</span>, SeekOrigin.Current: <span style=color:#960050;background-color:#1e0010>текущая</span> <span style=color:#960050;background-color:#1e0010>позиция</span> <span style=color:#960050;background-color:#1e0010>в</span> <span style=color:#960050;background-color:#1e0010>файле</span>
 fstream.Seek(-<span style=color:#ae81ff>5</span>, SeekOrigin.End);
 </code></pre></div><h2 id=способы-использования>Способы использования: <a href=#%d1%81%d0%bf%d0%be%d1%81%d0%be%d0%b1%d1%8b-%d0%b8%d1%81%d0%bf%d0%be%d0%bb%d1%8c%d0%b7%d0%be%d0%b2%d0%b0%d0%bd%d0%b8%d1%8f class=anchor>🔗</a></h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#66d9ef>try</span>
 {
