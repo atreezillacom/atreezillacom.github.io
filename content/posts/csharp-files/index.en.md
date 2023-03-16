@@ -18,19 +18,19 @@ FileStream(string filename, FileMode mode) ,
 FileMode(Append,Create,CreateNew,Open,OpenOrCreate,Truncate)
 File.Open(string file, FileMode mode),
 File.OpenRead(string file), File.OpenWrite(string file);
-
+```
 Main properties: Length, Position
-
+```csharp
 Main methods: CopyTo(Stream destination),
 int Read(byte[] array, int offset, int count),
 long Seek(long offset, SeekOrigin origin),
 void Write(byte[] array, int offset, int count)
 ValueTask WriteAsync(byte[] array, int offset, int count),
 Task CopyToAsync(Stream destination)
-
+```
 Helper classes: **StreamReader** and **StreamWriter** text
 **BinaryWriter**, **BinaryReader** binary data
-
+```csharp
 SeekOrigin.Begin: the beginning of the file, SeekOrigin.End: the end of the file, SeekOrigin.Current: the current position in the file
 fstream.Seek(-5, SeekOrigin.End);
 ```
