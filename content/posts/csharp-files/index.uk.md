@@ -70,14 +70,14 @@ using (var fs =
 
 ```csharp
 using System;
-використовуючи System.Text;
-використовуючи System.Threading.Tasks;
+using System.Text;
+using System.Threading.Tasks;
 using System.IO;
 
 FileStream fs =
 new FileStream(@"ft.txt",
 FileMode.OpenOrCreate, FileAccess.Write);
-using (var sw = новий StreamWriter(fs)){
+using (var sw = new StreamWriter(fs)){
      sw.WriteLine(@"text\file");
 }
 fs.Close();
@@ -86,7 +86,7 @@ using (var fsr =
         new FileStream(@"ft.txt", FileMode.Open,
         FileAccess.Read))
 {
-using (var sr = новий StreamReader (fsr))
+using (var sr = new StreamReader (fsr))
 {
 var str = sr.ReadLine();
 Console.Write(str);
