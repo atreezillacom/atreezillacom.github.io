@@ -20,8 +20,11 @@ File.Open(string file, FileMode mode),
 File.OpenRead(string file), File.OpenWrite(string file);
 ```
 Main properties: Length, Position
+
+Main methods: 
+
 ```csharp
-Main methods: CopyTo(Stream destination),
+CopyTo(Stream destination),
 int Read(byte[] array, int offset, int count),
 long Seek(long offset, SeekOrigin origin),
 void Write(byte[] array, int offset, int count)
