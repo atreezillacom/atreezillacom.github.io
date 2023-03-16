@@ -18,19 +18,22 @@ FileStream(string filename, FileMode mode) ,
 FileMode(Append,Create,CreateNew,Open,OpenOrCreate,Truncate)
 File.Open(string file, FileMode mode), 
 File.OpenRead(string file), File.OpenWrite(string file);
-
+```
 Основные свойства: Length, Position
 
-Основные методы: CopyTo(Stream destination),
+Основные методы: 
+```csharp
+CopyTo(Stream destination),
 int Read(byte[] array, int offset, int count),
 long Seek(long offset, SeekOrigin origin),
 void Write(byte[] array, int offset, int count)
 ValueTask WriteAsync(byte[] array, int offset, int count), 
 Task CopyToAsync(Stream destination)
-
+```
 Вспомогательные классы: **StreamReader** и **StreamWriter** текст
 **BinaryWriter**, **BinaryReader** бинарные данные
 
+```csharp
 SeekOrigin.Begin: начало файла, SeekOrigin.End: конец файла, SeekOrigin.Current: текущая позиция в файле
 fstream.Seek(-5, SeekOrigin.End);
 ```
