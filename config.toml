@@ -6,7 +6,6 @@ theme = "mini"
 publishDir = "docs"
 ignoreErrors = ["error-remote-getjson"]
 disqusShortname = "atreezilla"
-googleAnalytics = "266950395"
 
 DefaultContentLanguage = "ru"
 [Languages]
