@@ -1,7 +1,7 @@
 
-[submodule "themes/hugo-coder"]
-	path = themes/hugo-coder
-	url = https://github.com/luizdepra/hugo-coder.git
+[submodule "themes/etch"]
+	path = themes/etch
+	url = https://github.com/LukasJoswiak/etch.git
 [submodule "themes/mini"]
 	path = themes/mini
 	url = https://github.com/nodejh/hugo-theme-mini.git
