@@ -1,0 +1,54 @@
+<!doctype html><html lang=ru-ru><head><title>blender 3d | atreezilla</title><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="На сайте будет размещена информация о программировании на C#, python , 3D, рисовании, музыке и других интересных вещах"><link rel="shortcut icon" href=https://atreezilla.com/favicon.ico><link rel=alternate type=application/rss+xml href=https://atreezilla.com/index.xml title=atreezilla><link rel=stylesheet href=../../css/style.min.css><link rel=canonical href=https://atreezilla.com/index.html><title>atreezilla</title></head></head><body><nav class=navigation><a class=flagselect href=../../posts/blender-first/blender.html>UK</a>
+<a href=../../><span class=arrow>←</span>Home</a>
+<a href=../../posts>Archive</a>
+<a href=../../tags>Tags</a>
+<a href=../../about>About</a></nav><main class=main><article><header id=post-header><h1>blender 3d</h1><div><time></time></div></header><p>На камеру- Вид серху - Align Active Camera ToView - Ctrl+Alt+Numpad 0
+Camer - Output properties - Dimension - 1024*1024
+select Camera+Plain - View Align Camera to Selected
+Select Plane - EditMode - COpy around Shift+D + Ctrl
+m - Merge by Distance
+Add mesh on plane - select cube+plane - Ctrl +p - Object
+Plane - Object - Duplication - Instancing- Faces
+Edit Mesh - Sculpting- Dyntopo - Set Detail Size
+Modifiers - Decimate
+Overlay - Statistics
+New Material -</p><p>Render Normal Map:
+Geometry (Normal) - Vector Curves (vector) - Gamma (Color) x,y,z = y =0 - Emission - (Surface)Output
+Gamma =2.2
+Render semples =32
+Карту нормалей пропускаем через нод Normal
+Image - Bump - Normal in Principal BSDF</p><p>Height Map Карта высот нужна для смешивания:
+Geometry (Position) - (Vector)Separate XYZ - z - ColoRamp
+Сделать так, чтобы наивысшая часть была белой наинизшая черной
+Двигаем черный пока еле видно самую высокую часть (Белый влево)
+PNG - 8bit</p><p>Albedo Map Цвета (Base Color):
+Noize Texture (Fac) - (Fac) ColoRamp (Color)Цветной - Emission</p><p>Roughness Map шероховатость :
+Noize Texture (Fac) - (Fac) ColoRamp (Color)Черно Белый - Emission
+Белый шероховатость больше</p><p>Для смешивания
+Image (height_map) Color - (Fac) ColorRamp(Color) - (Fac) Mix Shader (Texture 1, Texture2) , Регулируем ползунками Color Ramp</p><p>Apply
+Object</p><hr><p>Раскидать материалы, Сделать развертки, Добавить текстуры
+Subdivide 75-100
+Создать группы вершин
+Добавить модификатор Displace - new - Coordinates -UV - UVMap - UVMap
+Выбрать группу вершин
+Вкладка текстуры - выбрать Height Map
+Вернуться в модификатор midlevel =0, Strength = 0.1 -0.5</p><p>Скульптим F Shift</p><p>Дублируем, модификатор - Decimate - Ratio = 0.005</p><p>Выбрать весь меш - Clear sim - Smart UV Project - Island Margin 0.01
+Сздать новую текстуру
+Для лополи создать новый материал
+Применить Smooth Shading
+Выбрать Cycles<br>select hi - lo - select node lo
+Bake - Normal - Selected To Active - Ray Distance =0.05</p><p>for unreal RGB Green = -Y</p><h2 id=color-space--non-color-for-normal>New Texture
+Bake - Difuse - Отключить Direct indirect
+Ray Distance = 0.01
+Color Space = Non Color for normal</h2><p>Текстура с двух сторон</p><h2 id=mzpping-2-texture-rotation---180>Копировать ноды , добавить Mix - Add Geometry - Backing to Fac Mix
+Mzpping 2 texture Rotation = 180</h2><p>Сделать текстуру квадратной степень 2 например 640*640
+Settings - Docker - Brush Presets
+Find Clone
+W - Режим текстуры
+Ctrl+Click
+Сохранить</p><p>&mdash;&mdash;&mdash;&mdash;&mdash;HDR
+create cube
+Normals flip
+Camera - Panoramic, Panorama Type = Equirectangular
+add plain + materials planes - emission, cube - black glossy+defuse+Layer weight - fac</p><p>Render Color depth 8 bit - RGB semples 128
+save exf</p><p>essencial pipeline</p><hr></article></main><footer id=footer></footer></body></html>

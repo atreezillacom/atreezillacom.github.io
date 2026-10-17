@@ -1,1 +1,616 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>collections on atreezilla</title><link>https://atreezilla.com/uk/tags/collections.html</link><description>Recent content in collections on atreezilla</description><generator>Hugo -- gohugo.io</generator><language>ru-ru</language><lastBuildDate>Sat, 11 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://atreezilla.com/uk/tags/collections/index.xml" rel="self" type="application/rss+xml"/><item><title>Колекції C#. Визначення, приклади використання. Аналогії.</title><link>https://atreezilla.com/uk/posts/csharp-collections.html</link><pubDate>Sat, 11 Mar 2023 00:00:00 +0000</pubDate><guid>https://atreezilla.com/uk/posts/csharp-collections.html</guid><description>&lt;p>Опис Колекцій C#. Визначення, приклади використання. Аналогії&lt;/p></description></item><item><title>Масиви в C#. Ініціалізація</title><link>https://atreezilla.com/uk/posts/csharp-arrays.html</link><pubDate>Sat, 11 Mar 2023 00:00:00 +0000</pubDate><guid>https://atreezilla.com/uk/posts/csharp-arrays.html</guid><description>&lt;p>Описані &lt;strong>типи масивів C#&lt;/strong> (одномірні масиви, багатовимірні масиви, масив масивів), &lt;strong>способи ініціалізації масивів&lt;/strong> .&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Collections on atreezilla</title><link>https://atreezilla.com/uk/tags/collections.html</link><description>Recent content in Collections on atreezilla</description><generator>Hugo -- gohugo.io</generator><language>uk</language><lastBuildDate>Sat, 11 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://atreezilla.com/uk/tags/collections/index.xml" rel="self" type="application/rss+xml"/><item><title>Рядки C#</title><link>https://atreezilla.com/uk/posts/csharp-strings.html</link><pubDate>Sun, 12 Mar 2023 00:00:00 +0000</pubDate><guid>https://atreezilla.com/uk/posts/csharp-strings.html</guid><description>&lt;p&gt;Приклади роботи з рядками C#&lt;/p&gt;
+&lt;h1 id="ініціалізація-рядків"&gt;Ініціалізація рядків&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;string&lt;/span&gt; s1 = &lt;span style="color:#e6db74"&gt;&amp;#34;hello&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;string&lt;/span&gt; s2 = &lt;span style="color:#66d9ef"&gt;null&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;string&lt;/span&gt; s3 = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; String(&lt;span style="color:#e6db74"&gt;&amp;#39;a&amp;#39;&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;6&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;// результатом буде рядок &amp;#34;aaaaaa&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;string&lt;/span&gt; s4 =
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; String(
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;char&lt;/span&gt;[]{&lt;span style="color:#e6db74"&gt;&amp;#39;w&amp;#39;&lt;/span&gt;, &lt;span style="color:#e6db74"&gt;&amp;#39;o&amp;#39;&lt;/span&gt;, &lt;span style="color:#e6db74"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;, &lt;span style="color:#e6db74"&gt;&amp;#39;l&amp;#39;&lt;/span&gt;, &lt;span style="color:#e6db74"&gt;&amp;#39;d&amp;#39;&lt;/span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; s5 = String.Empty;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; (s5.IsNullOrWhiteSpace()){
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Console.WriteLine([Empty String]);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Основні методи класу String:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Compare&lt;/strong&gt;,&lt;strong&gt;CompareOrdinal&lt;/strong&gt;: порівнює два рядки&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Contains&lt;/strong&gt;: чи міститься підрядок у рядку&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Concat&lt;/strong&gt;: з&amp;rsquo;єднує рядки&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CopyTo&lt;/strong&gt;: копіює в інший рядок&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;EndsWith&lt;/strong&gt;: чи збігається кінець рядка з підрядком&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Format&lt;/strong&gt;: форматує рядок&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;IndexOf&lt;/strong&gt;: індекс першого входження&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Insert&lt;/strong&gt;: вставляє в рядок підрядок&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Join&lt;/strong&gt;: з&amp;rsquo;єднує елементи масиву&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;LastIndexOf&lt;/strong&gt;: індекс останнього входження&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Replace&lt;/strong&gt;: замінює&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Split&lt;/strong&gt;: поділяє на масив&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Substring&lt;/strong&gt;: витягує з рядка підрядок&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ToLower&lt;/strong&gt;: у нижній регістр&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ToUpper&lt;/strong&gt;: у верхній регістр&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Trim&lt;/strong&gt;: видаляє прогалини&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;long&lt;/span&gt; number1 = &lt;span style="color:#ae81ff"&gt;19876543210&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Console.WriteLine(
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;number1.ToString(&lt;span style="color:#e6db74"&gt;&amp;#34;+# (###) ###-##-##&amp;#34;&lt;/span&gt;));
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;// +1 (987) 654-32-10&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Console.WriteLine(
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#e6db74"&gt;$&amp;#34;{number1:+# ### ### ## ##}&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;// +1 987 654 32 10&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;double&lt;/span&gt; number = &lt;span style="color:#ae81ff"&gt;23.7&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;string&lt;/span&gt; result =
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; String.Format(&lt;span style="color:#e6db74"&gt;&amp;#34;{0:C}&amp;#34;&lt;/span&gt;, number);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id="всі-формати-що-використовуються"&gt;Всі формати, що використовуються:&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;C / c формат грошової одиниці&lt;/li&gt;
+&lt;li&gt;D / d Цілочисельний формат&lt;/li&gt;
+&lt;li&gt;E/e Експоненційне подання&lt;/li&gt;
+&lt;li&gt;F / f Формат дробових чисел з фіксованою точкою&lt;/li&gt;
+&lt;li&gt;G / g Задає більш короткий із двох форматів: F або E&lt;/li&gt;
+&lt;li&gt;N / n формат дробових чисел з фіксованою точкою&lt;/li&gt;
+&lt;li&gt;P / p Задає відображення знака відсотків поряд з числом&lt;/li&gt;
+&lt;li&gt;X / x Шістнадцятковий формат числа&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Одиночна лапка&lt;/li&gt;
+&lt;li&gt;&amp;quot; Подвійна лапка&lt;/li&gt;
+&lt;li&gt;\ зворотна коса риса&lt;/li&gt;
+&lt;li&gt;\0 Null&lt;/li&gt;
+&lt;li&gt;\a Попередження&lt;/li&gt;
+&lt;li&gt;\b Backspace&lt;/li&gt;
+&lt;li&gt;Form feed&lt;/li&gt;
+&lt;li&gt;\n Новий рядок&lt;/li&gt;
+&lt;li&gt;Повернення каретки&lt;/li&gt;
+&lt;li&gt;Горизонтальна табуляція&lt;/li&gt;
+&lt;li&gt;\v Вертикальна табуляція&lt;/li&gt;
+&lt;li&gt;\u (UTF-16) (0000 - FFFF; \u00E7 = &amp;ldquo;ç&amp;rdquo;)&lt;/li&gt;
+&lt;li&gt;\U (UTF-32) (000000 - 10FFFF; \U0001F47D = &amp;ldquo;👽&amp;rdquo;)&lt;/li&gt;
+&lt;li&gt;\x \xH[H][H][H] ( 0 - FFFF; \x00E7 or \x0E7 or \xE7 = &amp;ldquo;ç&amp;rdquo;)
+&lt;iframe width="100%" height="475" src="https://dotnetfiddle.net/widget/7a1kAg" frameborder="0"&gt;&lt;/iframe&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Структури C#</title><link>https://atreezilla.com/uk/posts/csharp-structures.html</link><pubDate>Sun, 12 Mar 2023 00:00:00 +0000</pubDate><guid>https://atreezilla.com/uk/posts/csharp-structures.html</guid><description>&lt;p&gt;Опис структури, кортежі, перерахування&lt;/p&gt;
+&lt;h2 id="перерахування-enum"&gt;Перерахування enum&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;enum&lt;/span&gt; Time : &lt;span style="color:#66d9ef"&gt;byte&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Morning,
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Afternoon,
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Evening,
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Night
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="кортежі"&gt;Кортежі&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;(&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;,&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;) t1 = (&lt;span style="color:#ae81ff"&gt;5&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;10&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;(&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; x, &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; y) t2 = (x:&lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;, y:&lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; t3 = (x:&lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;, y:&lt;span style="color:#ae81ff"&gt;4&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;private&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;static&lt;/span&gt; (&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;, &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;) GetValues()
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; result = (&lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;return&lt;/span&gt; result;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="структури"&gt;Структури&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;struct&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;User&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;string&lt;/span&gt; name;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; age;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; DisplayInfo()
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Console.WriteLine(
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#e6db74"&gt;$&amp;#34;Name: {name} Age: {age}&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;User tom;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;tom.name = &lt;span style="color:#e6db74"&gt;&amp;#34;Tom&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;tom.age = &lt;span style="color:#ae81ff"&gt;34&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;tom.DisplayInfo();
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="класи"&gt;Класи&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;class&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;User&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;private&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;string&lt;/span&gt; _name;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;private&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; _age;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;string&lt;/span&gt; Name {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;get&lt;/span&gt; {&lt;span style="color:#66d9ef"&gt;return&lt;/span&gt; _name;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;set&lt;/span&gt; {_name =&lt;span style="color:#66d9ef"&gt;value&lt;/span&gt;;}}
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; Age {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;get&lt;/span&gt; {&lt;span style="color:#66d9ef"&gt;return&lt;/span&gt; _age;} }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; User(&lt;span style="color:#66d9ef"&gt;string&lt;/span&gt; name
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ,&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; age)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; _name =name;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; _age = age;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; DisplayInfo(
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;params&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;[] ar)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;foreach&lt;/span&gt;(&lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; item &lt;span style="color:#66d9ef"&gt;in&lt;/span&gt; ar)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Console.WriteLine(item);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Console.WriteLine(
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#e6db74"&gt;$&amp;#34;Name: {Name} Age: {Age}&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;User tom = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; User(&lt;span style="color:#e6db74"&gt;&amp;#34;Serg&amp;#34;&lt;/span&gt;,&lt;span style="color:#ae81ff"&gt;44&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;tom.DisplayInfo(&lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;,&lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;,&lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;,&lt;span style="color:#ae81ff"&gt;4&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item><item><title>Файлы C#</title><link>https://atreezilla.com/uk/posts/csharp-files.html</link><pubDate>Sun, 12 Mar 2023 00:00:00 +0000</pubDate><guid>https://atreezilla.com/uk/posts/csharp-files.html</guid><description>&lt;p&gt;Приклади роботи з бінарними та текстовими файлами C#&lt;/p&gt;
+&lt;h2 id="способи-створення"&gt;Способи створення:&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;FileStream(&lt;span style="color:#66d9ef"&gt;string&lt;/span&gt; filename, FileMode mode),
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;FileMode(Append,Create,CreateNew,Open,OpenOrCreate,Truncate)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;File.Open(&lt;span style="color:#66d9ef"&gt;string&lt;/span&gt; file, FileMode mode),
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;File.OpenRead(&lt;span style="color:#66d9ef"&gt;string&lt;/span&gt; file), File.OpenWrite(&lt;span style="color:#66d9ef"&gt;string&lt;/span&gt; file);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Основні властивості: Length, Position&lt;/p&gt;
+&lt;p&gt;Основні методи:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;CopyTo (Stream destination),
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; Read(&lt;span style="color:#66d9ef"&gt;byte&lt;/span&gt;[] array, &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; offset, &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; count),
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;long&lt;/span&gt; Seek(&lt;span style="color:#66d9ef"&gt;long&lt;/span&gt; offset, SeekOrigin origin),
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; Write(&lt;span style="color:#66d9ef"&gt;byte&lt;/span&gt;[] array, &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; offset, &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; count)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;ValueTask WriteAsync(&lt;span style="color:#66d9ef"&gt;byte&lt;/span&gt;[] array, &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; offset, &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; count),
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Task CopyToAsync(Stream destination)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Допоміжні класи: &lt;strong&gt;StreamReader&lt;/strong&gt; та &lt;strong&gt;StreamWriter&lt;/strong&gt; текст
+&lt;strong&gt;BinaryWriter&lt;/strong&gt;, &lt;strong&gt;BinaryReader&lt;/strong&gt; бінарні дані&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;SeekOrigin.Begin: &lt;span style="color:#960050;background-color:#1e0010"&gt;початок&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;файлу&lt;/span&gt;, SeekOrigin.End: &lt;span style="color:#960050;background-color:#1e0010"&gt;кінець&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;файлу&lt;/span&gt;, SeekOrigin.Current: &lt;span style="color:#960050;background-color:#1e0010"&gt;поточна&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;позиція&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;у&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;файлі&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;fstream.Seek(-&lt;span style="color:#ae81ff"&gt;5&lt;/span&gt;, SeekOrigin.End);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="способи-використання"&gt;Способи використання:&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;try&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; fstream =
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; FileStream(&lt;span style="color:#e6db74"&gt;@&amp;#34;f.dat&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;FileMode.OpenOrCreate);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;catch&lt;/span&gt;(Exception ex)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;finally&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; (fstream! = &lt;span style="color:#66d9ef"&gt;null&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; fstream.Close();
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;або using&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;using&lt;/span&gt; (&lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; fs =
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; FileStream(&lt;span style="color:#e6db74"&gt;@&amp;#34;filePath&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; FileMode ..., FileAccess ...))
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="робота-з-текстовими-файлами"&gt;Робота з текстовими файлами&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;using&lt;/span&gt; System;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;using&lt;/span&gt; System.Text;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;using&lt;/span&gt; System.Threading.Tasks;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;using&lt;/span&gt; System.IO;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;FileStream fs =
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; FileStream(&lt;span style="color:#e6db74"&gt;@&amp;#34;ft.txt&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;FileMode.OpenOrCreate, FileAccess.Write);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;using&lt;/span&gt; (&lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; sw = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; StreamWriter(fs)){
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; sw.WriteLine(&lt;span style="color:#e6db74"&gt;@&amp;#34;text\file&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;fs.Close();
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;using&lt;/span&gt; (&lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; fsr =
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; FileStream(&lt;span style="color:#e6db74"&gt;@&amp;#34;ft.txt&amp;#34;&lt;/span&gt;, FileMode.Open,
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; FileAccess.Read))
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;using&lt;/span&gt; (&lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; sr = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; StreamReader (fsr))
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; str = sr.ReadLine();
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Console.Write(str);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="робота-з-бінарними-файлами"&gt;Робота з бінарними файлами&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;using&lt;/span&gt; (&lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; fs = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; FileStream(&lt;span style="color:#e6db74"&gt;@&amp;#34;fb.bin&amp;#34;&lt;/span&gt;, FileMode.OpenOrCreate, FileAccess.Write)){
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;using&lt;/span&gt; (&lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; bw = New BinaryWriter(fs))
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; bw.Write((&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;)&lt;span style="color:#ae81ff"&gt;200&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;using&lt;/span&gt; (&lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; fs = File.OpenRead(&lt;span style="color:#e6db74"&gt;@&amp;#34;fb.bin&amp;#34;&lt;/span&gt;)){
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;using&lt;/span&gt; (&lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; br = New BinaryReader(fs)){
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; v = br.ReadInt32();
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Console.WriteLine(v);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/file/d/1kcefBU4FVkmcGuIkhRxE_G0GRcQ31eWX/view?usp=sharing"&gt;files.workbook&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Цикли C#</title><link>https://atreezilla.com/uk/posts/csharp-cycles.html</link><pubDate>Sun, 12 Mar 2023 00:00:00 +0000</pubDate><guid>https://atreezilla.com/uk/posts/csharp-cycles.html</guid><description>&lt;p&gt;Використання &lt;strong&gt;циклів&lt;/strong&gt; у мові C# коротко описано у статті.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;for&lt;/span&gt; (&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; i = &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;; i &amp;lt; &lt;span style="color:#ae81ff"&gt;9&lt;/span&gt;; i++)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; (i == &lt;span style="color:#ae81ff"&gt;5&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;break&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;//continue;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Console.Write(i);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; i = &lt;span style="color:#ae81ff"&gt;60&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;while&lt;/span&gt; (i &amp;gt; &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Console.WriteLine(
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Convert.ToString(i, &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;).PadLeft(&lt;span style="color:#ae81ff"&gt;8&lt;/span&gt;, &lt;span style="color:#e6db74"&gt;&amp;#39;0&amp;#39;&lt;/span&gt;));
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; i--;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;i = -&lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;do&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Console.Write(i);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; i--;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;} &lt;span style="color:#66d9ef"&gt;while&lt;/span&gt; (i &amp;gt; &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;[] numbers =
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;[] { &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;4&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;5&lt;/span&gt; };
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;foreach&lt;/span&gt; (&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; i &lt;span style="color:#66d9ef"&gt;in&lt;/span&gt; numbers)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Console.Write(i);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item><item><title>Колекції C#. Визначення, приклади використання. Аналогії.</title><link>https://atreezilla.com/uk/posts/csharp-collections.html</link><pubDate>Sat, 11 Mar 2023 00:00:00 +0000</pubDate><guid>https://atreezilla.com/uk/posts/csharp-collections.html</guid><description>&lt;p&gt;Опис Колекцій C#. Визначення, приклади використання. Аналогії&lt;/p&gt;
+&lt;h1 id="колекції"&gt;Колекції&lt;/h1&gt;
+&lt;p&gt;Колекція це об&amp;rsquo;єкт, що містить набір значень і дозволяє взаємодіяти з цими значеннями (переглядати, додавати, змінювати, видаляти, сортувати &amp;hellip;) .&lt;/p&gt;
+&lt;h2 id="класифікація-колекцій-за-характеристиками"&gt;Класифікація колекцій за характеристиками&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Постійні, динамічні&lt;/li&gt;
+&lt;li&gt;Може зберігати об&amp;rsquo;єкти одного типу чи об&amp;rsquo;єкти різних типів&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="класифікація-колекцій-з-логіки-організації"&gt;Класифікація колекцій з логіки організації&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Вектор - Масив&lt;/li&gt;
+&lt;li&gt;Матриця - Двовимірний масив&lt;/li&gt;
+&lt;li&gt;Багатомірний масив&lt;/li&gt;
+&lt;li&gt;Список - Впорядкована колекція об&amp;rsquo;єктів&lt;/li&gt;
+&lt;li&gt;Стек – останнім прийшов – першим вийшов LIFO&lt;/li&gt;
+&lt;li&gt;Черга – першим прийшов – першим вийшов FIFO&lt;/li&gt;
+&lt;li&gt;Асоціативний масив (словник) – невпорядкована колекція, що зберігає пари «ключ – значення»&lt;/li&gt;
+&lt;li&gt;Безліч - невпорядкована колекція, що зберігає набір унікальних значень&lt;/li&gt;
+&lt;li&gt;Мультимножина - безліч, що допускає наявність одночасно кількох однакових значень.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="класифікація-колекцій-з-реалізації"&gt;Класифікація колекцій з реалізації&lt;/h2&gt;
+&lt;h3 id="інтерфейси-колекцій"&gt;Інтерфейси колекцій&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;IEnumerable&amp;lt;T&amp;gt;&lt;/code&gt;: визначає метод GetEnumerator, можна отримувати елементи будь-якої колекції Реалізація інтерфейсу дозволяє перебирати елементи колекції за допомогою foreach&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ICollection&amp;lt;T&amp;gt;&lt;/code&gt;: представляє загальні властивості та методи для всіх узагальнених колекцій (наприклад, методи &lt;code&gt;CopyTo, Add, Remove, Contains, властивість Count&lt;/code&gt;)&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;IList&amp;lt;T&amp;gt;&lt;/code&gt;: надає функціонал для створення послідовних списків&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;IComparer&amp;lt;T&amp;gt;&lt;/code&gt;: визначає метод Compare для порівняння двох однотипних об&amp;rsquo;єктів&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;IDictionary&amp;lt;TKey, TValue&amp;gt;&lt;/code&gt;: колекція повинна зберігати об&amp;rsquo;єкти у вигляді пар ключ-значення TKey, TValue&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;IEqualityComparer&amp;lt;T&amp;gt;&lt;/code&gt;: визначає методи, за допомогою яких два однотипні об&amp;rsquo;єкти порівнюються на предмет рівності&lt;/p&gt;
+&lt;p&gt;реалізуються класами колекцій у просторі імен &lt;code&gt;System.Collections.Generic&lt;/code&gt;:&lt;/p&gt;
+&lt;h3 id="необхідні-простори-імен"&gt;Необхідні простори імен&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;using&lt;/span&gt; System.Collections;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;using&lt;/span&gt; System.Collections.Generic;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;using&lt;/span&gt; System.Collections.Specialized;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="типи-колекцій-c"&gt;Типи колекцій C#&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Масив&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;ArrayList objectList =
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; ArrayList()
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{ &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;, &lt;span style="color:#e6db74"&gt;&amp;#34;string&amp;#34;&lt;/span&gt;, &lt;span style="color:#e6db74"&gt;&amp;#39;c&amp;#39;&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;2.0f&lt;/span&gt; };
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Однозв&amp;rsquo;язковий список
+&lt;code&gt;List&amp;lt;T&amp;gt;&lt;/code&gt;: послідовний перелік. Реалізує інтерфейси &lt;code&gt;IList&amp;lt;T&amp;gt;, ICollection&amp;lt;T&amp;gt;, IEnumerable&amp;lt;T&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;List&amp;lt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;&amp;gt; numbers =
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; List&amp;lt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;&amp;gt;() { &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;45&lt;/span&gt; };
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;SortedSet&amp;lt;T&amp;gt;&lt;/code&gt;: відсортована колекція однотипних об&amp;rsquo;єктів. Реалізує інтерфейси &lt;code&gt;ICollection&amp;lt;T&amp;gt;, ISet&amp;lt;T&amp;gt;, IEnumerable&amp;lt;T&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;SortedList&amp;lt;TKey, TValue&amp;gt;&lt;/code&gt;: зберігає набори пар &amp;ldquo;ключ-значення&amp;rdquo;, відсортовані за ключом. Реалізує інтерфейси &lt;code&gt;ICollection&amp;lt;T&amp;gt;, IEnumerable&amp;lt;T&amp;gt;, IDictionary&amp;lt;TKey, TValue&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Двозв&amp;rsquo;язковий список
+&lt;code&gt;LinkedList&amp;lt;T&amp;gt;&lt;/code&gt;: Двозв&amp;rsquo;язаний список. Реалізує інтерфейси &lt;code&gt;ICollection&amp;lt;T&amp;gt; , IEnumerable&amp;lt;T&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;LinkedList&amp;lt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;&amp;gt; numbers1 =
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; LinkedList&amp;lt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;&amp;gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Стек
+&lt;code&gt;Stack&amp;lt;T&amp;gt;&lt;/code&gt;: стек однотипних об&amp;rsquo;єктів. Реалізує інтерфейси &lt;code&gt;ICollection&amp;lt;T&amp;gt; , IEnumerable&amp;lt;T&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Stack&amp;lt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;&amp;gt; numbers3 =
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; Stack&amp;lt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;&amp;gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Хеш-таблиця
+&lt;code&gt;Hashtable&lt;/code&gt; реалізуються інтерфейси &lt;code&gt;IDictionary, ICollection, IEnumerable, ISerializable, IDeserializationCallback и ICloneable&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Hashtable htbl = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; Hashtable();
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;htbl.Add(&lt;span style="color:#e6db74"&gt;&amp;#34;name&amp;#34;&lt;/span&gt;, &lt;span style="color:#e6db74"&gt;&amp;#34;key123&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Бітовий масив
+&lt;code&gt;BitArray(byte[] bytes)&lt;/code&gt;
+&lt;code&gt;And(),Get(),Not(),Or(),Set(),SetAll(),Xor()&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;BitVector32&lt;/code&gt;
+&lt;code&gt;CreateMask()&lt;/code&gt;
+&lt;code&gt;CreateSelection()&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;BitArray bits1 = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; BitArray(&lt;span style="color:#ae81ff"&gt;10&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; bits2 = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; BitVector32 () ;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Черга
+&lt;code&gt;Queue&amp;lt;T&amp;gt;&lt;/code&gt; :FIFO(&amp;ldquo;перший увійшов-перший вийшов&amp;rdquo;). Реалізує інтерфейси &lt;code&gt;ICollection, IEnumerable&amp;lt;T&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Queue&amp;lt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;&amp;gt; numbers2 =
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; Queue&amp;lt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;&amp;gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Словарь
+&lt;code&gt;Dictionary&amp;lt;TKey, TValue&amp;gt;&lt;/code&gt;: &amp;ldquo;ключ-значення&amp;rdquo;. Реалізує інтерфейси &lt;code&gt;ICollection&amp;lt;T&amp;gt;, IEnumerable&amp;lt;T&amp;gt;, IDictionary&amp;lt;TKey, TValue&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Dictionary&amp;lt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;, &lt;span style="color:#66d9ef"&gt;string&lt;/span&gt;&amp;gt; countries =
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; Dictionary&amp;lt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;, &lt;span style="color:#66d9ef"&gt;string&lt;/span&gt;&amp;gt;(&lt;span style="color:#ae81ff"&gt;5&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;SortedDictionary&amp;lt;TKey, TValue&amp;gt;&lt;/code&gt;: зберігає набори пар &amp;ldquo;ключ-значення&amp;rdquo;, відсортованих за ключом. Схожий на клас &lt;code&gt;SortedList&amp;lt;TKey, TValue&amp;gt;&lt;/code&gt;, основні відмінності полягають лише у використанні пам&amp;rsquo;яті та швидкості вставки та видалення&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;способи створення колекцій&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;IEnumerable&amp;lt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;&amp;gt; randomCol =
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Enumerable.Range(&lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;10&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;foreach&lt;/span&gt; (&lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; item &lt;span style="color:#66d9ef"&gt;in&lt;/span&gt; randomCol)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Console.WriteLine((item.ToString());
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; r = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; Random(Seed:&lt;span style="color:#ae81ff"&gt;5&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; rVal = r.Next(minValue:&lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;,maxValue:&lt;span style="color:#ae81ff"&gt;10&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;IEnumerable&amp;lt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;&amp;gt; squares =
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Enumerable.Range(&lt;span style="color:#ae81ff"&gt;20&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;30&lt;/span&gt;).Select(x =&amp;gt; x * rVal);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="ітератори-та-оператор-yield"&gt;Ітератори та оператор yield&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;using&lt;/span&gt; System.Collections;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Numbers numbers = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; Numbers();
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;foreach&lt;/span&gt; (&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; n &lt;span style="color:#66d9ef"&gt;in&lt;/span&gt; numbers)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Console.WriteLine(n);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;class&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;Numbers&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; IEnumerator GetEnumerator()
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;for&lt;/span&gt;(&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; i = &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;; i &amp;lt; &lt;span style="color:#ae81ff"&gt;6&lt;/span&gt;; i++)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;yield&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;return&lt;/span&gt; i * i;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/file/d/1X4LkJRAIRowx8Ge7WdH4FvUzrM1YrJRl/view?usp=sharing"&gt;collections.workbook&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Масиви в C#. Ініціалізація</title><link>https://atreezilla.com/uk/posts/csharp-arrays.html</link><pubDate>Sat, 11 Mar 2023 00:00:00 +0000</pubDate><guid>https://atreezilla.com/uk/posts/csharp-arrays.html</guid><description>&lt;p&gt;Описані &lt;strong&gt;типи масивів C#&lt;/strong&gt; (одномірні масиви, багатовимірні масиви, масив масивів), &lt;strong&gt;способи ініціалізації масивів&lt;/strong&gt; .&lt;/p&gt;
+&lt;h2 id="одновимірні-масиви---single-dimensional-arrays"&gt;Одновимірні масиви - Single-Dimensional Arrays&lt;/h2&gt;
+&lt;p&gt;&lt;img src="csharp-arrays/simple_array.webp" alt="Одномерные массивы" title="Single-Dimensional Arrays"&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; r1 = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;[&lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;] { &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;3&lt;/span&gt; };
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; r2 = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;[] { &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;3&lt;/span&gt; };
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; r3 = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt;[] { &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;5&lt;/span&gt; };
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;[] r4 = { &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;5&lt;/span&gt; };
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;r4[&lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;] = &lt;span style="color:#ae81ff"&gt;7&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;for&lt;/span&gt; ( &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; i=&lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;; i &amp;lt; r4.Length; i++ )
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Console.Write( r4[i] );
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;iframe width="100%" height="475" src="https://dotnetfiddle.net/Widget/G18XCd" frameborder="0"&gt;&lt;/iframe&gt;
+&lt;h2 id="багатовимірні-масиви---multidimensional-arrays"&gt;Багатовимірні масиви - Multidimensional Arrays&lt;/h2&gt;
+&lt;p&gt;&lt;img src="csharp-arrays/multiply_array.webp" alt="Багатовимірні масиви" title="Multidimensional Arrays"&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;[,] r2 = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;[&lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;];
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; r3 = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;[&lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; { { &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt; }, { &lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;4&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;5&lt;/span&gt; } };
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; r4 = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;[,]
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; { { &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt; }, { &lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;4&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;5&lt;/span&gt; } };
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; r5 = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; [,]
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; { { &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt; }, { &lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;4&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;5&lt;/span&gt; } };
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;[,] r6 =
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; { { &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt; }, { &lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;4&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;5&lt;/span&gt; } };
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;r6[&lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;,&lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;] = &lt;span style="color:#ae81ff"&gt;7&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Console.WriteLine(&lt;span style="color:#e6db74"&gt;&amp;#34;r6.Rank = {0} &amp;#34;&lt;/span&gt;, r3.Rank);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;foreach&lt;/span&gt; (&lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; i &lt;span style="color:#66d9ef"&gt;in&lt;/span&gt; r6){
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Console.Write(&lt;span style="color:#e6db74"&gt;&amp;#34;{0} &amp;#34;&lt;/span&gt;, i);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;iframe width="100%" height="475" src="https://dotnetfiddle.net/Widget/FCZAJa" frameborder="0"&gt;&lt;/iframe&gt;
+&lt;h2 id="масив-масивів---jagged-arrays"&gt;Масив масивів - Jagged Arrays&lt;/h2&gt;
+&lt;p&gt;&lt;img src="csharp-arrays/jagged_array.webp" alt="Масив масивів" title="Multidimensional Arrays"&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;[][] r = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;[&lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;][];
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;r[&lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;] = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;[&lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;] { &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt; };
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;r[&lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;] = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;[&lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;] { &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;3&lt;/span&gt; };
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; r2 = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;[&lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;][];
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;r2[&lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;] = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;[&lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;] { &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt; };
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;r2[&lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;] = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;[&lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;] { &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt; };
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;r2[&lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;] = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;[&lt;span style="color:#ae81ff"&gt;5&lt;/span&gt;] { &lt;span style="color:#ae81ff"&gt;4&lt;/span&gt;,&lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;5&lt;/span&gt; };
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;char&lt;/span&gt;[][,] r3 =
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;char&lt;/span&gt;[,]
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; { {&lt;span style="color:#e6db74"&gt;&amp;#39;H&amp;#39;&lt;/span&gt;,&lt;span style="color:#e6db74"&gt;&amp;#39;e&amp;#39;&lt;/span&gt;} },
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;char&lt;/span&gt;[,]
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; { {&lt;span style="color:#e6db74"&gt;&amp;#39;l&amp;#39;&lt;/span&gt;,&lt;span style="color:#e6db74"&gt;&amp;#39;l&amp;#39;&lt;/span&gt;}, {&lt;span style="color:#e6db74"&gt;&amp;#39;o&amp;#39;&lt;/span&gt;,&lt;span style="color:#e6db74"&gt;&amp;#39; &amp;#39;&lt;/span&gt;} },
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;char&lt;/span&gt;[,]
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; { {&lt;span style="color:#e6db74"&gt;&amp;#39;w&amp;#39;&lt;/span&gt;,&lt;span style="color:#e6db74"&gt;&amp;#39;o&amp;#39;&lt;/span&gt;}, {&lt;span style="color:#e6db74"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;,&lt;span style="color:#e6db74"&gt;&amp;#39;l&amp;#39;&lt;/span&gt;},
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; {&lt;span style="color:#e6db74"&gt;&amp;#39;d&amp;#39;&lt;/span&gt;, &lt;span style="color:#e6db74"&gt;&amp;#39;!&amp;#39;&lt;/span&gt;} }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;foreach&lt;/span&gt; (&lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; a1 &lt;span style="color:#66d9ef"&gt;in&lt;/span&gt; r3)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;foreach&lt;/span&gt; (&lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; a2 &lt;span style="color:#66d9ef"&gt;in&lt;/span&gt; a1)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Console.Write(a2);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;iframe width="100%" height="475" src="https://dotnetfiddle.net/Widget/ZVtzzv" frameborder="0"&gt;&lt;/iframe&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;[] r0 =
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; { &lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;4&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;5&lt;/span&gt; };
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;[,] r1 =
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; { { &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt; }, { &lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;4&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;5&lt;/span&gt; } };
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;[,,] r2 =
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; { {&lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;}, {&lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;} }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ,{ {&lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;4&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;5&lt;/span&gt;}, {&lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;} }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ,{ {&lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;4&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;5&lt;/span&gt;}, {&lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;} }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ,{ {&lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;4&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;5&lt;/span&gt;}, {&lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;} }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ,{ {&lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;4&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;5&lt;/span&gt;}, {&lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;} }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; };
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;for&lt;/span&gt; (&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; i = &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;; i &amp;lt; r2.Rank; i++)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Console.Write( r2.GetLength(i)+&lt;span style="color:#e6db74"&gt;&amp;#34;,&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; l = &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Console.WriteLine( l);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;for&lt;/span&gt; (&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; i = &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;; i &amp;lt; r2.Rank; i++)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; l*=r2.GetLength(i);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Console.WriteLine(&lt;span style="color:#e6db74"&gt;&amp;#34;&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Console.WriteLine(
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#e6db74"&gt;&amp;#34;Length {0}=={1}&amp;#34;&lt;/span&gt;,l,r2.Length);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Console.WriteLine(
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#e6db74"&gt;&amp;#34;r0.Rank = {0} &amp;#34;&lt;/span&gt;, r0.Rank);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Console.WriteLine(
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#e6db74"&gt;&amp;#34;r1.Rank = {0} &amp;#34;&lt;/span&gt;, r1.Rank);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Console.WriteLine(
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#e6db74"&gt;&amp;#34;r2.Rank = {0} &amp;#34;&lt;/span&gt;, r2.Rank);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;foreach&lt;/span&gt; (&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; i &lt;span style="color:#66d9ef"&gt;in&lt;/span&gt; r2)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Console.Write(i);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/file/d/18q5UI8bbMxEDr8yULPnAnXyifB0dyJHZ/view?usp=sharing"&gt;arrays.workbook&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/file/d/1_oepNCTizGlTF574MAIpe_tFdoMfK1MK/view?usp=sharing"&gt;Завдання&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/file/d/11zdDKdYzBpq275XVmI0CdBMyv1JLFEFl/view?usp=sharing"&gt;Приклад рішення&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Умовні конструкції C#</title><link>https://atreezilla.com/uk/posts/csharp-conditional-constructs.html</link><pubDate>Sat, 11 Mar 2023 00:00:00 +0000</pubDate><guid>https://atreezilla.com/uk/posts/csharp-conditional-constructs.html</guid><description>&lt;p&gt;Розглянуто варіанти використання &lt;strong&gt;умовних конструкцій C#&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; x=&lt;span style="color:#ae81ff"&gt;11&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;if&lt;/span&gt;(x &amp;gt; &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;){
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Console.WriteLine(
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#e6db74"&gt;$&amp;#34;Число {x} больше числа 2&amp;#34;&lt;/span&gt;);}
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;else&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; (x &amp;lt; &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;){
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Console.WriteLine(
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#e6db74"&gt;$&amp;#34;Число {x} меньше числа 2&amp;#34;&lt;/span&gt;);}
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;string&lt;/span&gt; selection=&lt;span style="color:#e6db74"&gt;&amp;#34;&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;switch&lt;/span&gt; (selection)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;case&lt;/span&gt; &lt;span style="color:#e6db74"&gt;&amp;#34;Y&amp;#34;&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Console.WriteLine(
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#e6db74"&gt;&amp;#34;Вы нажали букву Y&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;break&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;case&lt;/span&gt; &lt;span style="color:#e6db74"&gt;&amp;#34;N&amp;#34;&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Console.WriteLine(
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#e6db74"&gt;&amp;#34;Вы нажали букву N&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;break&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;default&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Console.WriteLine(
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#e6db74"&gt;&amp;#34;Вы нажали неизвестную букву&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;break&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; z = selection==&lt;span style="color:#e6db74"&gt;&amp;#34;Y&amp;#34;&lt;/span&gt;? (&lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;+&lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;) : (&lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;-&lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;iframe width="100%" height="475" src="https://dotnetfiddle.net/widget/sTyuY5" frameborder="0"&gt;&lt;/iframe&gt;</description></item><item><title>Арифметичні операції C#</title><link>https://atreezilla.com/uk/posts/csharp-arithmetic-operations.html</link><pubDate>Fri, 26 Mar 2021 00:00:00 +0000</pubDate><guid>https://atreezilla.com/uk/posts/csharp-arithmetic-operations.html</guid><description>&lt;p&gt;У статті коротко описані &lt;strong&gt;арифметичні операції C#&lt;/strong&gt; а також способи конвертації типів&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;+ , - , * , / , % , ++ , --&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id="порозрядні-операції"&gt;Порозрядні операції&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;&amp;amp;&lt;/code&gt;(логічне множення),&lt;br&gt;
+&lt;code&gt;|&lt;/code&gt;(логічне додавання),&lt;br&gt;
+&lt;em&gt;&lt;code&gt;^&lt;/code&gt;&lt;/em&gt;(логічне виключне АБО),&lt;br&gt;
+&lt;code&gt;~&lt;/code&gt; (логічне заперечення чи інверсія)&lt;/p&gt;
+&lt;h2 id="операції-присвоєння"&gt;Операції присвоєння&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;+= , -= , *= , /= , %= , &amp;amp;= , |= , ^= , &amp;lt;&amp;lt;= , &amp;gt;&amp;gt;=&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id="умовні-вирази"&gt;Умовні вирази&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;==,!=,&amp;lt;,&amp;gt;,&amp;lt;=,&amp;gt;=,|,^,&amp;amp;,||,&amp;amp;&amp;amp;,!&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id="в-які-типи-безпечно-перетворюється"&gt;В які типи безпечно перетворюється&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;byte &amp;raquo;&lt;/strong&gt; short, ushort, int, uint, long, ulong, float, double, decimal&lt;br&gt;
+&lt;strong&gt;sbyte &amp;raquo;&lt;/strong&gt; short, int, long, float, double, decimal&lt;br&gt;
+&lt;strong&gt;short &amp;raquo;&lt;/strong&gt; int, long, float, double, decimal&lt;br&gt;
+&lt;strong&gt;ushort &amp;raquo;&lt;/strong&gt; int, uint, long, ulong, float, double, decimal&lt;br&gt;
+&lt;strong&gt;int &amp;raquo;&lt;/strong&gt; long, float, double, decimal&lt;br&gt;
+&lt;strong&gt;uint &amp;raquo;&lt;/strong&gt; long, ulong, float, double, decimal&lt;br&gt;
+&lt;strong&gt;long &amp;raquo;&lt;/strong&gt; float, double, decimal&lt;br&gt;
+&lt;strong&gt;ulong &amp;raquo;&lt;/strong&gt; float, double, decimal&lt;br&gt;
+&lt;strong&gt;float &amp;raquo;&lt;/strong&gt; double&lt;br&gt;
+&lt;strong&gt;char &amp;raquo;&lt;/strong&gt; ushort, int, uint, long, ulong, float, double, decimal&lt;/p&gt;
+&lt;h2 id="конвертація"&gt;Конвертація&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; x=&lt;span style="color:#ae81ff"&gt;500&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;long&lt;/span&gt; y=(&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;)x;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Console.WriteLine(y);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;uint&lt;/span&gt; u =&lt;span style="color:#ae81ff"&gt;10&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;float&lt;/span&gt; f =&lt;span style="color:#ae81ff"&gt;101&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;uint&lt;/span&gt;.TryParse(f.ToString(),&lt;span style="color:#66d9ef"&gt;out&lt;/span&gt; u);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Console.WriteLine(u);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;y++;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Console.WriteLine(
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#e6db74"&gt;&amp;#34;16 - річне подання числа {0} - {1}&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;,y , Convert.ToString(y,&lt;span style="color:#ae81ff"&gt;16&lt;/span&gt;));
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Console.WriteLine(
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Convert.ToUInt16(++f));
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item><item><title>Типи даних C#</title><link>https://atreezilla.com/uk/posts/csharp-data-types.html</link><pubDate>Fri, 26 Mar 2021 00:00:00 +0000</pubDate><guid>https://atreezilla.com/uk/posts/csharp-data-types.html</guid><description>&lt;p&gt;Типи даних C# описано в стислому форматі .&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;//(1 байт) System.Boolean&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;bool&lt;/span&gt; isStupid = &lt;span style="color:#66d9ef"&gt;false&lt;/span&gt;; &lt;span style="color:#66d9ef"&gt;bool&lt;/span&gt; isSmarty = &lt;span style="color:#66d9ef"&gt;true&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;//(1 байт) від 0 до 255 System.Byte&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;byte&lt;/span&gt; _month = &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;; &lt;span style="color:#66d9ef"&gt;byte&lt;/span&gt; DayOfWeek = &lt;span style="color:#ae81ff"&gt;102&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;//(1 байт) ціле число від -128 до 127&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;//System.SByte&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;sbyte&lt;/span&gt; t1 = -&lt;span style="color:#ae81ff"&gt;101&lt;/span&gt;; &lt;span style="color:#66d9ef"&gt;sbyte&lt;/span&gt; t2 = &lt;span style="color:#ae81ff"&gt;102&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;//(2 байти) ціле число від -32768 до 32767&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;//System.Int16&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;short&lt;/span&gt; n1 = &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;; &lt;span style="color:#66d9ef"&gt;short&lt;/span&gt; n2 = &lt;span style="color:#ae81ff"&gt;102&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;//(2 байти) ціле число від 0 до 65535&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;//System.UInt16&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;ushort&lt;/span&gt; un1 = &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;; &lt;span style="color:#66d9ef"&gt;ushort&lt;/span&gt; un2 = &lt;span style="color:#ae81ff"&gt;102&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;//(4 байти) ціле число&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;//від -2147483648 до 2147483647 System.Int32&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; age = &lt;span style="color:#ae81ff"&gt;10&lt;/span&gt;; &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; b = &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;b101; &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; c = &lt;span style="color:#ae81ff"&gt;0xFF&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;//(4 байти) ціле число від 0 до 4294967295&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;//System.UInt32&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;uint&lt;/span&gt; ua = &lt;span style="color:#ae81ff"&gt;10&lt;/span&gt;; &lt;span style="color:#66d9ef"&gt;uint&lt;/span&gt; ub = &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;b101;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;uint&lt;/span&gt; uc = &lt;span style="color:#ae81ff"&gt;0xFF&lt;/span&gt;; &lt;span style="color:#66d9ef"&gt;uint&lt;/span&gt; xa = &lt;span style="color:#ae81ff"&gt;10&lt;/span&gt;U;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;//(8 байт) ціле число&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;// Від -9 223 372 036 854 775 808&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;// До 9 223 372 036 854 775 807&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;//System.Int64&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;long&lt;/span&gt; la = -&lt;span style="color:#ae81ff"&gt;10&lt;/span&gt;; &lt;span style="color:#66d9ef"&gt;long&lt;/span&gt; lb = &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;b101;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;long&lt;/span&gt; lc=&lt;span style="color:#ae81ff"&gt;0xFF&lt;/span&gt;; &lt;span style="color:#66d9ef"&gt;long&lt;/span&gt; xb = &lt;span style="color:#ae81ff"&gt;20L&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;//(8 байт) ціле число&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;// Від 0 до 18 446 744 073 709 551 615&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;//System.UInt64&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;ulong&lt;/span&gt; ga = &lt;span style="color:#ae81ff"&gt;10&lt;/span&gt;; &lt;span style="color:#66d9ef"&gt;ulong&lt;/span&gt; gb = &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;b101;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;ulong&lt;/span&gt; gc = &lt;span style="color:#ae81ff"&gt;0xFF&lt;/span&gt;; &lt;span style="color:#66d9ef"&gt;ulong&lt;/span&gt; xc = &lt;span style="color:#ae81ff"&gt;30&lt;/span&gt;UL;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;//(4 байти) число з плаваючою точкою&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;//від -3.4 * 1038 до 3.4 * 1038 System.Single&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;float&lt;/span&gt; fa = &lt;span style="color:#ae81ff"&gt;3.14F&lt;/span&gt;; &lt;span style="color:#66d9ef"&gt;float&lt;/span&gt; fb = &lt;span style="color:#ae81ff"&gt;30.6f&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;//(8 байт) число з плаваючою точкою&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;// Від ±5.0*10-324 до ±1.7*10308 System.Double&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;double&lt;/span&gt; db = &lt;span style="color:#ae81ff"&gt;10.222&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;//(16 байт)десяткове дробове число.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;// Якщо вживається без десяткової коми,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;// має значення&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;// від ±1.0*10-28 до ±7.9228*1028,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;// може зберігати 28 знаків після коми&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;// System.Decimal&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;decimal&lt;/span&gt; fc = &lt;span style="color:#ae81ff"&gt;1005.8&lt;/span&gt;M; &lt;span style="color:#66d9ef"&gt;decimal&lt;/span&gt; d = &lt;span style="color:#ae81ff"&gt;334.8&lt;/span&gt;m;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;//(2 байти)зберігає одиночний символ&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;//У кодуванні Unicode System.Char&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;char&lt;/span&gt; ca = &lt;span style="color:#e6db74"&gt;&amp;#39;A&amp;#39;&lt;/span&gt;; &lt;span style="color:#66d9ef"&gt;char&lt;/span&gt; cb = &lt;span style="color:#960050;background-color:#1e0010"&gt;&amp;#39;&lt;/span&gt;x5A&lt;span style="color:#960050;background-color:#1e0010"&gt;&amp;#39;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;char&lt;/span&gt; cc = &lt;span style="color:#960050;background-color:#1e0010"&gt;&amp;#39;&amp;#39;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;//зберігає набір символів Unicode&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;//System.String&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;string&lt;/span&gt; name = &lt;span style="color:#e6db74"&gt;&amp;#34;Tom&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;/*може зберігати значення будь-якого типу
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;даних і займає 4 байти
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;на 32-розрядній платформі та 8 байт
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;на 64-розрядній платформі.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;System.Object , є базовим для
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;всіх інших типів та класів .NET*/&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;object&lt;/span&gt; oa = &lt;span style="color:#ae81ff"&gt;22&lt;/span&gt;; &lt;span style="color:#960050;background-color:#1e0010"&gt;об&amp;#39;єкт&lt;/span&gt; ob = &lt;span style="color:#ae81ff"&gt;3.14&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;object&lt;/span&gt; oc = &lt;span style="color:#e6db74"&gt;&amp;#34;hello code&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Console.WriteLine(
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#e6db74"&gt;$&amp;#34;Ім&amp;#39;я: {name} \n Вік: {age}&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;//Неявна типізація&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; xhello = &lt;span style="color:#e6db74"&gt;&amp;#34;Hell to World&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; xc2 = &lt;span style="color:#ae81ff"&gt;20&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Console.WriteLine(c.GetType().ToString());
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Console.WriteLine(
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;xhello.GetType().ToString());
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Console.WriteLine(
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Convert.ToString(&lt;span style="color:#ae81ff"&gt;123&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;).PadLeft(&lt;span style="color:#ae81ff"&gt;16&lt;/span&gt;, &lt;span style="color:#e6db74"&gt;&amp;#39;0&amp;#39;&lt;/span&gt;)) ;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Console.WriteLine(
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#e6db74"&gt;&amp;#34;Size of bool {0}&amp;#34;&lt;/span&gt;, &lt;span style="color:#66d9ef"&gt;sizeof&lt;/span&gt; (&lt;span style="color:#66d9ef"&gt;bool&lt;/span&gt;));
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/file/d/1LeM6Q7G5EyNZlM9JIILfE-m5yRcpGex-/view?usp=sharing"&gt;data_types.workbook&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>

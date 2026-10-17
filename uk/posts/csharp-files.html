@@ -1,84 +1,76 @@
-<!doctype html><html lang=ru-ru><head><title>Файлы C# | atreezilla</title><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,minimum-scale=1"><meta name=description content="Арифметичні операції C#"><meta name=generator content="Hugo 0.79.0"><meta name=ROBOTS content="INDEX, FOLLOW"><link rel=stylesheet href=../../css/style.css><link rel="shortcut icon" href=../../images/favicon.ico type=image/x-icon><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','266950395','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></head><body><nav class=navigation><a class=flagnoselect href=../../en/posts/csharp-files.html>EN</a>
-<a class=flagnoselect href=../../posts/csharp-files.html>RU</a>
+<!doctype html><html lang=uk><head><title>Файлы C# | atreezilla</title><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="На сайті буде розміщена інформація про програмування на C#, python, 3D, малювання, музику та інші цікаві речі"><link rel="shortcut icon" href=https://atreezilla.com/favicon.ico><link rel=alternate type=application/rss+xml href=https://atreezilla.com/uk/index.xml title=atreezilla><link rel=stylesheet href=../../css/style.min.css><link rel=canonical href=https://atreezilla.com/uk/index.html><title>atreezilla</title></head></head><body><nav class=navigation><a class=flagnoselect href=../../en/posts/csharp-files.html>UK</a>
+<a class=flagnoselect href=../../posts/csharp-files.html>UK</a>
 <a class=flagselect href=../../uk/posts/csharp-files.html>UK</a>
 <a href=../../><span class=arrow>←</span>Home</a>
 <a href=../../posts>Archive</a>
 <a href=../../tags>Tags</a>
-<a href=../../about>About</a></nav><main class=main><section id=single><h1 class=title>Файлы C#</h1><div class=tip><span>Mar 12, 2023 00:00</span>
-<span class=split>·</span>
-<span>213 words</span>
-<span class=split>·</span>
-<span>1 minute read</span></div><div class=content><p>Приклади роботи з бінарними та текстовими файлами C#</p><h2 id=способи-створення>Способи створення: <a href=#%d1%81%d0%bf%d0%be%d1%81%d0%be%d0%b1%d0%b8-%d1%81%d1%82%d0%b2%d0%be%d1%80%d0%b5%d0%bd%d0%bd%d1%8f class=anchor>🔗</a></h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp>FileStream(<span style=color:#66d9ef>string</span> filename, FileMode mode),
-FileMode(Append,Create,CreateNew,Open,OpenOrCreate,Truncate)
-File.Open(<span style=color:#66d9ef>string</span> file, FileMode mode),
-File.OpenRead(<span style=color:#66d9ef>string</span> file), File.OpenWrite(<span style=color:#66d9ef>string</span> file);
-</code></pre></div><p>Основні властивості: Length, Position</p><p>Основні методи:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp>CopyTo (Stream destination),
-<span style=color:#66d9ef>int</span> Read(<span style=color:#66d9ef>byte</span>[] array, <span style=color:#66d9ef>int</span> offset, <span style=color:#66d9ef>int</span> count),
-<span style=color:#66d9ef>long</span> Seek(<span style=color:#66d9ef>long</span> offset, SeekOrigin origin),
-<span style=color:#66d9ef>void</span> Write(<span style=color:#66d9ef>byte</span>[] array, <span style=color:#66d9ef>int</span> offset, <span style=color:#66d9ef>int</span> count)
-ValueTask WriteAsync(<span style=color:#66d9ef>byte</span>[] array, <span style=color:#66d9ef>int</span> offset, <span style=color:#66d9ef>int</span> count),
-Task CopyToAsync(Stream destination)
-</code></pre></div><p>Допоміжні класи: <strong>StreamReader</strong> та <strong>StreamWriter</strong> текст
-<strong>BinaryWriter</strong>, <strong>BinaryReader</strong> бінарні дані</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp>SeekOrigin.Begin: <span style=color:#960050;background-color:#1e0010>початок</span> <span style=color:#960050;background-color:#1e0010>файлу</span>, SeekOrigin.End: <span style=color:#960050;background-color:#1e0010>кінець</span> <span style=color:#960050;background-color:#1e0010>файлу</span>, SeekOrigin.Current: <span style=color:#960050;background-color:#1e0010>поточна</span> <span style=color:#960050;background-color:#1e0010>позиція</span> <span style=color:#960050;background-color:#1e0010>у</span> <span style=color:#960050;background-color:#1e0010>файлі</span>
-fstream.Seek(-<span style=color:#ae81ff>5</span>, SeekOrigin.End);
-</code></pre></div><h2 id=способи-використання>Способи використання: <a href=#%d1%81%d0%bf%d0%be%d1%81%d0%be%d0%b1%d0%b8-%d0%b2%d0%b8%d0%ba%d0%be%d1%80%d0%b8%d1%81%d1%82%d0%b0%d0%bd%d0%bd%d1%8f class=anchor>🔗</a></h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#66d9ef>try</span>
-{
-     fstream =
-<span style=color:#66d9ef>new</span> FileStream(<span style=color:#e6db74>@&#34;f.dat&#34;</span>,
-FileMode.OpenOrCreate);
-}
-<span style=color:#66d9ef>catch</span>(Exception ex)
-{
-}
-<span style=color:#66d9ef>finally</span>
-{
-     <span style=color:#66d9ef>if</span> (fstream! = <span style=color:#66d9ef>null</span>)
-         fstream.Close();
-}
-</code></pre></div><p>або using</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#66d9ef>using</span> (<span style=color:#66d9ef>var</span> fs =
-   <span style=color:#66d9ef>new</span> FileStream(<span style=color:#e6db74>@&#34;filePath&#34;</span>,
-   FileMode ..., FileAccess ...))
-
-{
-
-}
-</code></pre></div><h2 id=робота-з-текстовими-файлами>Робота з текстовими файлами <a href=#%d1%80%d0%be%d0%b1%d0%be%d1%82%d0%b0-%d0%b7-%d1%82%d0%b5%d0%ba%d1%81%d1%82%d0%be%d0%b2%d0%b8%d0%bc%d0%b8-%d1%84%d0%b0%d0%b9%d0%bb%d0%b0%d0%bc%d0%b8 class=anchor>🔗</a></h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#66d9ef>using</span> System;
-<span style=color:#66d9ef>using</span> System.Text;
-<span style=color:#66d9ef>using</span> System.Threading.Tasks;
-<span style=color:#66d9ef>using</span> System.IO;
-
-FileStream fs =
-<span style=color:#66d9ef>new</span> FileStream(<span style=color:#e6db74>@&#34;ft.txt&#34;</span>,
-FileMode.OpenOrCreate, FileAccess.Write);
-<span style=color:#66d9ef>using</span> (<span style=color:#66d9ef>var</span> sw = <span style=color:#66d9ef>new</span> StreamWriter(fs)){
-     sw.WriteLine(<span style=color:#e6db74>@&#34;text\file&#34;</span>);
-}
-fs.Close();
-
-<span style=color:#66d9ef>using</span> (<span style=color:#66d9ef>var</span> fsr =
-        <span style=color:#66d9ef>new</span> FileStream(<span style=color:#e6db74>@&#34;ft.txt&#34;</span>, FileMode.Open,
-        FileAccess.Read))
-{
-<span style=color:#66d9ef>using</span> (<span style=color:#66d9ef>var</span> sr = <span style=color:#66d9ef>new</span> StreamReader (fsr))
-{
-<span style=color:#66d9ef>var</span> str = sr.ReadLine();
-Console.Write(str);
-}
-}
-</code></pre></div><h2 id=робота-з-бінарними-файлами>Робота з бінарними файлами <a href=#%d1%80%d0%be%d0%b1%d0%be%d1%82%d0%b0-%d0%b7-%d0%b1%d1%96%d0%bd%d0%b0%d1%80%d0%bd%d0%b8%d0%bc%d0%b8-%d1%84%d0%b0%d0%b9%d0%bb%d0%b0%d0%bc%d0%b8 class=anchor>🔗</a></h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#66d9ef>using</span> (<span style=color:#66d9ef>var</span> fs = <span style=color:#66d9ef>new</span> FileStream(<span style=color:#e6db74>@&#34;fb.bin&#34;</span>, FileMode.OpenOrCreate, FileAccess.Write)){
-   <span style=color:#66d9ef>using</span> (<span style=color:#66d9ef>var</span> bw = New BinaryWriter(fs))
-  {
-      bw.Write((<span style=color:#66d9ef>int</span>)<span style=color:#ae81ff>200</span>);
-  }
-}
-<span style=color:#66d9ef>using</span> (<span style=color:#66d9ef>var</span> fs = File.OpenRead(<span style=color:#e6db74>@&#34;fb.bin&#34;</span>)){
-   <span style=color:#66d9ef>using</span> (<span style=color:#66d9ef>var</span> br = New BinaryReader(fs)){
-     <span style=color:#66d9ef>var</span> v = br.ReadInt32();
-     Console.WriteLine(v);
-   }
-}
-</code></pre></div><ul><li><a href="https://drive.google.com/file/d/1kcefBU4FVkmcGuIkhRxE_G0GRcQ31eWX/view?usp=sharing" target=_blank rel=noopener>files.workbook</a></li></ul></div><div class=tags><a href=https://atreezilla.com/tags/csharp>csharp</a>
-<a href=https://atreezilla.com/tags/files>files</a></div></section></main><footer id=footer><p class=copyright>© Copyright
-2023
-<span class=split><svg fill="#bbb" width="15" height="15" id="heart-15" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15"><path d="M13.91 6.75c-1.17 2.25-4.3 5.31-6.07 6.94-.1903.1718-.4797.1718-.67.0C5.39 12.06 2.26 9 1.09 6.75-1.48 1.8 5-1.5 7.5 3.45 10-1.5 16.48 1.8 13.91 6.75z"/></svg></span></p><p class=powerby>Powered by <a href=http://www.gohugo.io/>Hugo</a> Theme By <a href=https://github.com/nodejh/hugo-theme-cactus-plus>nodejh</a></p></footer><script async src="https://www.googletagmanager.com/gtag/js?id=G-4B4NE8EHC3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','G-4B4NE8EHC3');</script></body></html>
+<a href=../../about>About</a></nav><main class=main><article><header id=post-header><h1>Файлы C#</h1><div><time></time></div></header><p>Приклади роботи з бінарними та текстовими файлами C#</p><h2 id=способи-створення>Способи створення:</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span>FileStream(<span style=color:#66d9ef>string</span> filename, FileMode mode),
+</span></span><span style=display:flex><span>FileMode(Append,Create,CreateNew,Open,OpenOrCreate,Truncate)
+</span></span><span style=display:flex><span>File.Open(<span style=color:#66d9ef>string</span> file, FileMode mode),
+</span></span><span style=display:flex><span>File.OpenRead(<span style=color:#66d9ef>string</span> file), File.OpenWrite(<span style=color:#66d9ef>string</span> file);
+</span></span></code></pre></div><p>Основні властивості: Length, Position</p><p>Основні методи:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span>CopyTo (Stream destination),
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> Read(<span style=color:#66d9ef>byte</span>[] array, <span style=color:#66d9ef>int</span> offset, <span style=color:#66d9ef>int</span> count),
+</span></span><span style=display:flex><span><span style=color:#66d9ef>long</span> Seek(<span style=color:#66d9ef>long</span> offset, SeekOrigin origin),
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> Write(<span style=color:#66d9ef>byte</span>[] array, <span style=color:#66d9ef>int</span> offset, <span style=color:#66d9ef>int</span> count)
+</span></span><span style=display:flex><span>ValueTask WriteAsync(<span style=color:#66d9ef>byte</span>[] array, <span style=color:#66d9ef>int</span> offset, <span style=color:#66d9ef>int</span> count),
+</span></span><span style=display:flex><span>Task CopyToAsync(Stream destination)
+</span></span></code></pre></div><p>Допоміжні класи: <strong>StreamReader</strong> та <strong>StreamWriter</strong> текст
+<strong>BinaryWriter</strong>, <strong>BinaryReader</strong> бінарні дані</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span>SeekOrigin.Begin: <span style=color:#960050;background-color:#1e0010>початок</span> <span style=color:#960050;background-color:#1e0010>файлу</span>, SeekOrigin.End: <span style=color:#960050;background-color:#1e0010>кінець</span> <span style=color:#960050;background-color:#1e0010>файлу</span>, SeekOrigin.Current: <span style=color:#960050;background-color:#1e0010>поточна</span> <span style=color:#960050;background-color:#1e0010>позиція</span> <span style=color:#960050;background-color:#1e0010>у</span> <span style=color:#960050;background-color:#1e0010>файлі</span>
+</span></span><span style=display:flex><span>fstream.Seek(-<span style=color:#ae81ff>5</span>, SeekOrigin.End);
+</span></span></code></pre></div><h2 id=способи-використання>Способи використання:</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>try</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>     fstream =
+</span></span><span style=display:flex><span><span style=color:#66d9ef>new</span> FileStream(<span style=color:#e6db74>@&#34;f.dat&#34;</span>,
+</span></span><span style=display:flex><span>FileMode.OpenOrCreate);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>catch</span>(Exception ex)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>finally</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>     <span style=color:#66d9ef>if</span> (fstream! = <span style=color:#66d9ef>null</span>)
+</span></span><span style=display:flex><span>         fstream.Close();
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>або using</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>using</span> (<span style=color:#66d9ef>var</span> fs =
+</span></span><span style=display:flex><span>   <span style=color:#66d9ef>new</span> FileStream(<span style=color:#e6db74>@&#34;filePath&#34;</span>,
+</span></span><span style=display:flex><span>   FileMode ..., FileAccess ...))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=робота-з-текстовими-файлами>Робота з текстовими файлами</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>using</span> System;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Text;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Threading.Tasks;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.IO;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>FileStream fs =
+</span></span><span style=display:flex><span><span style=color:#66d9ef>new</span> FileStream(<span style=color:#e6db74>@&#34;ft.txt&#34;</span>,
+</span></span><span style=display:flex><span>FileMode.OpenOrCreate, FileAccess.Write);
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> (<span style=color:#66d9ef>var</span> sw = <span style=color:#66d9ef>new</span> StreamWriter(fs)){
+</span></span><span style=display:flex><span>     sw.WriteLine(<span style=color:#e6db74>@&#34;text\file&#34;</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>fs.Close();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> (<span style=color:#66d9ef>var</span> fsr =
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>new</span> FileStream(<span style=color:#e6db74>@&#34;ft.txt&#34;</span>, FileMode.Open,
+</span></span><span style=display:flex><span>        FileAccess.Read))
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> (<span style=color:#66d9ef>var</span> sr = <span style=color:#66d9ef>new</span> StreamReader (fsr))
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> str = sr.ReadLine();
+</span></span><span style=display:flex><span>Console.Write(str);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=робота-з-бінарними-файлами>Робота з бінарними файлами</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>using</span> (<span style=color:#66d9ef>var</span> fs = <span style=color:#66d9ef>new</span> FileStream(<span style=color:#e6db74>@&#34;fb.bin&#34;</span>, FileMode.OpenOrCreate, FileAccess.Write)){
+</span></span><span style=display:flex><span>   <span style=color:#66d9ef>using</span> (<span style=color:#66d9ef>var</span> bw = New BinaryWriter(fs))
+</span></span><span style=display:flex><span>  {
+</span></span><span style=display:flex><span>      bw.Write((<span style=color:#66d9ef>int</span>)<span style=color:#ae81ff>200</span>);
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> (<span style=color:#66d9ef>var</span> fs = File.OpenRead(<span style=color:#e6db74>@&#34;fb.bin&#34;</span>)){
+</span></span><span style=display:flex><span>   <span style=color:#66d9ef>using</span> (<span style=color:#66d9ef>var</span> br = New BinaryReader(fs)){
+</span></span><span style=display:flex><span>     <span style=color:#66d9ef>var</span> v = br.ReadInt32();
+</span></span><span style=display:flex><span>     Console.WriteLine(v);
+</span></span><span style=display:flex><span>   }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><ul><li><a href="https://drive.google.com/file/d/1kcefBU4FVkmcGuIkhRxE_G0GRcQ31eWX/view?usp=sharing">files.workbook</a></li></ul></article></main><footer id=footer></footer></body></html>
