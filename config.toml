@@ -44,6 +44,10 @@ weight = 0
 title = "atreezilla"
 weight = 0
 languagename = "Ukrainian"
+
+[params]
+  title = "Имя вашего сайта"
+  description = "Описание вашего сайта"
 languageFlag = "UK"
 [Languages.uk.params]
   description = "На сайті буде розміщена інформація про програмування на C#, python, 3D, малювання, музику та інші цікаві речі"
