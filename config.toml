@@ -47,5 +47,4 @@ languagename = "Ukrainian"
 languageFlag = "UK"
 [Languages.uk.params]
   description = "На сайті буде розміщена інформація про програмування на C#, python, 3D, малювання, музику та інші цікаві речі"
-[params]
-  enableGoogleAnalytics = true
+
