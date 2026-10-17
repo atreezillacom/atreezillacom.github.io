@@ -7,7 +7,7 @@ tags=[
      "csharp",
 "strings"
 ]
-+++
++++ 
 На камеру- Вид серху - Align Active Camera ToView - Ctrl+Alt+Numpad 0
 Camer - Output properties - Dimension - 1024*1024
 select Camera+Plain - View Align Camera to Selected
