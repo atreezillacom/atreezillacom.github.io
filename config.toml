@@ -1,54 +1,75 @@
-relativeURLs = true
-uglyURLs = true
-baseURL = "https://atreezilla.com"
-languageCode = "ru-ru"
-theme = "etch"
+baseURL = 'https://atreezilla.com/'
+title = 'Блог atreezilla'
+theme = 'bootstrap-multilingual'
+paginate = 6
 publishDir = "docs"
-ignoreErrors = ["error-remote-getjson"]
-disqusShortname = "atreezilla"
+# Multi-Language Routing Configuration
+defaultContentLanguage = 'uk'
+defaultContentLanguageInSubdir = false
 
-DefaultContentLanguage = "ru"
-[Languages]
-[Languages.en]
-title = "atreezilla"
-weight = 0
-languagename = "English"
-languageFlag = "EN"
-[Languages.en.params]
-  description = "The site will include information about programming in C#, python, 3D, drawing, music and other interesting things"
-  
-[[Languages.en.menu.main]]
-url = "/"
-name = "Home"
-weight = 1
-[[Languages.en.menu.main]]
-url = "/about/"
-name = "About"
-weight = 0
-[Languages.ru]
-title = "atreezilla"
-weight = 0
-languagename = "Russian"
-languageFlag = "RU"
-[Languages.ru.params]
-  description = "На сайте будет размещена информация о программировании на C#, python , 3D, рисовании, музыке и других интересных вещах"
-[[Languages.ru.menu.main]]
-url = "/"
-name = "Home"
-weight = 1
-[[Languages.ru.menu.main]]
-url = "/about/"
-name = "About"
-weight = 0
-[Languages.uk]
-title = "atreezilla"
-weight = 0
-languagename = "Ukrainian"
+[languages]
+  [languages.uk]
+    languageCode = 'uk-UA'
+    languageName = 'Українська'
+    weight = 1
+    title = 'Портфоліо'
+    [languages.uk.params]
+      bio = 'Системи, архітектура та особистий простір.'
+      author = 'elkrot'
+
+  [languages.en]
+    languageCode = 'en-US'
+    languageName = 'English'
+    weight = 2
+    title = 'Portfolio'
+    [languages.en.params]
+      bio = 'Cloud architecture & creative life.'
+      author = 'elkrot'
+
+  [languages.ru]
+    languageCode = 'ru'
+    languageName = 'Русский'
+    weight = 3
+    title = 'Портфолио'
+    [languages.ru.params]
+      bio = 'Высоконагруженные системы и семейные хроники.'
+      author = 'elkrot'
 
 [params]
-  title = "atreezilla"
-  description = "atreezilla"
-languageFlag = "UK"
-[Languages.uk.params]
-  description = "На сайті буде розміщена інформація про програмування на C#, python, 3D, малювання, музику та інші цікаві речі"
- 
+  bootstrapVersion = '5.3.3'
+  enableReactIslands = true
+  githubUrl = 'https://github.com/example'
+  telegramUrl = 'https://t.me/example'
+  email = 'elkrot@gmail.com'
+  copyright = 'elkrot. All rights reserved.'
+
+[menu]
+  [[menu.main]]
+    identifier = 'portfolio-tech'
+    name = 'Tech Portfolio'
+    url = '/portfolio/'
+    weight = 10
+
+  [[menu.main]]
+    identifier = 'portfolio-life'
+    name = 'Family & Hobbies'
+    url = '/life/'
+    weight = 20
+
+  [[menu.main]]
+    identifier = 'blog'
+    name = 'Blog'
+    url = '/blog/'
+    weight = 15
+	
+  [[menu.main]]
+    identifier = 'posts'
+    name = 'Posts'
+    url = '/posts/'
+    weight = 15
+
+  [[menu.main]]
+    identifier = 'contacts'
+    name = 'Contacts'
+    url = '/contacts/'
+    weight = 40
