@@ -1,0 +1,53 @@
+[hero_badge]
+other = "Hugo v0.134+ · Bootstrap 5.3 · React Island Ready"
+
+[hero_title]
+other = "Мультиязычный блог и портфолио инженера"
+
+[view_portfolio]
+other = "Смотреть портфолио"
+
+[contact_me]
+other = "Связаться"
+
+[programming_title]
+other = "Портфолио: Разработка по стекам"
+
+[programming_subtitle]
+other = "Проекты, созданные на React, Go, Python и Kubernetes"
+
+[all_projects]
+other = "Все проекты"
+
+[all_articles]
+other = "Все статьи"
+
+[blog_subtitle]
+other = "Архитектурные заметки, паттерны и разбор кода"
+
+[read_more]
+other = "Читать далее"
+
+[no_items_found]
+other = "Записей в этом разделе пока нет."
+
+[no_projects_yet]
+other = "Проекты добавляются в папку content/portfolio/"
+
+[home]
+other = "Главная"
+
+[nav_portfolio_tech]
+other = "Портфолио: Код"
+
+[nav_portfolio_life]
+other = "Семья и Хобби"
+
+[nav_posts]
+other = "Публикации"
+
+[nav_blog]
+other = "Блог"
+
+[nav_contacts]
+other = "Контакты"

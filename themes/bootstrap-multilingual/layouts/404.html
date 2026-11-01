@@ -1,0 +1,17 @@
+{{ define "main" }}
+<div class="container py-5 text-center my-5">
+  <div class="display-1 text-primary fw-bold mb-3">404</div>
+  <h1 class="display-6 fw-bold text-body-emphasis mb-3">Сторінку не знайдено / Page Not Found</h1>
+  <p class="lead text-secondary max-w-lg mx-auto mb-4">
+    Запитана сторінка відсутня або переміщена. Перейдіть на головну або скористайтеся навігацією.
+  </p>
+  <div class="d-flex justify-content-center gap-3">
+    <a href="{{ "/" | relLangURL }}" class="btn btn-primary px-4 py-2">
+      На головну / Back Home
+    </a>
+    <a href="{{ "/portfolio/" | relLangURL }}" class="btn btn-outline-secondary px-4 py-2">
+      Портфоліо
+    </a>
+  </div>
+</div>
+{{ end }}

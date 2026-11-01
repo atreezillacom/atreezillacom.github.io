@@ -1,0 +1,27 @@
+<div class="dropdown">
+  <button class="btn btn-outline-secondary btn-sm dropdown-toggle fw-medium" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    🌐 {{ with .Site.Language.LanguageName }}{{ . }}{{ else }}{{ .Site.Language.Lang }}{{ end }}
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+    {{ $currentLang := .Site.Language.Lang }}
+    {{ if .IsTranslated }}
+      {{ range .AllTranslations }}
+        <li>
+          <a class="dropdown-item d-flex justify-content-between align-items-center {{ if eq .Language.Lang $currentLang }}active{{ end }}" href="{{ .RelPermalink }}">
+            <span>{{ with .Language.LanguageName }}{{ . }}{{ else }}{{ .Language.Lang }}{{ end }}</span>
+            <small class="text-uppercase ms-2 opacity-75">{{ .Language.Lang }}</small>
+          </a>
+        </li>
+      {{ end }}
+    {{ else }}
+      {{ range .Site.Home.AllTranslations }}
+        <li>
+          <a class="dropdown-item d-flex justify-content-between align-items-center {{ if eq .Language.Lang $currentLang }}active{{ end }}" href="{{ .RelPermalink }}">
+            <span>{{ with .Language.LanguageName }}{{ . }}{{ else }}{{ .Language.Lang }}{{ end }}</span>
+            <small class="text-uppercase ms-2 opacity-75">{{ .Language.Lang }}</small>
+          </a>
+        </li>
+      {{ end }}
+    {{ end }}
+  </ul>
+</div>

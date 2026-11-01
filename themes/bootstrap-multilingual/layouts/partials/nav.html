@@ -1,0 +1,86 @@
+<header class="navbar navbar-expand-lg bg-body border-bottom sticky-top shadow-sm py-3">
+  <div class="container">
+    <!-- Zone 1: Brand Wordmark -->
+    <a class="navbar-brand fw-bold tracking-tight text-body-emphasis" href="{{ "/" | relLangURL }}">
+    <img src="/images/avatar.png" /> 
+	
+    </a>
+
+    <!-- Mobile Toggler -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Zone 2: Navigation Links -->
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4 gap-lg-3">
+        <li class="nav-item">
+          <a class="nav-link {{ if eq .Section "portfolio" }}active fw-semibold text-primary{{ end }}" href="{{ "/portfolio/" | relLangURL }}">
+            {{ i18n "nav_portfolio_tech" }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ if eq .Section "life" }}active fw-semibold text-primary{{ end }}" href="{{ "/life/" | relLangURL }}">
+            {{ i18n "nav_portfolio_life" }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ if eq .Section "posts" }}active fw-semibold text-primary{{ end }}" href="{{ "/posts/" | relLangURL }}">
+            {{ i18n "nav_posts" }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ if eq .Section "blog" }}active fw-semibold text-primary{{ end }}" href="{{ "/blog/" | relLangURL }}">
+            {{ i18n "nav_blog" }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ if eq .Section "contacts" }}active fw-semibold text-primary{{ end }}" href="{{ "/contacts/" | relLangURL }}">
+            {{ i18n "nav_contacts" }}
+          </a>
+        </li>
+      </ul>
+
+      <!-- Zone 3: Language Switcher & Dark Mode Toggle -->
+      <div class="d-flex align-items-center gap-2">
+        {{ partial "lang-switcher.html" . }}
+        <button id="themeToggleBtn" type="button" class="btn btn-outline-secondary btn-sm px-2.5 py-1 d-flex align-items-center gap-1 shadow-sm" onclick="window.__toggleTheme()" title="Toggle theme" aria-label="Toggle theme">
+          <span id="themeToggleIcon" class="theme-icon">◐</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  window.__updateThemeIcon = function(theme) {
+    const icon = document.getElementById('themeToggleIcon');
+    if (!icon) return;
+    icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+  };
+
+  window.__toggleTheme = function() {
+    const root = document.documentElement;
+    const current = root.getAttribute('data-bs-theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    const next = current === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-bs-theme', next);
+    if (next === 'dark') {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+    try {
+      localStorage.setItem('theme', next);
+      localStorage.setItem('app_theme', next);
+    } catch(e) {
+	console.log(e);
+	console.log(next);
+	}
+    window.__updateThemeIcon(next);
+  };
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const current = document.documentElement.getAttribute('data-bs-theme') || 'light';
+    window.__updateThemeIcon(current);
+  });
+</script>

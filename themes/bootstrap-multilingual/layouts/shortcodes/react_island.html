@@ -1,0 +1,8 @@
+{{ $name := .Get "name" }}
+{{ $props := .Get "props" | default "{}" }}
+<div class="hugo-react-island my-4" data-react-island="{{ $name }}" data-props='{{ $props }}'>
+  <div class="p-3 border rounded text-secondary small bg-body">
+    <div class="spinner-border spinner-border-sm me-2 text-primary" role="status"></div>
+    <span>Loading interactive widget: {{ $name }}...</span>
+  </div>
+</div>

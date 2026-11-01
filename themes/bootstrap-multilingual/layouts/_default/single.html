@@ -1,0 +1,53 @@
+{{ define "main" }}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-9">
+      <!-- Breadcrumb -->
+      <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb small">
+          <li class="breadcrumb-item"><a href="{{ "/" | relLangURL }}">{{ i18n "home" }}</a></li>
+          {{ with .CurrentSection }}
+            <li class="breadcrumb-item"><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+          {{ end }}
+          <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+        </ol>
+      </nav>
+
+      <!-- Post Header -->
+      <header class="mb-4 pb-4 border-bottom">
+        <div class="text-primary small text-uppercase fw-semibold mb-2">
+          {{ with .Params.category }}{{ . }} · {{ end }}{{ .Date.Format "02 January 2006" }}
+        </div>
+        <h1 class="display-5 fw-bold text-body-emphasis mb-3">{{ .Title }}</h1>
+        {{ with .Params.metrics }}
+          <div class="p-3 bg-body-secondary rounded-3 text-body small font-monospace mb-3">
+            <strong>Impact:</strong> {{ . }}
+          </div>
+        {{ end }}
+      <!-- Featured Image if present -->
+      {{ with .Params.image }}
+        <div class="mb-4 rounded-4 overflow-hidden shadow-sm ratio ratio-21x9">
+          <img src="{{ . | relURL }}" class="w-100 h-100 object-fit-cover" alt="{{ $.Title }}">
+        </div>
+      {{ end }}
+
+      <!-- Post Body -->
+      <article class="article-content text-body lh-lg mb-5">
+        {{ .Content }}
+      </article>
+
+      <!-- Tags & Footer -->
+      {{ with .Params.tags }}
+        <div class="pt-4 border-top">
+          <div class="d-flex flex-wrap gap-2 align-items-center">
+            <span class="text-secondary small fw-bold">Tags:</span>
+            {{ range . }}
+              <span class="badge bg-body-secondary text-body border">{{ . }}</span>
+            {{ end }}
+          </div>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</div>
+{{ end }}

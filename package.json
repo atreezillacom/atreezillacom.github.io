@@ -1,0 +1,14 @@
+{
+  "name": "hugo-bootstrap-multilingual-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Multilingual Hugo site with Bootstrap 5 and React Islands",
+  "scripts": {
+    "dev": "hugo server -D",
+    "build": "hugo --minify"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}
