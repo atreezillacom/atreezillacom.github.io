@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.Language.LanguageCode }}" data-bs-theme="auto">
+<html lang="{{ .Site.Language.LanguageCode }}" data-bs-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}</title>
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.bio }}{{ end }}">
-  <link rel="shortcut icon" href="/images/favicon.ico" />
+
+  {{/* Favicon (fav.ico & svg) */}}
+  <link rel="icon" type="image/x-icon" href="{{ "favicon.ico" | relURL }}">
+  <link rel="icon" type="image/svg+xml" href="{{ "favicon.svg" | relURL }}">
+
   {{/* Canonical & Multilingual SEO hreflang links */}}
   <link rel="canonical" href="{{ .Permalink }}">
   {{ range .AllTranslations }}
@@ -22,13 +26,12 @@
     <link rel="stylesheet" href="{{ $themeCSS.RelPermalink }}">
   {{ end }}
 
-  {{/* Dark mode initialization script — runs synchronously before paint to prevent flashing */}}
+  {{/* Dark/Light mode initialization script — runs before paint */}}
   <script>
     (function() {
       try {
         const stored = localStorage.getItem('theme') || localStorage.getItem('app_theme');
-        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const theme = stored ? stored : (prefersDark ? 'dark' : 'light');
+        const theme = stored === 'dark' ? 'dark' : 'light';
         document.documentElement.setAttribute('data-bs-theme', theme);
         if (theme === 'dark') {
           document.documentElement.classList.add('dark');

@@ -1,12 +1,12 @@
 baseURL = 'https://atreezilla.com/'
 title = 'Блог atreezilla'
 theme = 'bootstrap-multilingual'
-paginate = 6
 publishDir = "docs"
 # Multi-Language Routing Configuration
 defaultContentLanguage = 'uk'
 defaultContentLanguageInSubdir = false
-
+[pagination]
+  pagerSize = 6
 [languages]
   [languages.uk]
     languageCode = 'uk-UA'
@@ -73,3 +73,10 @@ defaultContentLanguageInSubdir = false
     name = 'Contacts'
     url = '/contacts/'
     weight = 40
+	
+ [params.homeLimits]
+    portfolio = 6   # Количество проектов в блоке "Портфоліо"
+    posts = 3       # Количество записей в блоке "Публікації"
+    life = 3        # Количество историй в блоке "Сім'я та хобі"
+    blog = 3        # Количество статей в блоке "Блог"
+    chronicle = 5   # Количество событий в блоке "Стрічка новин 

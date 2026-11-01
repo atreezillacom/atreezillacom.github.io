@@ -1,12 +1,12 @@
 name = "bootstrap-multilingual"
 license = "MIT"
-licenselink = "https://github.com/atreezillacom/hugo-bootstrap-multilingual/blob/main/LICENSE"
+licenselink = "https://github.com/example/hugo-bootstrap-multilingual/blob/main/LICENSE"
 description = "High-performance Hugo theme styled with Bootstrap 5.3, native 3-language i18n (Ukrainian, English, Russian), and React Island hydration."
-homepage = "https://atreezillacom.com"
+homepage = "https://example.com"
 tags = ["blog", "portfolio", "bootstrap", "multilingual", "i18n", "react", "dark-mode"]
 features = ["multilingual", "bootstrap 5", "react islands", "light/dark mode", "seo hreflang", "fast"]
 min_version = "0.120.0"
 
 [author]
   name = "elkrot"
-  homepage = "https://atreezilla.com"
+  homepage = "https://example.com"

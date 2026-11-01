@@ -1,7 +1,7 @@
 {{ define "main" }}
 <div class="container py-5">
   <!-- Section Title -->
-  <div class="mb-5 pb-3 border-bottom">
+  <div class="mb-4 pb-3 border-bottom">
     <h1 class="display-5 fw-bold text-body-emphasis mb-2">{{ .Title }}</h1>
     {{ with .Description }}
       <p class="lead text-secondary">{{ . }}</p>
@@ -11,10 +11,89 @@
     {{ end }}
   </div>
 
+  <!-- Interactive Filter Toolbar (Adapts to Portfolio, Posts, Life, Blog) -->
+  {{ if eq .Section "portfolio" }}
+  <div class="card p-3 mb-4 border bg-body-tertiary shadow-sm">
+    <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+      <span class="fw-semibold small text-body-secondary me-1">Категорії:</span>
+      <button type="button" class="btn btn-sm btn-primary active portfolio-cat-btn" data-category="all" onclick="filterPortfolio(this, 'category')">
+        {{ i18n "filter_all" }}
+      </button>
+      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="frontend" onclick="filterPortfolio(this, 'category')">Frontend</button>
+      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="backend" onclick="filterPortfolio(this, 'category')">Backend</button>
+      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="python-ai" onclick="filterPortfolio(this, 'category')">Python & AI</button>
+      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="fullstack" onclick="filterPortfolio(this, 'category')">Fullstack</button>
+      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="cloud-devops" onclick="filterPortfolio(this, 'category')">Cloud & DevOps</button>
+      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="mobile" onclick="filterPortfolio(this, 'category')">Mobile</button>
+    </div>
+    <div class="d-flex flex-wrap align-items-center gap-1.5 pt-2 border-top">
+      <span class="fw-semibold small text-body-secondary me-1">Стек:</span>
+      <button type="button" class="btn btn-sm btn-dark portfolio-stack-btn active" data-stack="all" onclick="filterPortfolio(this, 'stack')">Всі стеки</button>
+      {{ $stacks := slice "React" "TypeScript" "Go" "Python" "Docker" "PostgreSQL" "FastAPI" "Kubernetes" "AWS" "GraphQL" "Next.js" "Tailwind" }}
+      {{ range $stacks }}
+        <button type="button" class="btn btn-sm btn-outline-secondary portfolio-stack-btn font-monospace" data-stack="{{ . | lower }}" onclick="filterPortfolio(this, 'stack')">{{ . }}</button>
+      {{ end }}
+    </div>
+  </div>
+  {{ else if eq .Section "posts" }}
+  <div class="card p-3 mb-4 border bg-body-tertiary shadow-sm">
+    <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+      <span class="fw-semibold small text-body-secondary me-1">Категорії:</span>
+      <button type="button" class="btn btn-sm btn-primary active portfolio-cat-btn" data-category="all" onclick="filterPortfolio(this, 'category')">{{ i18n "filter_all" }}</button>
+      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="architecture" onclick="filterPortfolio(this, 'category')">Архітектура</button>
+      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="devops" onclick="filterPortfolio(this, 'category')">DevOps</button>
+      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="backend" onclick="filterPortfolio(this, 'category')">Backend</button>
+      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="frontend" onclick="filterPortfolio(this, 'category')">Frontend</button>
+    </div>
+    <div class="d-flex flex-wrap align-items-center gap-1.5 pt-2 border-top">
+      <span class="fw-semibold small text-body-secondary me-1">Теги:</span>
+      <button type="button" class="btn btn-sm btn-dark portfolio-stack-btn active" data-stack="all" onclick="filterPortfolio(this, 'stack')">Всі теги</button>
+      {{ $pTags := slice "Go" "Kubernetes" "Docker" "Python" "Linux" "TypeScript" "Architecture" }}
+      {{ range $pTags }}
+        <button type="button" class="btn btn-sm btn-outline-secondary portfolio-stack-btn font-monospace" data-stack="{{ . | lower }}" onclick="filterPortfolio(this, 'stack')">{{ . }}</button>
+      {{ end }}
+    </div>
+  </div>
+  {{ else if eq .Section "life" }}
+  <div class="card p-3 mb-4 border bg-body-tertiary shadow-sm">
+    <div class="d-flex flex-wrap align-items-center gap-2">
+      <span class="fw-semibold small text-body-secondary me-1">Розділи:</span>
+      <button type="button" class="btn btn-sm btn-primary active portfolio-cat-btn" data-category="all" onclick="filterPortfolio(this, 'category')">{{ i18n "filter_all" }}</button>
+      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="family" onclick="filterPortfolio(this, 'category')">Сім'я</button>
+      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="wife" onclick="filterPortfolio(this, 'category')">Дружина</button>
+      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="kids" onclick="filterPortfolio(this, 'category')">Діти</button>
+      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="travel" onclick="filterPortfolio(this, 'category')">Подорожі</button>
+      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="hobbies" onclick="filterPortfolio(this, 'category')">Хоббі</button>
+    </div>
+  </div>
+  {{ else if eq .Section "blog" }}
+  <div class="card p-3 mb-4 border bg-body-tertiary shadow-sm">
+    <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+      <span class="fw-semibold small text-body-secondary me-1">Теми:</span>
+      <button type="button" class="btn btn-sm btn-primary active portfolio-cat-btn" data-category="all" onclick="filterPortfolio(this, 'category')">{{ i18n "filter_all" }}</button>
+      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="hugo" onclick="filterPortfolio(this, 'category')">Hugo & SSG</button>
+      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="bootstrap" onclick="filterPortfolio(this, 'category')">Bootstrap</button>
+      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="react" onclick="filterPortfolio(this, 'category')">React</button>
+      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="performance" onclick="filterPortfolio(this, 'category')">Оптимізація</button>
+    </div>
+    <div class="d-flex flex-wrap align-items-center gap-1.5 pt-2 border-top">
+      <span class="fw-semibold small text-body-secondary me-1">Теги:</span>
+      <button type="button" class="btn btn-sm btn-dark portfolio-stack-btn active" data-stack="all" onclick="filterPortfolio(this, 'stack')">Всі теги</button>
+      {{ $bTags := slice "Hugo" "Bootstrap 5" "i18n" "React" "SSG" "CSS" }}
+      {{ range $bTags }}
+        <button type="button" class="btn btn-sm btn-outline-secondary portfolio-stack-btn font-monospace" data-stack="{{ . | lower }}" onclick="filterPortfolio(this, 'stack')">{{ . }}</button>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+
   <!-- Cards Grid -->
-  <div class="row g-4">
+  <div class="row g-4" id="portfolioGrid">
     {{ range .Pages }}
-      <div class="col-md-6 col-lg-4">
+      {{ $cardTech := slice }}
+      {{ with .Params.stack }}{{ $cardTech = $cardTech | append . }}{{ end }}
+      {{ with .Params.tags }}{{ $cardTech = $cardTech | append . }}{{ end }}
+      <div class="col-md-6 col-lg-4 portfolio-item" data-category="{{ .Params.category | default "" }}" data-stack="{{ delimit $cardTech " " | lower }}">
         <div class="card h-100 border shadow-sm">
           {{ with .Params.image }}
             <div class="card-img-wrapper">
@@ -23,14 +102,22 @@
           {{ end }}
           <div class="card-body d-flex flex-column justify-content-between">
             <div>
-              <div class="text-muted small mb-2">
-                {{ with .Params.category }}<span class="badge bg-secondary-subtle text-secondary me-2">{{ . }}</span>{{ end }}
+              <div class="text-muted small mb-2 d-flex flex-wrap align-items-center gap-1">
+                {{ with .Params.category }}<span class="badge bg-secondary-subtle text-secondary me-1">{{ . }}</span>{{ end }}
                 <span>{{ .Date.Format "2006-01-02" }}</span>
               </div>
               <h4 class="card-title fw-bold">
                 <a href="{{ .Permalink }}" class="text-decoration-none text-body-emphasis">{{ .Title }}</a>
               </h4>
               <p class="card-text text-secondary small mt-2">{{ .Summary }}</p>
+
+              {{ if gt (len $cardTech) 0 }}
+                <div class="d-flex flex-wrap gap-1 mt-3">
+                  {{ range $cardTech }}
+                    <span class="badge bg-body-secondary text-body font-monospace" style="cursor:pointer;" onclick="filterBySingleStack('{{ . | lower }}')" title="Фільтрувати за цим стеком">{{ . }}</span>
+                  {{ end }}
+                </div>
+              {{ end }}
             </div>
             <div class="mt-3 pt-3 border-top d-flex justify-content-between align-items-center">
               <a href="{{ .Permalink }}" class="text-primary text-decoration-none fw-semibold small">
@@ -47,7 +134,108 @@
     {{ end }}
   </div>
 
+  <div id="noResultsNotice" class="col-12 py-5 text-center text-muted" style="display:none;">
+    <p class="lead">Не знайдено проектів за обраними критеріями стеку.</p>
+    <button type="button" class="btn btn-sm btn-outline-primary" onclick="resetPortfolioFilters()">Скинути фільтри</button>
+  </div>
+
   <!-- Pagination -->
   {{ template "_internal/pagination.html" . }}
 </div>
+
+<script>
+  let activeCategory = 'all';
+  let activeStack = 'all';
+
+  function cleanStr(s) {
+    return (s || '').toString().toLowerCase().replace(/[^a-z0-9]/g, '');
+  }
+
+  function filterPortfolio(btn, type) {
+    if (type === 'category') {
+      activeCategory = btn.getAttribute('data-category') || 'all';
+      document.querySelectorAll('.portfolio-cat-btn').forEach(b => {
+        b.classList.remove('btn-primary', 'active');
+        b.classList.add('btn-outline-secondary');
+      });
+      btn.classList.remove('btn-outline-secondary');
+      btn.classList.add('btn-primary', 'active');
+    } else if (type === 'stack') {
+      activeStack = btn.getAttribute('data-stack') || 'all';
+      document.querySelectorAll('.portfolio-stack-btn').forEach(b => {
+        b.classList.remove('btn-dark', 'active');
+        b.classList.add('btn-outline-secondary');
+      });
+      btn.classList.remove('btn-outline-secondary');
+      btn.classList.add('btn-dark', 'active');
+    }
+
+    applyFilters();
+  }
+
+  function filterBySingleStack(stackName) {
+    activeStack = (stackName || '').toLowerCase().trim();
+    document.querySelectorAll('.portfolio-stack-btn').forEach(b => {
+      const bStack = (b.getAttribute('data-stack') || '').toLowerCase().trim();
+      if (bStack === activeStack) {
+        b.classList.remove('btn-outline-secondary');
+        b.classList.add('btn-dark', 'active');
+      } else {
+        b.classList.remove('btn-dark', 'active');
+        b.classList.add('btn-outline-secondary');
+      }
+    });
+    applyFilters();
+  }
+
+  function resetPortfolioFilters() {
+    activeCategory = 'all';
+    activeStack = 'all';
+    document.querySelectorAll('.portfolio-cat-btn').forEach((b, i) => {
+      b.classList.toggle('btn-primary', i === 0);
+      b.classList.toggle('active', i === 0);
+      b.classList.toggle('btn-outline-secondary', i !== 0);
+    });
+    document.querySelectorAll('.portfolio-stack-btn').forEach((b, i) => {
+      b.classList.toggle('btn-dark', i === 0);
+      b.classList.toggle('active', i === 0);
+      b.classList.toggle('btn-outline-secondary', i !== 0);
+    });
+    applyFilters();
+  }
+
+  function applyFilters() {
+    const items = document.querySelectorAll('.portfolio-item');
+    let visibleCount = 0;
+    const catClean = cleanStr(activeCategory);
+    const stackClean = (activeStack || '').toLowerCase().trim();
+
+    items.forEach(item => {
+      const itemCat = cleanStr(item.getAttribute('data-category'));
+      const itemStack = (item.getAttribute('data-stack') || '').toLowerCase();
+
+      const matchCat = (activeCategory === 'all' || itemCat.includes(catClean) || catClean.includes(itemCat));
+      const matchStack = (activeStack === 'all' || itemStack.includes(stackClean));
+
+      if (matchCat && matchStack) {
+        item.style.display = '';
+        visibleCount++;
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    const noResults = document.getElementById('noResultsNotice');
+    if (noResults) {
+      noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+
+    console.log('[Portfolio Filter] Applied:', {
+      category: activeCategory,
+      stack: activeStack,
+      totalItems: items.length,
+      visibleItems: visibleCount
+    });
+  }
+</script>
 {{ end }}
