@@ -6,7 +6,7 @@ description = "Arithmetic operations in C#"
 tags = [
     "csharp"
 ]
-
+image = "sharp-op.webp"
 +++
 
 The article briefly describes **C# arithmetic operations** as well as ways to convert types<!--more-->

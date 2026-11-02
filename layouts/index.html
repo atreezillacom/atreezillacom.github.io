@@ -1,13 +1,8 @@
 {{ define "main" }}
 <div class="container py-5">
-  {{/* Configurable display limits per section from hugo.toml [params.homeLimits] */}}
-  {{ $limitPortfolio := .Site.Params.homeLimits.portfolio | default 6 }}
-  {{ $limitPosts     := .Site.Params.homeLimits.posts | default 3 }}
-  {{ $limitLife      := .Site.Params.homeLimits.life | default 3 }}
-  {{ $limitBlog      := .Site.Params.homeLimits.blog | default 3 }}
-  {{ $limitChronicle := .Site.Params.homeLimits.chronicle | default 5 }}
-
   <!-- Top Logo -->
+  
+
   <!-- Hero Section -->
   <div class="row align-items-center g-5 py-4 border-bottom mb-5">
     <div class="col-lg-7">
@@ -38,7 +33,151 @@
     </div>
   </div>
 
+  <!-- News Feed & Chronicle (Стрічка новин та хроніка) -->
+  <section class="mb-5" id="newsSection">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <div>
+        <div class="text-primary small text-uppercase fw-bold mb-1">
+          Live Updates & Timeline
+        </div>
+        <h2 class="h3 fw-bold mb-1">Стрічка новин та хроніка</h2>
+        <p class="text-secondary small mb-0">Хронологія релізів, інженерних оновлень та сімейних подій</p>
+      </div>
+      <a href="{{ "/posts/" | relLangURL }}" class="btn btn-sm btn-outline-primary">
+        {{ i18n "all_articles" }} <span class="hover-arrow">&rarr;</span>
+      </a>
+    </div>
 
+    <!-- Timeline Category Filter Bar -->
+    <div class="card p-3 mb-4 border bg-body-tertiary shadow-sm rounded-3">
+      <div class="d-flex flex-wrap align-items-center gap-2">
+        <span class="fw-semibold small text-body-secondary me-1">Категорії:</span>
+        <button type="button" class="btn btn-sm btn-primary active home-news-btn" data-category="all" onclick="filterHomeTimeline(this, 'all')">
+          Всі оновлення
+        </button>
+        <button type="button" class="btn btn-sm btn-outline-secondary home-news-btn" data-category="release" onclick="filterHomeTimeline(this, 'release')">
+          Релізи (Releases)
+        </button>
+        <button type="button" class="btn btn-sm btn-outline-secondary home-news-btn" data-category="dev" onclick="filterHomeTimeline(this, 'dev')">
+          Розробка (Dev Updates)
+        </button>
+        <button type="button" class="btn btn-sm btn-outline-secondary home-news-btn" data-category="life" onclick="filterHomeTimeline(this, 'life')">
+          Життя та хобі (Life)
+        </button>
+      </div>
+    </div>
+
+    <!-- Timeline Container Card -->
+    <div class="card border p-4 shadow-sm bg-body rounded-4">
+      <div class="timeline-track ps-4" id="homeTimelineTrack">
+        <!-- Event 1: Release -->
+        <div class="timeline-item position-relative home-timeline-entry" data-category="release">
+          <div class="timeline-marker"></div>
+          <div class="d-flex flex-wrap align-items-baseline gap-2 mb-1">
+            <span class="badge bg-primary-subtle text-primary fw-semibold">v2.4 Release</span>
+            <span class="text-secondary small font-monospace">18 жовтня 2025</span>
+          </div>
+          <h5 class="fw-bold mb-1 text-body-emphasis">Реліз нової версії Hugo Bootstrap теми</h5>
+          <p class="text-secondary small mb-2">
+            Додано тримовну навігацію (uk, en, ru), інтерактивну фільтрацію за технологічними стеками, покращені hover-ефекти карток та темну тему.
+          </p>
+          <div class="d-flex flex-wrap gap-1">
+            <span class="badge bg-body-secondary text-body font-monospace">Hugo</span>
+            <span class="badge bg-body-secondary text-body font-monospace">Bootstrap 5</span>
+            <span class="badge bg-body-secondary text-body font-monospace">i18n</span>
+          </div>
+        </div>
+
+        <!-- Event 2: Dev Update -->
+        <div class="timeline-item position-relative home-timeline-entry" data-category="dev">
+          <div class="timeline-marker"></div>
+          <div class="d-flex flex-wrap align-items-baseline gap-2 mb-1">
+            <span class="badge bg-success-subtle text-success fw-semibold">Dev Update</span>
+            <span class="text-secondary small font-monospace">02 жовтня 2025</span>
+          </div>
+          <h5 class="fw-bold mb-1 text-body-emphasis">Оптимізація шини телеметрії та Kubernetes оператора</h5>
+          <p class="text-secondary small mb-2">
+            Знижено p99 затримку розподіленої черги обробки подій до 14 мс при навантаженні понад 4 млрд подій на добу.
+          </p>
+          <div class="d-flex flex-wrap gap-1">
+            <span class="badge bg-body-secondary text-body font-monospace">Go</span>
+            <span class="badge bg-body-secondary text-body font-monospace">Kubernetes</span>
+            <span class="badge bg-body-secondary text-body font-monospace">Kafka</span>
+            <span class="badge bg-body-secondary text-body font-monospace">ClickHouse</span>
+          </div>
+        </div>
+
+        <!-- Event 3: Life -->
+        <div class="timeline-item position-relative home-timeline-entry" data-category="life">
+          <div class="timeline-marker"></div>
+          <div class="d-flex flex-wrap align-items-baseline gap-2 mb-1">
+            <span class="badge bg-warning-subtle text-warning-emphasis fw-semibold">Family & Life</span>
+            <span class="text-secondary small font-monospace">14 вересня 2025</span>
+          </div>
+          <h5 class="fw-bold mb-1 text-body-emphasis">Осінній сімейний похід у Карпати</h5>
+          <p class="text-secondary small mb-2">
+            Тиждень гірського повітря, зйомки пейзажів на плівку та активні вихідні з дружиною і дітьми на перевалі.
+          </p>
+          <div class="d-flex flex-wrap gap-1">
+            <span class="badge bg-body-secondary text-body">Карпати</span>
+            <span class="badge bg-body-secondary text-body">Плівкове фото</span>
+            <span class="badge bg-body-secondary text-body">Сім'я</span>
+          </div>
+        </div>
+
+        <!-- Event 4: Architecture -->
+        <div class="timeline-item position-relative home-timeline-entry pb-0" data-category="dev">
+          <div class="timeline-marker"></div>
+          <div class="d-flex flex-wrap align-items-baseline gap-2 mb-1">
+            <span class="badge bg-info-subtle text-info-emphasis fw-semibold">Architecture</span>
+            <span class="text-secondary small font-monospace">28 серпня 2025</span>
+          </div>
+          <h5 class="fw-bold mb-1 text-body-emphasis">Автономна архітектура фільтрації без зовнішніх CDN</h5>
+          <p class="text-secondary small mb-2">
+            Повний перехід на нативний клієнтський JS для фільтрації статей та проектів без ризику блокування сторонніх скриптів.
+          </p>
+          <div class="d-flex flex-wrap gap-1">
+            <span class="badge bg-body-secondary text-body font-monospace">JavaScript</span>
+            <span class="badge bg-body-secondary text-body font-monospace">Performance</span>
+            <span class="badge bg-body-secondary text-body font-monospace">Architecture</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="homeTimelineNoResults" class="py-4 text-center text-muted" style="display:none;">
+        <p class="lead mb-2">Немає оновлень у цій категорії.</p>
+        <button type="button" class="btn btn-sm btn-outline-primary" onclick="resetHomeTimelineFilter()">Показати всі новини</button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function filterHomeTimeline(btn, category) {
+      document.querySelectorAll('.home-news-btn').forEach(b => {
+        b.classList.remove('btn-primary', 'active');
+        b.classList.add('btn-outline-secondary');
+      });
+      btn.classList.remove('btn-outline-secondary');
+      btn.classList.add('btn-primary', 'active');
+
+      const items = document.querySelectorAll('.home-timeline-entry');
+      let visible = 0;
+      items.forEach(item => {
+        const itemCat = item.getAttribute('data-category') || '';
+        const match = (category === 'all' || itemCat === category);
+        item.style.display = match ? '' : 'none';
+        if (match) visible++;
+      });
+
+      const noRes = document.getElementById('homeTimelineNoResults');
+      if (noRes) noRes.style.display = visible === 0 ? 'block' : 'none';
+    }
+
+    function resetHomeTimelineFilter() {
+      const allBtn = document.querySelector('.home-news-btn[data-category="all"]');
+      if (allBtn) filterHomeTimeline(allBtn, 'all');
+    }
+  </script>
 
   <!-- Programming Stack Portfolio Section -->
   <section class="mb-5">
@@ -97,7 +236,7 @@
 
     <!-- Portfolio Cards Grid -->
     <div class="row g-4" id="homePortfolioGrid">
-      {{ range first $limitPortfolio (where .Site.RegularPages "Section" "portfolio") }}
+      {{ range (where .Site.RegularPages "Section" "portfolio") }}
         {{ $cardTech := slice }}
         {{ with .Params.stack }}{{ $cardTech = $cardTech | append . }}{{ end }}
         {{ with .Params.tags }}{{ $cardTech = $cardTech | append . }}{{ end }}
@@ -275,7 +414,7 @@
     </div>
 
     <div class="row g-4" id="homePostsGrid">
-      {{ range first $limitPosts (where .Site.RegularPages "Section" "posts") }}
+      {{ range (where .Site.RegularPages "Section" "posts") }}
         {{ $pTags := slice }}
         {{ with .Params.tags }}{{ $pTags = $pTags | append . }}{{ end }}
         {{ with .Params.stack }}{{ $pTags = $pTags | append . }}{{ end }}
@@ -436,7 +575,7 @@
     </div>
 
     <div class="row g-4" id="homeLifeGrid">
-      {{ range first $limitLife (where .Site.RegularPages "Section" "life") }}
+      {{ range (where .Site.RegularPages "Section" "life") }}
         {{ $lTags := slice }}
         {{ with .Params.tags }}{{ $lTags = $lTags | append . }}{{ end }}
         <div class="col-md-6 col-lg-4 home-life-item" data-category="{{ .Params.category | default "" }}" data-tags="{{ delimit $lTags " " | lower }}">
@@ -587,7 +726,7 @@
     </div>
 
     <div class="row g-4" id="homeBlogGrid">
-      {{ range first $limitBlog (where .Site.RegularPages "Section" "blog") }}
+      {{ range (where .Site.RegularPages "Section" "blog") }}
         {{ $bTags := slice }}
         {{ with .Params.tags }}{{ $bTags = $bTags | append . }}{{ end }}
         <div class="col-md-6 col-lg-4 home-blog-item" data-category="{{ .Params.category | default "" }}" data-tags="{{ delimit $bTags " " | lower }}">
@@ -716,107 +855,6 @@
 
       const noRes = document.getElementById('homeBlogNoResults');
       if (noRes) noRes.style.display = visibleCount === 0 ? 'block' : 'none';
-    }
-  </script>
-
-  <!-- News Feed & Chronicle (динамічно формується на основі всіх статей сайту) -->
-  <section class="mb-5 pt-3" id="chronicle">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-      <div>
-        <div class="text-primary small text-uppercase fw-bold mb-1">
-          Live Updates & Timeline
-        </div>
-        <h2 class="h3 fw-bold mb-1">Стрічка новин та хроніка</h2>
-        <p class="text-secondary small mb-0">Хронологія публікацій, статей, проектів та сімейних подій</p>
-      </div>
-      <div class="d-flex flex-wrap gap-1">
-        <button type="button" class="btn btn-sm btn-primary active home-chronicle-btn" data-section="all" onclick="filterHomeChronicle(this, 'all')">
-          {{ i18n "filter_all" }}
-        </button>
-        <button type="button" class="btn btn-sm btn-outline-secondary home-chronicle-btn" data-section="blog" onclick="filterHomeChronicle(this, 'blog')">
-          {{ i18n "nav_blog" }}
-        </button>
-        <button type="button" class="btn btn-sm btn-outline-secondary home-chronicle-btn" data-section="posts" onclick="filterHomeChronicle(this, 'posts')">
-          {{ i18n "nav_posts" }}
-        </button>
-        <button type="button" class="btn btn-sm btn-outline-secondary home-chronicle-btn" data-section="life" onclick="filterHomeChronicle(this, 'life')">
-          {{ i18n "nav_portfolio_life" }}
-        </button>
-        <button type="button" class="btn btn-sm btn-outline-secondary home-chronicle-btn" data-section="portfolio" onclick="filterHomeChronicle(this, 'portfolio')">
-          {{ i18n "nav_portfolio_tech" }}
-        </button>
-      </div>
-    </div>
-
-    <!-- Timeline Container Card with Centered Line through Markers -->
-    <div class="card border p-4 shadow-sm bg-body rounded-4">
-      <div class="timeline-track" id="homeTimelineTrack">
-        {{ range first $limitChronicle (where .Site.RegularPages.ByDate.Reverse "Section" "in" (slice "blog" "posts" "life" "portfolio")) }}
-          {{ $badgeClass := "bg-secondary-subtle text-secondary" }}
-          {{ if eq .Section "blog" }}{{ $badgeClass = "bg-primary-subtle text-primary" }}{{ end }}
-          {{ if eq .Section "posts" }}{{ $badgeClass = "bg-success-subtle text-success" }}{{ end }}
-          {{ if eq .Section "life" }}{{ $badgeClass = "bg-warning-subtle text-warning-emphasis" }}{{ end }}
-          {{ if eq .Section "portfolio" }}{{ $badgeClass = "bg-info-subtle text-info-emphasis" }}{{ end }}
-
-          <div class="timeline-entry home-chronicle-entry" data-section="{{ .Section }}">
-            <div class="timeline-marker"></div>
-            <div class="d-flex flex-wrap align-items-baseline gap-2 mb-1">
-              <span class="badge {{ $badgeClass }} fw-semibold text-uppercase font-monospace" style="font-size: 0.72rem;">
-                {{ with .Params.category }}{{ . }}{{ else }}{{ .Section }}{{ end }}
-              </span>
-              <span class="text-secondary small font-monospace">{{ .Date.Format "02 Jan 2006" }}</span>
-            </div>
-            <h5 class="fw-bold mb-1">
-              <a href="{{ .Permalink }}" class="text-decoration-none text-body-emphasis">{{ .Title }}</a>
-            </h5>
-            <p class="text-secondary small mb-2">{{ .Summary | truncate 180 }}</p>
-            {{ with .Params.tags }}
-              <div class="d-flex flex-wrap gap-1">
-                {{ range . }}
-                  <span class="badge bg-body-secondary text-body font-monospace" style="font-size: 0.7rem;">{{ . }}</span>
-                {{ end }}
-              </div>
-            {{ end }}
-          </div>
-        {{ else }}
-          <div class="py-4 text-center text-muted">
-            <p class="lead mb-0">Публікацій поки що немає.</p>
-          </div>
-        {{ end }}
-      </div>
-
-      <div id="homeChronicleNoResults" class="py-4 text-center text-muted" style="display:none;">
-        <p class="lead mb-2">Немає записів у цьому розділі.</p>
-        <button type="button" class="btn btn-sm btn-outline-primary" onclick="resetHomeChronicleFilter()">Показати всі</button>
-      </div>
-    </div>
-  </section>
-
-  <script>
-    function filterHomeChronicle(btn, section) {
-      document.querySelectorAll('.home-chronicle-btn').forEach(b => {
-        b.classList.remove('btn-primary', 'active');
-        b.classList.add('btn-outline-secondary');
-      });
-      btn.classList.remove('btn-outline-secondary');
-      btn.classList.add('btn-primary', 'active');
-
-      const items = document.querySelectorAll('.home-chronicle-entry');
-      let visible = 0;
-      items.forEach(item => {
-        const itemSec = item.getAttribute('data-section') || '';
-        const match = (section === 'all' || itemSec === section);
-        item.style.display = match ? '' : 'none';
-        if (match) visible++;
-      });
-
-      const noRes = document.getElementById('homeChronicleNoResults');
-      if (noRes) noRes.style.display = visible === 0 ? 'block' : 'none';
-    }
-
-    function resetHomeChronicleFilter() {
-      const allBtn = document.querySelector('.home-chronicle-btn[data-section="all"]');
-      if (allBtn) filterHomeChronicle(allBtn, 'all');
     }
   </script>
 </div>

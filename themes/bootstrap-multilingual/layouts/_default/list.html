@@ -95,9 +95,43 @@
       {{ with .Params.tags }}{{ $cardTech = $cardTech | append . }}{{ end }}
       <div class="col-md-6 col-lg-4 portfolio-item" data-category="{{ .Params.category | default "" }}" data-stack="{{ delimit $cardTech " " | lower }}">
         <div class="card h-100 border shadow-sm">
+          {{ $pItem := . }}
+          {{ $listImg := "" }}
           {{ with .Params.image }}
+            {{ with $pItem.Resources.GetMatch . }}
+              {{ $listImg = .RelPermalink }}
+            {{ else }}
+              {{ with $pItem.Resources.GetMatch (path.Base .) }}
+                {{ $listImg = .RelPermalink }}
+              {{ else }}
+                {{ with $pItem.Resources.GetMatch (printf "*%s*" (path.Base .)) }}
+                  {{ $listImg = .RelPermalink }}
+                {{ else }}
+                  {{ if or (hasPrefix . "http://") (hasPrefix . "https://") }}
+                    {{ $listImg = . }}
+                  {{ else }}
+                    {{ $listImg = . | relURL }}
+                  {{ end }}
+                {{ end }}
+              {{ end }}
+            {{ end }}
+          {{ else }}
+            {{ with $pItem.Resources.GetMatch "*cover*" }}
+              {{ $listImg = .RelPermalink }}
+            {{ else }}
+              {{ with $pItem.Resources.GetMatch "*feature*" }}
+                {{ $listImg = .RelPermalink }}
+              {{ end }}
+            {{ end }}
+          {{ end }}
+          {{ if not $listImg }}
+            {{ with index ($pItem.Resources.ByType "image") 0 }}
+              {{ $listImg = .RelPermalink }}
+            {{ end }}
+          {{ end }}
+          {{ with $listImg }}
             <div class="card-img-wrapper">
-              <img src="{{ . | relURL }}" class="card-img-top" alt="{{ $.Title }}" loading="lazy">
+              <img src="{{ . }}" class="card-img-top" alt="{{ $pItem.Title }}" loading="lazy">
             </div>
           {{ end }}
           <div class="card-body d-flex flex-column justify-content-between">

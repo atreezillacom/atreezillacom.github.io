@@ -24,10 +24,43 @@
             <strong>Impact:</strong> {{ . }}
           </div>
         {{ end }}
-      <!-- Featured Image if present -->
+      <!-- Featured Image if present (Page Resource у папці поста або relURL) -->
+      {{ $singleImg := "" }}
       {{ with .Params.image }}
+        {{ with $.Resources.GetMatch . }}
+          {{ $singleImg = .RelPermalink }}
+        {{ else }}
+          {{ with $.Resources.GetMatch (path.Base .) }}
+            {{ $singleImg = .RelPermalink }}
+          {{ else }}
+            {{ with $.Resources.GetMatch (printf "*%s*" (path.Base .)) }}
+              {{ $singleImg = .RelPermalink }}
+            {{ else }}
+              {{ if or (hasPrefix . "http://") (hasPrefix . "https://") }}
+                {{ $singleImg = . }}
+              {{ else }}
+                {{ $singleImg = . | relURL }}
+              {{ end }}
+            {{ end }}
+          {{ end }}
+        {{ end }}
+      {{ else }}
+        {{ with .Resources.GetMatch "*cover*" }}
+          {{ $singleImg = .RelPermalink }}
+        {{ else }}
+          {{ with .Resources.GetMatch "*feature*" }}
+            {{ $singleImg = .RelPermalink }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
+      {{ if not $singleImg }}
+        {{ with index (.Resources.ByType "image") 0 }}
+          {{ $singleImg = .RelPermalink }}
+        {{ end }}
+      {{ end }}
+      {{ with $singleImg }}
         <div class="mb-4 rounded-4 overflow-hidden shadow-sm ratio ratio-21x9">
-          <img src="{{ . | relURL }}" class="w-100 h-100 object-fit-cover" alt="{{ $.Title }}">
+          <img src="{{ . }}" class="w-100 h-100 object-fit-cover" alt="{{ $.Title }}">
         </div>
       {{ end }}
       </header>
