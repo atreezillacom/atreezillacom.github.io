@@ -1,0 +1,41 @@
+{{/* Універсальне отримання обкладинки для списку полів (list.html та index.html) */}}
+{{ $pItem := . }}
+{{ $imgSrc := "" }}
+{{ with .Params.image }}
+  {{ with $pItem.Resources.GetMatch . }}
+    {{ $imgSrc = .RelPermalink }}
+  {{ else }}
+    {{ with $pItem.Resources.GetMatch (path.Base .) }}
+      {{ $imgSrc = .RelPermalink }}
+    {{ else }}
+      {{ with $pItem.Resources.GetMatch (printf "*%s*" (path.Base .)) }}
+        {{ $imgSrc = .RelPermalink }}
+      {{ else }}
+        {{ if or (hasPrefix . "http://") (hasPrefix . "https://") }}
+          {{ $imgSrc = . }}
+        {{ else }}
+          {{ $imgSrc = . | relURL }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ else }}
+  {{ with $pItem.Resources.GetMatch "*cover*" }}
+    {{ $imgSrc = .RelPermalink }}
+  {{ else }}
+    {{ with $pItem.Resources.GetMatch "*feature*" }}
+      {{ $imgSrc = .RelPermalink }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{ if not $imgSrc }}
+  {{/* АВТОМАТИЧНИЙ ПОШУК: якщо назва не збіглася або не вказана, беремо ПЕРШУ картинку з папки поста */}}
+  {{ with index ($pItem.Resources.ByType "image") 0 }}
+    {{ $imgSrc = .RelPermalink }}
+  {{ end }}
+{{ end }}
+{{ with $imgSrc }}
+  <div class="card-img-wrapper">
+    <img src="{{ . }}" class="card-img-top" alt="{{ $pItem.Title }}" loading="lazy">
+  </div>
+{{ end }}

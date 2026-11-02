@@ -1,0 +1,23 @@
+{{ define "main" }}
+<div class="container py-5">
+  <div class="mb-4 pb-3 border-bottom">
+    <h1 class="display-5 fw-bold text-body-emphasis mb-2">{{ .Title }}</h1>
+    <p class="lead text-secondary">Усі теги та категорії / All topics & tags</p>
+  </div>
+
+  <div class="row g-3">
+    {{ range .Data.Terms.Alphabetical }}
+      <div class="col-6 col-md-4 col-lg-3">
+        <a href="{{ .Page.Permalink }}" class="card p-3 border shadow-sm text-decoration-none h-100 d-flex flex-row justify-content-between align-items-center">
+          <span class="fw-semibold text-body-emphasis">#{{ .Page.Title }}</span>
+          <span class="badge bg-primary rounded-pill">{{ .Count }}</span>
+        </a>
+      </div>
+    {{ else }}
+      <div class="col-12 py-5 text-center text-muted">
+        <p class="lead">{{ i18n "no_items_found" }}</p>
+      </div>
+    {{ end }}
+  </div>
+</div>
+{{ end }}
