@@ -5,6 +5,8 @@ publishDir = "docs"
 # Multi-Language Routing Configuration
 defaultContentLanguage = 'uk'
 defaultContentLanguageInSubdir = false
+uglyURLs = true
+
 [pagination]
   pagerSize = 6
 [languages]
