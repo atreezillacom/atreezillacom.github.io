@@ -1,35 +1,293 @@
-<!doctype html><html lang=uk-UA data-bs-theme=light><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Рядки C# · Портфоліо</title><meta name=description content="Рядки C#.Ініціалізація рядків.використовувані формати"><link rel=icon type=image/x-icon href=/favicon.ico><link rel=icon type=image/svg+xml href=/favicon.svg><link rel=canonical href=https://atreezilla.com/posts/csharp-strings.html><link rel=alternate hreflang=uk-UA href=https://atreezilla.com/posts/csharp-strings.html><link rel=alternate hreflang=en-US href=https://atreezilla.com/en/posts/csharp-strings.html><link rel=alternate hreflang=x-default href=https://atreezilla.com/posts/csharp-strings.html><link href=https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH crossorigin=anonymous><link rel=stylesheet href=/css/theme.min.34ffc82e1e63434e77807e38e89ced54908dd1652b7561984f464bf8db8e78c4.css><script>(function(){try{const t=localStorage.getItem("theme")||localStorage.getItem("app_theme"),e=t==="dark"?"dark":"light";document.documentElement.setAttribute("data-bs-theme",e),e==="dark"?document.documentElement.classList.add("dark"):document.documentElement.classList.remove("dark")}catch{document.documentElement.setAttribute("data-bs-theme","light")}})()</script></head><body class="d-flex flex-column min-vh-100 bg-body-tertiary"><header class="navbar navbar-expand-lg bg-body border-bottom sticky-top shadow-sm py-3"><div class=container><a class="navbar-brand d-flex align-items-center gap-2 fw-bold tracking-tight text-body-emphasis" href=/><img src=/logo.webp alt=Портфоліо class=img-fluid style=max-height:40px;width:auto;object-fit:contain>
+<!doctype html><html lang=uk-UA data-bs-theme=light><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Рядки в C#: створення , методи , форматування та приклади · Портфоліо</title><meta name=description content="Рядки в C#: як створювати, порівнювати та форматувати рядки. Основні методи String,інтерполяція, спеціальні символи та приклади коду."><link rel=icon type=image/x-icon href=/favicon.ico><link rel=icon type=image/svg+xml href=/favicon.svg><link rel=canonical href=https://atreezilla.com/posts/csharp-strings.html><link rel=alternate hreflang=uk-UA href=https://atreezilla.com/posts/csharp-strings.html><link rel=alternate hreflang=en-US href=https://atreezilla.com/en/posts/csharp-strings.html><link rel=alternate hreflang=x-default href=https://atreezilla.com/posts/csharp-strings.html><link href=https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH crossorigin=anonymous><link rel=stylesheet href=/css/theme.min.34ffc82e1e63434e77807e38e89ced54908dd1652b7561984f464bf8db8e78c4.css><script>(function(){try{const t=localStorage.getItem("theme")||localStorage.getItem("app_theme"),e=t==="dark"?"dark":"light";document.documentElement.setAttribute("data-bs-theme",e),e==="dark"?document.documentElement.classList.add("dark"):document.documentElement.classList.remove("dark")}catch{document.documentElement.setAttribute("data-bs-theme","light")}})()</script></head><body class="d-flex flex-column min-vh-100 bg-body-tertiary"><header class="navbar navbar-expand-lg bg-body border-bottom sticky-top shadow-sm py-3"><div class=container><a class="navbar-brand d-flex align-items-center gap-2 fw-bold tracking-tight text-body-emphasis" href=/><img src=/logo.webp alt=Портфоліо class=img-fluid style=max-height:40px;width:auto;object-fit:contain>
 </a><button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarContent aria-controls=navbarContent aria-expanded=false aria-label="Toggle navigation">
 <span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarContent><ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4 gap-lg-3"><li class=nav-item><a class=nav-link href=/portfolio/>Портфоліо: Код</a></li><li class=nav-item><a class=nav-link href=/life/>Сім’я та Хобі</a></li><li class=nav-item><a class="nav-link active fw-semibold text-primary" href=/posts/>Публікації</a></li><li class=nav-item><a class=nav-link href=/blog/>Блог</a></li><li class=nav-item><a class=nav-link href=/contacts/>Контакти</a></li></ul><div class="d-flex align-items-center gap-2"><div class=dropdown><button class="btn btn-outline-secondary btn-sm dropdown-toggle fw-medium" type=button data-bs-toggle=dropdown aria-expanded=false>
 🌐 Українська</button><ul class="dropdown-menu dropdown-menu-end shadow-sm"><li><a class="dropdown-item d-flex justify-content-between align-items-center active" href=/posts/csharp-strings.html><span>Українська</span>
 <small class="text-uppercase ms-2 opacity-75">uk</small></a></li><li><a class="dropdown-item d-flex justify-content-between align-items-center" href=/en/posts/csharp-strings.html><span>English</span>
 <small class="text-uppercase ms-2 opacity-75">en</small></a></li></ul></div><button id=themeToggleBtn type=button class="btn btn-outline-secondary btn-sm px-2.5 py-1 d-flex align-items-center gap-1 shadow-sm" onclick=window.__toggleTheme() title="Toggle theme" aria-label="Toggle theme">
-<span id=themeToggleIcon class=theme-icon>◐</span></button></div></div></div></header><script>window.__updateThemeIcon=function(e){const t=document.getElementById("themeToggleIcon");if(!t)return;t.textContent=e==="dark"?"☀️":"🌙"},window.__toggleTheme=function(){const t=document.documentElement,n=t.getAttribute("data-bs-theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"),e=n==="dark"?"light":"dark";t.setAttribute("data-bs-theme",e),e==="dark"?t.classList.add("dark"):t.classList.remove("dark");try{localStorage.setItem("theme",e),localStorage.setItem("app_theme",e)}catch{}window.__updateThemeIcon(e)},document.addEventListener("DOMContentLoaded",function(){const e=document.documentElement.getAttribute("data-bs-theme")||"light";window.__updateThemeIcon(e)})</script><main class=flex-grow-1><div class="container py-5"><div class="row justify-content-center"><div class=col-lg-9><nav aria-label=breadcrumb class=mb-4><ol class="breadcrumb small"><li class=breadcrumb-item><a href=/>Головна</a></li><li class=breadcrumb-item><a href=https://atreezilla.com/posts/index.html>Всі публікації (Posts)</a></li><li class="breadcrumb-item active" aria-current=page>Рядки C#</li></ol></nav><header class="mb-4 pb-4 border-bottom"><div class="text-primary small text-uppercase fw-semibold mb-2">12 March 2023</div><h1 class="display-5 fw-bold text-body-emphasis mb-3">Рядки C#</h1></header><article class="article-content text-body lh-lg mb-5"><p>Приклади роботи з рядками C#</p><h1 id=ініціалізація-рядків>Ініціалізація рядків</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>string</span> s1 = <span style=color:#e6db74>&#34;hello&#34;</span>;
+<span id=themeToggleIcon class=theme-icon>◐</span></button></div></div></div></header><script>window.__updateThemeIcon=function(e){const t=document.getElementById("themeToggleIcon");if(!t)return;t.textContent=e==="dark"?"☀️":"🌙"},window.__toggleTheme=function(){const t=document.documentElement,n=t.getAttribute("data-bs-theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"),e=n==="dark"?"light":"dark";t.setAttribute("data-bs-theme",e),e==="dark"?t.classList.add("dark"):t.classList.remove("dark");try{localStorage.setItem("theme",e),localStorage.setItem("app_theme",e)}catch{}window.__updateThemeIcon(e)},document.addEventListener("DOMContentLoaded",function(){const e=document.documentElement.getAttribute("data-bs-theme")||"light";window.__updateThemeIcon(e)})</script><main class=flex-grow-1><div class="container py-5"><div class="row justify-content-center"><div class=col-lg-9><nav aria-label=breadcrumb class=mb-4><ol class="breadcrumb small"><li class=breadcrumb-item><a href=/>Головна</a></li><li class=breadcrumb-item><a href=https://atreezilla.com/posts/index.html>Всі публікації (Posts)</a></li><li class="breadcrumb-item active" aria-current=page>Рядки в C#: створення , методи , форматування та приклади</li></ol></nav><header class="mb-4 pb-4 border-bottom"><div class="text-primary small text-uppercase fw-semibold mb-2">C# · 12 March 2023</div><h1 class="display-5 fw-bold text-body-emphasis mb-3">Рядки в C#: створення , методи , форматування та приклади</h1><div class="mb-4 rounded-4 overflow-hidden shadow-sm ratio ratio-21x9"><img src=/posts/csharp-strings/csharp-strings.webp class="w-100 h-100 object-fit-cover" alt="Рядки в C#: створення , методи , форматування та приклади "></div></header><article class="article-content text-body lh-lg mb-5"><p>Рядки (strings) у C# один із базових типів даних, який використовується для зберігання та обробки текстової інформації. За допомогою рядків можна працювати з іменами, повідомленнями, адресами,
+файлами, датами, числовими значеннями та іншими текстовими даними.</p><h1 id=рядки-в-c-створення-методи-та-форматування>Рядки в C#: створення, методи та форматування</h1><p>У C# для роботи з рядками використовується клас <code>String</code> із простору імен <code>System</code>. Тип <code>string</code> є псевдонімом <code>System.String</code>, тому їх можна використовувати взаємозамінно.</p><p>У цій статті розглянемо, як створювати та ініціалізувати рядки в C#, які методи класу String використовуються найчастіше, як порівнювати та форматувати текст, а також як працювати зі спеціальними символами.</p><h2 id=1-ініціалізація-рядків-у-c>1. Ініціалізація рядків у C</h2><p>У C# існує декілька способів створення рядків. Найпростіший варіант &ndash; присвоїти змінній текстове значення в подвійних лапках.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>string</span> s1 = <span style=color:#e6db74>&#34;hello&#34;</span>;
 </span></span><span style=display:flex><span><span style=color:#66d9ef>string</span> s2 = <span style=color:#66d9ef>null</span>;
-</span></span><span style=display:flex><span> 
-</span></span><span style=display:flex><span><span style=color:#66d9ef>string</span> s3 = <span style=color:#66d9ef>new</span> String(<span style=color:#e6db74>&#39;a&#39;</span>, <span style=color:#ae81ff>6</span>);
-</span></span><span style=display:flex><span><span style=color:#75715e>// результатом буде рядок &#34;aaaaaa&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>string</span> s4 =
-</span></span><span style=display:flex><span><span style=color:#66d9ef>new</span> String(
-</span></span><span style=display:flex><span><span style=color:#66d9ef>new</span> <span style=color:#66d9ef>char</span>[]{<span style=color:#e6db74>&#39;w&#39;</span>, <span style=color:#e6db74>&#39;o&#39;</span>, <span style=color:#e6db74>&#39;r&#39;</span>, <span style=color:#e6db74>&#39;l&#39;</span>, <span style=color:#e6db74>&#39;d&#39;</span>});
-</span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> s5 = String.Empty;
-</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> (s5.IsNullOrWhiteSpace()){
-</span></span><span style=display:flex><span>Console.WriteLine([Empty String]);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>string</span> s3 = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>string</span>(<span style=color:#e6db74>&#39;a&#39;</span>, <span style=color:#ae81ff>6</span>);
+</span></span><span style=display:flex><span><span style=color:#75715e>// Результат: &#34;aaaaaa&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>string</span> s4 = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>string</span>(<span style=color:#66d9ef>new</span> <span style=color:#66d9ef>char</span>[]
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#39;w&#39;</span>, <span style=color:#e6db74>&#39;o&#39;</span>, <span style=color:#e6db74>&#39;r&#39;</span>, <span style=color:#e6db74>&#39;l&#39;</span>, <span style=color:#e6db74>&#39;d&#39;</span>
+</span></span><span style=display:flex><span>});
+</span></span><span style=display:flex><span><span style=color:#75715e>// Результат: &#34;world&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>string</span> s5 = <span style=color:#66d9ef>string</span>.Empty;
+</span></span><span style=display:flex><span><span style=color:#75715e>// Порожній рядок</span>
+</span></span></code></pre></div><p>Розглянемо основні варіанти ініціалізації:</p><ul><li><code>string s = "Hello";</code> &mdash; створення рядка з текстовим значенням.</li><li><code>string s = null;</code> &mdash; змінна не посилається на об&rsquo;єкт рядка.</li><li><code>string s = string.Empty;</code> &mdash; створення порожнього рядка.</li><li><code>new string('a', 6)</code> &mdash; створення рядка з повторюваних символів.</li><li><code>new string(char[])</code> &mdash; створення рядка на основі масиву символів.</li></ul><h3 id=перевірка-рядка-на-null-або-порожнє-значення>Перевірка рядка на null або порожнє значення</h3><p>Для перевірки рядків у C# передбачені спеціальні статичні методи:</p><ul><li><code>string.IsNullOrEmpty()</code> &mdash; перевіряє, чи є значення <code>null</code> або
+порожнім рядком.</li><li><code>string.IsNullOrWhiteSpace()</code> &mdash; додатково перевіряє рядки, що
+містять лише пробільні символи.</li></ul><p>Приклад:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>string</span> text = <span style=color:#e6db74>&#34;   &#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> (<span style=color:#66d9ef>string</span>.IsNullOrWhiteSpace(text))
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    Console.WriteLine(<span style=color:#e6db74>&#34;Empty String&#34;</span>);
 </span></span><span style=display:flex><span>}
-</span></span></code></pre></div><p>Основні методи класу String:</p><ul><li><strong>Compare</strong>,<strong>CompareOrdinal</strong>: порівнює два рядки</li><li><strong>Contains</strong>: чи міститься підрядок у рядку</li><li><strong>Concat</strong>: з&rsquo;єднує рядки</li><li><strong>CopyTo</strong>: копіює в інший рядок</li><li><strong>EndsWith</strong>: чи збігається кінець рядка з підрядком</li><li><strong>Format</strong>: форматує рядок</li><li><strong>IndexOf</strong>: індекс першого входження</li><li><strong>Insert</strong>: вставляє в рядок підрядок</li><li><strong>Join</strong>: з&rsquo;єднує елементи масиву</li><li><strong>LastIndexOf</strong>: індекс останнього входження</li><li><strong>Replace</strong>: замінює</li><li><strong>Split</strong>: поділяє на масив</li><li><strong>Substring</strong>: витягує з рядка підрядок</li><li><strong>ToLower</strong>: у нижній регістр</li><li><strong>ToUpper</strong>: у верхній регістр</li><li><strong>Trim</strong>: видаляє прогалини</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>long</span> number1 = <span style=color:#ae81ff>19876543210</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> (<span style=color:#66d9ef>string</span>.IsNullOrEmpty(text))
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    Console.WriteLine(<span style=color:#e6db74>&#34;String is null or empty&#34;</span>);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Важливо: методи <code>IsNullOrEmpty()</code> та <code>IsNullOrWhiteSpace()</code> викликаються
+через клас <code>string</code>, а не через змінну.</p><h2 id=2-основні-методи-класу-string>2. Основні методи класу String</h2><p>Клас <code>String</code> містить багато методів для пошуку, порівняння, об&rsquo;єднання
+та зміни тексту.</p><p>Найчастіше використовуються такі методи:</p><p>Метод Призначення</p><hr><p><code>Compare()</code> Порівнює два рядки з урахуванням правил культури
+<code>CompareOrdinal()</code> Порівнює рядки за значеннями символів
+<code>Contains()</code> Перевіряє наявність підрядка
+<code>Concat()</code> Об&rsquo;єднує декілька рядків
+<code>EndsWith()</code> Перевіряє закінчення рядка
+<code>StartsWith()</code> Перевіряє початок рядка
+<code>Format()</code> Форматує рядок
+<code>IndexOf()</code> Знаходить індекс першого входження
+<code>LastIndexOf()</code> Знаходить індекс останнього входження
+<code>Insert()</code> Вставляє підрядок у задану позицію
+<code>Join()</code> Об&rsquo;єднує елементи колекції роздільником
+<code>Replace()</code> Замінює частину рядка
+<code>Split()</code> Розділяє рядок на масив
+<code>Substring()</code> Отримує частину рядка
+<code>ToLower()</code> Перетворює символи на нижній регістр
+<code>ToUpper()</code> Перетворює символи на верхній регістр
+<code>Trim()</code> Видаляє пробільні символи на початку та в кінці
+<code>TrimStart()</code> Видаляє символи на початку
+<code>TrimEnd()</code> Видаляє символи в кінці</p><h3 id=приклади-використання-методів-string>Приклади використання методів String</h3><p><strong>Contains() &mdash; перевірка наявності тексту</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>string</span> text = <span style=color:#e6db74>&#34;Hello World&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>bool</span> result = text.Contains(<span style=color:#e6db74>&#34;World&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Console.WriteLine(result); <span style=color:#75715e>// True</span>
+</span></span></code></pre></div><p><strong>Replace() &mdash; заміна тексту</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>string</span> text = <span style=color:#e6db74>&#34;Hello World&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>string</span> result = text.Replace(<span style=color:#e6db74>&#34;World&#34;</span>, <span style=color:#e6db74>&#34;C#&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Console.WriteLine(result); <span style=color:#75715e>// Hello C#</span>
+</span></span></code></pre></div><p><strong>Split() &mdash; розділення рядка</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>string</span> text = <span style=color:#e6db74>&#34;C#;Java;Python&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>string</span>[] languages = text.Split(<span style=color:#e6db74>&#39;;&#39;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>foreach</span> (<span style=color:#66d9ef>string</span> language <span style=color:#66d9ef>in</span> languages)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    Console.WriteLine(language);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p><strong>Join() &mdash; об&rsquo;єднання елементів масиву</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>string</span>[] languages = { <span style=color:#e6db74>&#34;C#&#34;</span>, <span style=color:#e6db74>&#34;Java&#34;</span>, <span style=color:#e6db74>&#34;Python&#34;</span> };
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>string</span> result = <span style=color:#66d9ef>string</span>.Join(<span style=color:#e6db74>&#34;, &#34;</span>, languages);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Console.WriteLine(result);
+</span></span><span style=display:flex><span><span style=color:#75715e>// C#, Java, Python</span>
+</span></span></code></pre></div><p><strong>Substring() &mdash; отримання частини рядка</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>string</span> text = <span style=color:#e6db74>&#34;Programming&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>string</span> result = text.Substring(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>7</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Console.WriteLine(result); <span style=color:#75715e>// Program</span>
+</span></span></code></pre></div><p><strong>IndexOf() &mdash; пошук позиції символу або підрядка</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>string</span> text = <span style=color:#e6db74>&#34;Hello World&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> index = text.IndexOf(<span style=color:#e6db74>&#34;World&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Console.WriteLine(index); <span style=color:#75715e>// 6</span>
+</span></span></code></pre></div><h2 id=3-порівняння-рядків-у-c>3. Порівняння рядків у C</h2><p>Для порівняння рядків у C# можна використовувати оператори <code>==</code>, <code>!=</code>, а
+також методи <code>Equals()</code>, <code>Compare()</code> та <code>CompareOrdinal()</code>.</p><p>Приклад:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>string</span> first = <span style=color:#e6db74>&#34;Hello&#34;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>string</span> second = <span style=color:#e6db74>&#34;Hello&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Console.WriteLine(first == second); <span style=color:#75715e>// True</span>
+</span></span><span style=display:flex><span>Console.WriteLine(first.Equals(second)); <span style=color:#75715e>// True</span>
+</span></span></code></pre></div><p>За замовчуванням порівняння рядків чутливе до регістру.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>string</span> first = <span style=color:#e6db74>&#34;Hello&#34;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>string</span> second = <span style=color:#e6db74>&#34;hello&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Console.WriteLine(first == second); <span style=color:#75715e>// False</span>
+</span></span></code></pre></div><p>Для порівняння без урахування регістру рекомендується використовувати
+<code>StringComparison</code>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>string</span> first = <span style=color:#e6db74>&#34;Hello&#34;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>string</span> second = <span style=color:#e6db74>&#34;hello&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>bool</span> result = <span style=color:#66d9ef>string</span>.Equals(
+</span></span><span style=display:flex><span>    first,
+</span></span><span style=display:flex><span>    second,
+</span></span><span style=display:flex><span>    StringComparison.OrdinalIgnoreCase
+</span></span><span style=display:flex><span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Console.WriteLine(result); <span style=color:#75715e>// True</span>
+</span></span></code></pre></div><p>Основні варіанти порівняння:</p><ul><li><code>StringComparison.Ordinal</code> &mdash; порівняння за значеннями символів.</li><li><code>StringComparison.OrdinalIgnoreCase</code> &mdash; порівняння без урахування
+регістру.</li><li><code>StringComparison.CurrentCulture</code> &mdash; порівняння відповідно до
+поточної культури.</li><li><code>StringComparison.CurrentCultureIgnoreCase</code> &mdash; порівняння
+відповідно до поточної культури без урахування регістру.</li></ul><p>Для технічних ідентифікаторів, ключів, назв файлів та інших програмних
+значень зазвичай краще використовувати <code>Ordinal</code> або
+<code>OrdinalIgnoreCase</code>.</p><h2 id=4-форматування-рядків-у-c>4. Форматування рядків у C</h2><p>Форматування рядків дозволяє перетворювати числові, грошові та інші
+значення на текст у потрібному вигляді.</p><p>У C# існує декілька основних способів форматування:</p><ul><li><code>ToString()</code> &mdash; перетворення значення на рядок.</li><li><code>String.Format()</code> &mdash; форматування за допомогою індексів.</li><li>Інтерполяція рядків <code>$"..."</code> &mdash; вставлення змінних безпосередньо в
+текст.</li></ul><h3 id=форматування-за-допомогою-tostring>Форматування за допомогою ToString()</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>long</span> number1 = <span style=color:#ae81ff>19876543210L</span>;
+</span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>Console.WriteLine(
-</span></span><span style=display:flex><span>number1.ToString(<span style=color:#e6db74>&#34;+# (###) ###-##-##&#34;</span>));
+</span></span><span style=display:flex><span>    number1.ToString(<span style=color:#e6db74>&#34;+0 (000) 000-00-00&#34;</span>)
+</span></span><span style=display:flex><span>);
+</span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e>// +1 (987) 654-32-10</span>
-</span></span><span style=display:flex><span>Console.WriteLine(
-</span></span><span style=display:flex><span><span style=color:#e6db74>$&#34;{number1:+# ### ### ## ##}&#34;</span>);
+</span></span></code></pre></div><p>У прикладі використовується спеціальний числовий формат, який задає
+відображення числа за шаблоном.</p><h3 id=форматування-за-допомогою-інтерполяції>Форматування за допомогою інтерполяції</h3><p>Інтерполяція рядків дозволяє вставляти значення змінних безпосередньо в
+текст.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>long</span> number1 = <span style=color:#ae81ff>19876543210L</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Console.WriteLine(<span style=color:#e6db74>$&#34;{number1:+# ### ### ## ##}&#34;</span>);
+</span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e>// +1 987 654 32 10</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>double</span> number = <span style=color:#ae81ff>23.7</span>;
-</span></span><span style=display:flex><span><span style=color:#66d9ef>string</span> result =
-</span></span><span style=display:flex><span>   String.Format(<span style=color:#e6db74>&#34;{0:C}&#34;</span>, number);
-</span></span></code></pre></div><h4 id=всі-формати-що-використовуються>Всі формати, що використовуються:</h4><ul><li>C / c формат грошової одиниці</li><li>D / d Цілочисельний формат</li><li>E/e Експоненційне подання</li><li>F / f Формат дробових чисел з фіксованою точкою</li><li>G / g Задає більш короткий із двох форматів: F або E</li><li>N / n формат дробових чисел з фіксованою точкою</li><li>P / p Задає відображення знака відсотків поряд з числом</li><li>X / x Шістнадцятковий формат числа</li></ul><ul><li>Одиночна лапка</li><li>" Подвійна лапка</li><li>\ зворотна коса риса</li><li>\0 Null</li><li>\a Попередження</li><li>\b Backspace</li><li>Form feed</li><li>\n Новий рядок</li><li>Повернення каретки</li><li>Горизонтальна табуляція</li><li>\v Вертикальна табуляція</li><li>\u (UTF-16) (0000 - FFFF; \u00E7 = &ldquo;ç&rdquo;)</li><li>\U (UTF-32) (000000 - 10FFFF; \U0001F47D = &ldquo;👽&rdquo;)</li><li>\x \xH[H][H][H] ( 0 - FFFF; \x00E7 or \x0E7 or \xE7 = &ldquo;ç&rdquo;)
-<iframe width=100% height=475 src=https://dotnetfiddle.net/widget/7a1kAg frameborder=0></iframe></li></ul></article><div class="pt-4 border-top"><div class="d-flex flex-wrap gap-2 align-items-center"><span class="text-secondary small fw-bold">Tags:</span>
+</span></span></code></pre></div><p>Цей спосіб зручний для формування повідомлень, логів та текстових
+представлень даних.</p><h3 id=форматування-за-допомогою-stringformat>Форматування за допомогою String.Format()</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>double</span> number = <span style=color:#ae81ff>23.7</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>string</span> result = <span style=color:#66d9ef>string</span>.Format(<span style=color:#e6db74>&#34;{0:C}&#34;</span>, number);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Console.WriteLine(result);
+</span></span></code></pre></div><p>Формат <code>C</code> означає Currency &mdash; грошовий формат.</p><p>Результат залежить від поточної культури системи. Наприклад, символ
+валюти та роздільник дробової частини можуть відрізнятися.</p><h2 id=5-стандартні-специфікатори-числових-форматів>5. Стандартні специфікатори числових форматів</h2><p>У C# для форматування числових значень використовуються стандартні
+специфікатори.</p><p>Специфікатор Назва Призначення</p><hr><p><code>C</code> / <code>c</code> Currency Грошовий формат
+<code>D</code> / <code>d</code> Decimal Цілочисельний формат
+<code>E</code> / <code>e</code> Exponential Експоненційне подання
+<code>F</code> / <code>f</code> Fixed-point Дробове число з фіксованою точкою
+<code>G</code> / <code>g</code> General Загальний формат
+<code>N</code> / <code>n</code> Number Числовий формат із роздільниками груп
+<code>P</code> / <code>p</code> Percent Відображення відсотків
+<code>X</code> / <code>x</code> Hexadecimal Шістнадцятковий формат</p><p>Приклади:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>double</span> number = <span style=color:#ae81ff>1234.5678</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Console.WriteLine(number.ToString(<span style=color:#e6db74>&#34;C&#34;</span>));
+</span></span><span style=display:flex><span>Console.WriteLine(number.ToString(<span style=color:#e6db74>&#34;F2&#34;</span>));
+</span></span><span style=display:flex><span>Console.WriteLine(number.ToString(<span style=color:#e6db74>&#34;N2&#34;</span>));
+</span></span><span style=display:flex><span>Console.WriteLine(number.ToString(<span style=color:#e6db74>&#34;P&#34;</span>));
+</span></span><span style=display:flex><span>Console.WriteLine(number.ToString(<span style=color:#e6db74>&#34;E&#34;</span>));
+</span></span></code></pre></div><p>Можна також задавати кількість знаків після десяткової крапки:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>double</span> number = <span style=color:#ae81ff>23.45678</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Console.WriteLine(number.ToString(<span style=color:#e6db74>&#34;F2&#34;</span>));
+</span></span><span style=display:flex><span><span style=color:#75715e>// 23.46</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Console.WriteLine(number.ToString(<span style=color:#e6db74>&#34;N3&#34;</span>));
+</span></span><span style=display:flex><span><span style=color:#75715e>// 23.457</span>
+</span></span></code></pre></div><p>Зверніть увагу: <code>D</code> застосовується до цілих чисел, а <code>X</code> дозволяє
+отримати шістнадцяткове представлення числа.</p><h2 id=6-спеціальні-символи-та-escape-послідовності>6. Спеціальні символи та escape-послідовності</h2><p>У рядках C# деякі символи мають спеціальне значення. Для їх відображення
+використовуються escape-послідовності &mdash; комбінації символів, що
+починаються зі зворотної косої риски <code>\</code>.</p><p>Основні escape-послідовності:</p><p>Послідовність Значення</p><hr><p><code>\'</code> Одинарна лапка
+<code>\"</code> Подвійна лапка
+<code>\\</code> Зворотна коса риска
+<code>\0</code> Нульовий символ
+<code>\a</code> Звуковий сигнал
+<code>\b</code> Backspace
+<code>\f</code> Перехід сторінки (Form Feed)
+<code>\n</code> Новий рядок
+<code>\r</code> Повернення каретки
+<code>\t</code> Горизонтальна табуляція
+<code>\v</code> Вертикальна табуляція</p><p>Приклад:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>string</span> text = <span style=color:#e6db74>&#34;Hello\nWorld&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Console.WriteLine(text);
+</span></span></code></pre></div><p>Результат:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>Hello
+</span></span><span style=display:flex><span>World
+</span></span></code></pre></div><h3 id=unicode-символи>Unicode-символи</h3><p>C# підтримує Unicode-послідовності для представлення символів різних мов
+та спеціальних знаків.</p><p>Послідовність Призначення</p><hr><p><code>\u</code> Unicode-код символу у форматі UTF-16
+<code>\U</code> Unicode-код символу у форматі UTF-32
+<code>\x</code> Шістнадцяткове представлення символу</p><p>Приклади:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>string</span> text1 = <span style=color:#e6db74>&#34;\u00E7&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Console.WriteLine(text1); <span style=color:#75715e>// ç</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>string</span> text2 = <span style=color:#e6db74>&#34;\U0001F47D&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Console.WriteLine(text2); <span style=color:#75715e>// 👽</span>
+</span></span></code></pre></div><p>Для <code>\u</code> використовується чотири шістнадцяткові цифри, для <code>\U</code> &mdash;
+вісім.</p><p>Послідовність <code>\x</code> може містити від однієї до чотирьох шістнадцяткових
+цифр.</p><h2 id=7-рядки-з-інтерполяцією-дослівні-та-багаторядкові-рядки>7. Рядки з інтерполяцією, дослівні та багаторядкові рядки</h2><p>C# підтримує декілька способів запису рядкових літералів.</p><h3 id=звичайні-рядки>Звичайні рядки</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>string</span> text = <span style=color:#e6db74>&#34;Hello World&#34;</span>;
+</span></span></code></pre></div><p>У звичайних рядках спеціальні символи записуються за допомогою
+escape-послідовностей.</p><h3 id=дослівні-рядки-verbatim-strings>Дослівні рядки (Verbatim Strings)</h3><p>Для створення дослівного рядка використовується символ <code>@</code>.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>string</span> path = <span style=color:#e6db74>@&#34;C:\Users\Admin\Documents\file.txt&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Console.WriteLine(path);
+</span></span></code></pre></div><p>У таких рядках зворотна коса риска не потребує екранування.</p><h3 id=інтерполяція-рядків>Інтерполяція рядків</h3><p>Для вставлення змінних у текст використовується символ <code>$</code>.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>string</span> name = <span style=color:#e6db74>&#34;Alex&#34;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> age = <span style=color:#ae81ff>25</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>string</span> result = <span style=color:#e6db74>$&#34;Name: {name}, Age: {age}&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Console.WriteLine(result);
+</span></span></code></pre></div><p>Можна комбінувати інтерполяцію з дослівними рядками:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>string</span> path = <span style=color:#e6db74>$@&#34;C:\Users\{name}\Documents&#34;</span>;
+</span></span></code></pre></div><h3 id=багаторядкові-рядкові-літерали>Багаторядкові рядкові літерали</h3><p>Починаючи з C# 11, можна використовувати raw string literals &mdash;
+багаторядкові рядки з потрійними лапками.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>string</span> json = <span style=color:#e6db74>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Alex&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;language&#34;</span>: <span style=color:#e6db74>&#34;C#&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#e6db74>&#34;&#34;&#34;;
+</span></span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Console.WriteLine(json);
+</span></span></code></pre></div><p>Це особливо зручно для JSON, SQL-запитів, HTML та інших текстових
+структур.</p><h2 id=8-незмінність-рядків-string-immutability>8. Незмінність рядків (String Immutability)</h2><p>Важливою особливістю типу <code>string</code> у C# є незмінність (immutability).</p><p>Це означає, що після створення рядка його вміст не можна змінити. Методи
+на кшталт <code>Replace()</code>, <code>ToUpper()</code> та <code>Trim()</code> повертають новий рядок, а
+не змінюють початковий.</p><p>Приклад:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>string</span> text = <span style=color:#e6db74>&#34;hello&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>text.ToUpper();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Console.WriteLine(text);
+</span></span><span style=display:flex><span><span style=color:#75715e>// hello</span>
+</span></span></code></pre></div><p>Щоб зберегти результат перетворення, необхідно присвоїти його змінній:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>string</span> text = <span style=color:#e6db74>&#34;hello&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>text = text.ToUpper();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Console.WriteLine(text);
+</span></span><span style=display:flex><span><span style=color:#75715e>// HELLO</span>
+</span></span></code></pre></div><p>Ця особливість важлива під час роботи з великими обсягами тексту та
+великою кількістю операцій об&rsquo;єднання рядків.</p><h2 id=9-stringbuilder--ефективне-обєднання-рядків>9. StringBuilder &mdash; ефективне об&rsquo;єднання рядків</h2><p>Якщо потрібно багаторазово змінювати текст або об&rsquo;єднувати велику
+кількість рядків, рекомендується використовувати клас <code>StringBuilder</code> із
+простору імен <code>System.Text</code>.</p><p>На відміну від <code>string</code>, <code>StringBuilder</code> дозволяє змінювати вміст
+об&rsquo;єкта без створення нового рядка після кожної операції.</p><p>Приклад:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Text;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>StringBuilder builder = <span style=color:#66d9ef>new</span> StringBuilder();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>builder.Append(<span style=color:#e6db74>&#34;Hello&#34;</span>);
+</span></span><span style=display:flex><span>builder.Append(<span style=color:#e6db74>&#34; &#34;</span>);
+</span></span><span style=display:flex><span>builder.Append(<span style=color:#e6db74>&#34;World&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>builder.AppendLine(<span style=color:#e6db74>&#34;!&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>string</span> result = builder.ToString();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Console.WriteLine(result);
+</span></span></code></pre></div><p>Основні методи <code>StringBuilder</code>:</p><ul><li><code>Append()</code> &mdash; додає текст у кінець.</li><li><code>AppendLine()</code> &mdash; додає текст із переходом на новий рядок.</li><li><code>Insert()</code> &mdash; вставляє текст у задану позицію.</li><li><code>Replace()</code> &mdash; замінює частину тексту.</li><li><code>Remove()</code> &mdash; видаляє частину тексту.</li><li><code>Clear()</code> &mdash; очищає вміст.</li></ul><p>Для простого об&rsquo;єднання декількох рядків цілком достатньо оператора <code>+</code>
+або інтерполяції. <code>StringBuilder</code> найбільш корисний у циклах та
+сценаріях із великою кількістю послідовних змін тексту.</p><h2 id=10-перетворення-рядків-на-числа>10. Перетворення рядків на числа</h2><p>Під час роботи з користувацьким введенням, файлами та API часто виникає
+необхідність перетворити рядок на числове значення.</p><p>Для цього використовуються методи <code>Parse()</code> та <code>TryParse()</code>.</p><h3 id=використання-parse>Використання Parse()</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>string</span> text = <span style=color:#e6db74>&#34;123&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> number = <span style=color:#66d9ef>int</span>.Parse(text);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Console.WriteLine(number);
+</span></span></code></pre></div><p>Якщо рядок не містить коректного числового значення, <code>Parse()</code> може
+викликати виняток <code>FormatException</code>.</p><h3 id=використання-tryparse>Використання TryParse()</h3><p>Безпечніший варіант &mdash; <code>TryParse()</code>, який повертає результат
+перетворення через параметр <code>out</code>.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>string</span> text = <span style=color:#e6db74>&#34;123&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> (<span style=color:#66d9ef>int</span>.TryParse(text, <span style=color:#66d9ef>out</span> <span style=color:#66d9ef>int</span> number))
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    Console.WriteLine(number);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    Console.WriteLine(<span style=color:#e6db74>&#34;Invalid number&#34;</span>);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p><code>TryParse()</code> особливо зручний під час перевірки даних, введених
+користувачем.</p><h2 id=11-часті-помилки-під-час-роботи-з-рядками-c>11. Часті помилки під час роботи з рядками C</h2><p>Під час роботи з рядками варто звертати увагу на декілька поширених
+помилок:</p><ol><li><strong>Порівняння без урахування регістру.</strong> Рядки <code>"Hello"</code> та <code>"hello"</code>
+за замовчуванням вважаються різними.</li><li><strong>Відсутність перевірки на null.</strong> Виклик методів у змінної зі
+значенням <code>null</code> може призвести до <code>NullReferenceException</code>.</li><li><strong>Неправильне використання StringBuilder.</strong> Для простих операцій
+його використання не завжди виправдане.</li><li><strong>Ігнорування культури.</strong> Формати чисел і грошових значень залежать
+від регіональних налаштувань.</li><li><strong>Надмірне використання конкатенації.</strong> Багаторазове об&rsquo;єднання
+рядків у циклах може створювати зайві об&rsquo;єкти в пам&rsquo;яті.</li></ol><h2 id=12-часті-запитання-про-рядки-в-c>12. Часті запитання про рядки в C</h2><h3 id=що-таке-string-у-c>Що таке string у C#?</h3><p><code>string</code> &mdash; це псевдонім класу <code>System.String</code>, який використовується
+для зберігання та обробки текстових даних.</p><h3 id=чим-відрізняються-string-і-string>Чим відрізняються string і String?</h3><p>Функціональної різниці немає. <code>string</code> &mdash; ключове слово C#, а <code>String</code>
+&mdash; назва класу з простору імен <code>System</code>. У повсякденному коді зазвичай
+використовують <code>string</code>.</p><h3 id=чим-відрізняються-null-та-stringempty>Чим відрізняються null та string.Empty?</h3><p><code>null</code> означає відсутність посилання на об&rsquo;єкт рядка. <code>string.Empty</code> &mdash;
+це існуючий рядок із нульовою довжиною.</p><h3 id=як-перевірити-чи-порожній-рядок-у-c>Як перевірити, чи порожній рядок у C#?</h3><p>Для цього можна використовувати <code>string.IsNullOrEmpty()</code>. Якщо потрібно
+також перевіряти рядки, що містять лише пробіли, використовуйте
+<code>string.IsNullOrWhiteSpace()</code>.</p><h3 id=чи-можна-змінити-рядок-після-його-створення>Чи можна змінити рядок після його створення?</h3><p>Ні. Тип <code>string</code> є незмінним. Методи зміни тексту повертають новий
+рядок. Для багаторазової зміни тексту можна використовувати
+<code>StringBuilder</code>.</p><h3 id=що-краще-використовувати-stringbuilder-чи-конкатенацію>Що краще використовувати: StringBuilder чи конкатенацію?</h3><p>Для невеликої кількості операцій зручно використовувати оператор <code>+</code> або
+інтерполяцію. Для багаторазового об&rsquo;єднання та зміни тексту, особливо в
+циклах, краще використовувати <code>StringBuilder</code>.</p><h2 id=висновок>Висновок</h2><p>Рядки в C# є важливою частиною мови програмування та використовуються
+практично в кожному застосунку. Клас <code>String</code> надає широкий набір
+методів для пошуку, порівняння, форматування та обробки тексту.</p><p>Для ефективної роботи з рядками важливо розуміти принцип їх незмінності,
+вміти використовувати інтерполяцію, стандартні формати чисел, спеціальні
+символи та <code>StringBuilder</code>.</p><p>Знання цих можливостей допоможе писати більш зрозумілий, ефективний та
+надійний код на C#.</p><iframe width=100% height=475 src=https://dotnetfiddle.net/widget/7a1kAg frameborder=0></iframe></article><div class="pt-4 border-top"><div class="d-flex flex-wrap gap-2 align-items-center"><span class="text-secondary small fw-bold">Tags:</span>
 <span class="badge bg-body-secondary text-body border">csharp</span>
-<span class="badge bg-body-secondary text-body border">strings</span></div></div></div></div></div></main><footer class="border-top bg-body py-4 mt-auto"><div class="container d-flex flex-wrap justify-content-between align-items-center text-secondary small"><div><span>© 2026 elkrot.</span>
+<span class="badge bg-body-secondary text-body border">strings</span>
+<span class="badge bg-body-secondary text-body border">string</span>
+<span class="badge bg-body-secondary text-body border">dotnet</span>
+<span class="badge bg-body-secondary text-body border">програмування</span></div></div></div></div></div></main><footer class="border-top bg-body py-4 mt-auto"><div class="container d-flex flex-wrap justify-content-between align-items-center text-secondary small"><div><span>© 2026 elkrot.</span>
 <span class="ms-2 opacity-75">Hugo + Bootstrap 5 + React Islands</span></div><div class="d-flex gap-3 mt-2 mt-md-0"><a href=/contacts/ class="text-secondary text-decoration-none">Контакти</a>
 <a href=https://github.com/example target=_blank rel=noopener class="text-secondary text-decoration-none">GitHub</a>
 <a href=https://t.me/example target=_blank rel=noopener class="text-secondary text-decoration-none">Telegram</a></div></div></footer><script src=https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js integrity=sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz crossorigin=anonymous></script><script src=/js/react-islands.min.8eb3c11835b291b7623191155de23bc35afe96171fe3d6261b3597210a16ecfc.js type=module defer></script></body></html>

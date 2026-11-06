@@ -1,0 +1,190 @@
+<!doctype html><html lang=uk-UA data-bs-theme=light><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Умовні конструкції в C#: if, else, switch і тернарний оператор · Портфоліо</title><meta name=description content="Як працюють умовні конструкції C#: розбираємо if, else if, else, switch, switch expression і тернарний оператор. Приклади коду, логічні оператори та типові помилки."><link rel=icon type=image/x-icon href=/favicon.ico><link rel=icon type=image/svg+xml href=/favicon.svg><link rel=canonical href=https://atreezilla.com/posts/csharp-conditional-statements.html><link rel=alternate hreflang=uk-UA href=https://atreezilla.com/posts/csharp-conditional-statements.html><link rel=alternate hreflang=en-US href=https://atreezilla.com/en/posts/csharp-conditional-constructs.html><link rel=alternate hreflang=x-default href=https://atreezilla.com/posts/csharp-conditional-statements.html><link href=https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH crossorigin=anonymous><link rel=stylesheet href=/css/theme.min.34ffc82e1e63434e77807e38e89ced54908dd1652b7561984f464bf8db8e78c4.css><script>(function(){try{const t=localStorage.getItem("theme")||localStorage.getItem("app_theme"),e=t==="dark"?"dark":"light";document.documentElement.setAttribute("data-bs-theme",e),e==="dark"?document.documentElement.classList.add("dark"):document.documentElement.classList.remove("dark")}catch{document.documentElement.setAttribute("data-bs-theme","light")}})()</script></head><body class="d-flex flex-column min-vh-100 bg-body-tertiary"><header class="navbar navbar-expand-lg bg-body border-bottom sticky-top shadow-sm py-3"><div class=container><a class="navbar-brand d-flex align-items-center gap-2 fw-bold tracking-tight text-body-emphasis" href=/><img src=/logo.webp alt=Портфоліо class=img-fluid style=max-height:40px;width:auto;object-fit:contain>
+</a><button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarContent aria-controls=navbarContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarContent><ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4 gap-lg-3"><li class=nav-item><a class=nav-link href=/portfolio/>Портфоліо: Код</a></li><li class=nav-item><a class=nav-link href=/life/>Сім’я та Хобі</a></li><li class=nav-item><a class="nav-link active fw-semibold text-primary" href=/posts/>Публікації</a></li><li class=nav-item><a class=nav-link href=/blog/>Блог</a></li><li class=nav-item><a class=nav-link href=/contacts/>Контакти</a></li></ul><div class="d-flex align-items-center gap-2"><div class=dropdown><button class="btn btn-outline-secondary btn-sm dropdown-toggle fw-medium" type=button data-bs-toggle=dropdown aria-expanded=false>
+🌐 Українська</button><ul class="dropdown-menu dropdown-menu-end shadow-sm"><li><a class="dropdown-item d-flex justify-content-between align-items-center active" href=/posts/csharp-conditional-statements.html><span>Українська</span>
+<small class="text-uppercase ms-2 opacity-75">uk</small></a></li><li><a class="dropdown-item d-flex justify-content-between align-items-center" href=/en/posts/csharp-conditional-constructs.html><span>English</span>
+<small class="text-uppercase ms-2 opacity-75">en</small></a></li></ul></div><button id=themeToggleBtn type=button class="btn btn-outline-secondary btn-sm px-2.5 py-1 d-flex align-items-center gap-1 shadow-sm" onclick=window.__toggleTheme() title="Toggle theme" aria-label="Toggle theme">
+<span id=themeToggleIcon class=theme-icon>◐</span></button></div></div></div></header><script>window.__updateThemeIcon=function(e){const t=document.getElementById("themeToggleIcon");if(!t)return;t.textContent=e==="dark"?"☀️":"🌙"},window.__toggleTheme=function(){const t=document.documentElement,n=t.getAttribute("data-bs-theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"),e=n==="dark"?"light":"dark";t.setAttribute("data-bs-theme",e),e==="dark"?t.classList.add("dark"):t.classList.remove("dark");try{localStorage.setItem("theme",e),localStorage.setItem("app_theme",e)}catch{}window.__updateThemeIcon(e)},document.addEventListener("DOMContentLoaded",function(){const e=document.documentElement.getAttribute("data-bs-theme")||"light";window.__updateThemeIcon(e)})</script><main class=flex-grow-1><div class="container py-5"><div class="row justify-content-center"><div class=col-lg-9><nav aria-label=breadcrumb class=mb-4><ol class="breadcrumb small"><li class=breadcrumb-item><a href=/>Головна</a></li><li class=breadcrumb-item><a href=https://atreezilla.com/posts/index.html>Всі публікації (Posts)</a></li><li class="breadcrumb-item active" aria-current=page>Умовні конструкції в C#: if, else, switch і тернарний оператор</li></ol></nav><header class="mb-4 pb-4 border-bottom"><div class="text-primary small text-uppercase fw-semibold mb-2">C# · 11 March 2023</div><h1 class="display-5 fw-bold text-body-emphasis mb-3">Умовні конструкції в C#: if, else, switch і тернарний оператор</h1><div class="mb-4 rounded-4 overflow-hidden shadow-sm ratio ratio-21x9"><img src=/posts/csharp-conditional-statements/csharp-conditional.webp class="w-100 h-100 object-fit-cover" alt="Умовні конструкції в C#: if, else, switch і тернарний оператор"></div></header><article class="article-content text-body lh-lg mb-5"><p>Умовні конструкції в C# дають змогу програмі приймати рішення та виконувати різні блоки коду залежно від заданих умов.</p><p>Завдяки розгалуженню можна перевіряти введені користувачем дані, визначати права
+доступу, обробляти результати операцій і керувати логікою застосунку.</p><p>У C# для цього найчастіше використовують оператори <code>if</code>, <code>else if</code>, <code>else</code>, <code>switch</code>, вираз <code>switch</code> і тернарний оператор <code>?:</code>.</p><p>У цьому матеріалі розглянемо синтаксис кожної конструкції, приклади використання та типові помилки.</p><h2 id=1-оператор-if>1. Оператор if</h2><p>Оператор <code>if</code> виконує блок коду лише тоді, коли умова має значення
+<code>true</code>.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>int</span> x = <span style=color:#ae81ff>11</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> (x &gt; <span style=color:#ae81ff>2</span>)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    Console.WriteLine(<span style=color:#e6db74>$&#34;Число {x} більше за 2&#34;</span>);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Умова записується в круглих дужках. У C# вона повинна мати тип <code>bool</code>,
+тобто результатом перевірки має бути <code>true</code> або <code>false</code>.</p><p>Наприклад:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>int</span> age = <span style=color:#ae81ff>20</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> (age &gt;= <span style=color:#ae81ff>18</span>)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    Console.WriteLine(<span style=color:#e6db74>&#34;Доступ дозволено&#34;</span>);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Якщо умова <code>age >= 18</code> істинна, програма виконає тіло оператора <code>if</code>.</p><h2 id=2-конструкції-if-else-та-else-if>2. Конструкції if else та else if</h2><p>Якщо потрібно передбачити альтернативний сценарій, використовуйте
+<code>else</code>. Цей блок виконується, коли умова в <code>if</code> не виконується.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>int</span> x = <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> (x &gt; <span style=color:#ae81ff>2</span>)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    Console.WriteLine(<span style=color:#e6db74>$&#34;Число {x} більше за 2&#34;</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    Console.WriteLine(<span style=color:#e6db74>$&#34;Число {x} не більше за 2&#34;</span>);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Для перевірки кількох умов послідовно використовується <code>else if</code>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>int</span> x = <span style=color:#ae81ff>11</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> (x &gt; <span style=color:#ae81ff>2</span>)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    Console.WriteLine(<span style=color:#e6db74>$&#34;Число {x} більше за 2&#34;</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> (x &lt; <span style=color:#ae81ff>2</span>)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    Console.WriteLine(<span style=color:#e6db74>$&#34;Число {x} менше за 2&#34;</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    Console.WriteLine(<span style=color:#e6db74>&#34;Число дорівнює 2&#34;</span>);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>У цьому прикладі останній блок <code>else</code> важливий: без нього випадок
+<code>x == 2</code> залишився б необробленим.</p><p>У конструкції <code>if / else if / else</code> перевірки виконуються зверху вниз.
+Після першої істинної умови відповідний блок виконується, а решта гілок
+пропускається.</p><h2 id=3-логічні-оператори-в-умовах>3. Логічні оператори в умовах</h2><p>Умови можна об&rsquo;єднувати за допомогою логічних операторів.</p><p>Оператор Назва Приклад</p><hr><p><code>&&</code> логічне І (AND) <code>age >= 18 && hasTicket</code>
+<code>||</code> логічне АБО (OR) <code>isAdmin || isOwner</code>
+<code>!</code> логічне НЕ (NOT) <code>!isBlocked</code></p><p>Приклад перевірки декількох умов:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>int</span> age = <span style=color:#ae81ff>25</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>bool</span> hasTicket = <span style=color:#66d9ef>true</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> (age &gt;= <span style=color:#ae81ff>18</span> &amp;&amp; hasTicket)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    Console.WriteLine(<span style=color:#e6db74>&#34;Вхід дозволено&#34;</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    Console.WriteLine(<span style=color:#e6db74>&#34;Вхід заборонено&#34;</span>);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Оператор <code>&&</code> використовує коротке замикання: якщо перша умова вже
+дорівнює <code>false</code>, друга не обчислюється. Для <code>||</code> діє протилежне
+правило: якщо перша умова дорівнює <code>true</code>, друга не потрібна.</p><h2 id=4-оператор-switch>4. Оператор switch</h2><p>Оператор <code>switch</code> зручний, коли потрібно порівняти одне значення з
+кількома можливими варіантами. Він часто робить код читабельнішим за
+довгий ланцюжок <code>if / else if</code>.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>string</span> selection = <span style=color:#e6db74>&#34;Y&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>switch</span> (selection)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#34;Y&#34;</span>:
+</span></span><span style=display:flex><span>        Console.WriteLine(<span style=color:#e6db74>&#34;Ви натиснули клавішу Y&#34;</span>);
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#34;N&#34;</span>:
+</span></span><span style=display:flex><span>        Console.WriteLine(<span style=color:#e6db74>&#34;Ви натиснули клавішу N&#34;</span>);
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>default</span>:
+</span></span><span style=display:flex><span>        Console.WriteLine(<span style=color:#e6db74>&#34;Невідома команда&#34;</span>);
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Основні елементи оператора:</p><ul><li><code>switch</code> &mdash; значення, яке перевіряється;</li><li><code>case</code> &mdash; один із можливих варіантів;</li><li><code>break</code> &mdash; завершує виконання поточної секції <code>switch</code>;</li><li><code>default</code> &mdash; гілка, яка виконується, якщо жоден <code>case</code> не підійшов.</li></ul><p>Гілка <code>default</code> необов&rsquo;язкова, але її корисно додавати для обробки
+неочікуваних значень.</p><h3 id=кілька-значень-для-одного-сценарію>Кілька значень для одного сценарію</h3><p>Якщо різні значення мають виконувати однакову дію, можна об&rsquo;єднати
+секції <code>case</code>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>char</span> command = <span style=color:#e6db74>&#39;w&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>switch</span> (command)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#39;w&#39;</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#39;W&#39;</span>:
+</span></span><span style=display:flex><span>        Console.WriteLine(<span style=color:#e6db74>&#34;Рух угору&#34;</span>);
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#39;s&#39;</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#39;S&#39;</span>:
+</span></span><span style=display:flex><span>        Console.WriteLine(<span style=color:#e6db74>&#34;Рух униз&#34;</span>);
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>default</span>:
+</span></span><span style=display:flex><span>        Console.WriteLine(<span style=color:#e6db74>&#34;Невідома команда&#34;</span>);
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=5-вираз-switch-switch-expression>5. Вираз switch (switch expression)</h2><p>Починаючи з C# 8.0, доступний вираз <code>switch</code>. На відміну від звичайного
+оператора <code>switch</code>, він повертає значення. Це зручно, коли потрібно
+вибрати результат залежно від вхідного параметра.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>int</span> dayNumber = <span style=color:#ae81ff>2</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>string</span> dayName = dayNumber <span style=color:#66d9ef>switch</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#ae81ff>1</span> =&gt; <span style=color:#e6db74>&#34;Понеділок&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#ae81ff>2</span> =&gt; <span style=color:#e6db74>&#34;Вівторок&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#ae81ff>3</span> =&gt; <span style=color:#e6db74>&#34;Середа&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#ae81ff>4</span> =&gt; <span style=color:#e6db74>&#34;Четвер&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#ae81ff>5</span> =&gt; <span style=color:#e6db74>&#34;П&#39;ятниця&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#ae81ff>6</span> =&gt; <span style=color:#e6db74>&#34;Субота&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#ae81ff>7</span> =&gt; <span style=color:#e6db74>&#34;Неділя&#34;</span>,
+</span></span><span style=display:flex><span>    _ =&gt; <span style=color:#e6db74>&#34;Невідомий день&#34;</span>
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Console.WriteLine(dayName);
+</span></span></code></pre></div><p>Символ <code>_</code> &mdash; discard pattern. У цьому прикладі він відповідає
+будь-якому значенню, для якого не підійшли попередні варіанти.</p><h2 id=6-тернарний-оператор->6. Тернарний оператор ?:</h2><p>Тернарний оператор &mdash; короткий спосіб записати просту умовну
+конструкцію <code>if / else</code>, коли потрібно отримати одне з двох значень.</p><p>Синтаксис:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>умова</span> ? <span style=color:#960050;background-color:#1e0010>значення</span>_якщо_true : <span style=color:#960050;background-color:#1e0010>значення</span>_якщо_false;
+</span></span></code></pre></div><p>Приклад:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>int</span> age = <span style=color:#ae81ff>20</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>string</span> result = age &gt;= <span style=color:#ae81ff>18</span> ? <span style=color:#e6db74>&#34;Повнолітній&#34;</span> : <span style=color:#e6db74>&#34;Неповнолітній&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Console.WriteLine(result);
+</span></span></code></pre></div><p>Тернарний оператор також можна використовувати для обчислення:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>string</span> selection = <span style=color:#e6db74>&#34;Y&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> result = selection == <span style=color:#e6db74>&#34;Y&#34;</span> ? <span style=color:#ae81ff>1</span> + <span style=color:#ae81ff>2</span> : <span style=color:#ae81ff>3</span> - <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Console.WriteLine(result); <span style=color:#75715e>// 3</span>
+</span></span></code></pre></div><p>Не варто вкладати багато тернарних операторів один в одного: такий запис
+складніше читати й підтримувати. Для кількох сценаріїв краще підійдуть
+<code>if / else if</code> або <code>switch</code>.</p><h2 id=7-що-вибрати-if-switch-чи-тернарний-оператор>7. Що вибрати: if, switch чи тернарний оператор?</h2><p>Конструкція Коли використовувати</p><hr><p><code>if</code> Для однієї умови
+<code>if / else</code> Для двох альтернативних сценаріїв
+<code>if / else if / else</code> Для послідовної перевірки різних умов
+<code>switch</code> Для вибору дії серед кількох варіантів
+<code>switch expression</code> Для повернення значення залежно від варіанта
+<code>?:</code> Для короткого вибору одного з двох значень</p><p>Орієнтуйтеся насамперед на зрозумілість коду. Якщо умови складні або
+містять різні діапазони значень, <code>if / else if</code> часто буде доречнішим.
+Якщо потрібно зіставити одне значення з набором конкретних варіантів,
+зазвичай зручніший <code>switch</code>.</p><h2 id=8-типові-помилки-під-час-використання-умов>8. Типові помилки під час використання умов</h2><h3 id=81-використання--замість->8.1. Використання <code>=</code> замість <code>==</code></h3><p>Оператор <code>=</code> присвоює значення, а <code>==</code> порівнює значення.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>int</span> number = <span style=color:#ae81ff>5</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> (number == <span style=color:#ae81ff>5</span>)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    Console.WriteLine(<span style=color:#e6db74>&#34;Число дорівнює 5&#34;</span>);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=82-відсутність-обробки-граничного-випадку>8.2. Відсутність обробки граничного випадку</h3><p>Перевірки <code>x > 2</code> та <code>x &lt; 2</code> не охоплюють випадок <code>x == 2</code>. Якщо цей
+сценарій має значення для логіки програми, додайте <code>else</code> або окрему
+умову.</p><h3 id=83-надто-складні-умови>8.3. Надто складні умови</h3><p>Довгі логічні вирази важко читати. Їх можна розбити на окремі булеві
+змінні з промовистими назвами:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>bool</span> isAdult = age &gt;= <span style=color:#ae81ff>18</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>bool</span> hasAccess = isAdult &amp;&amp; hasTicket;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> (hasAccess)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    Console.WriteLine(<span style=color:#e6db74>&#34;Доступ дозволено&#34;</span>);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=84-надмірне-використання-вкладених-умов>8.4. Надмірне використання вкладених умов</h3><p>Якщо вкладені <code>if</code> стають глибокими, спробуйте об&rsquo;єднати умови,
+використати ранній вихід із методу або перейти до <code>switch</code>, якщо це
+робить логіку зрозумілішою.</p><h2 id=9-практичні-завдання>9. Практичні завдання</h2><p>Спробуйте закріпити матеріал на невеликих прикладах:</p><ol><li><strong>Перевірка парності.</strong> Напишіть програму, яка визначає, чи є ціле
+число парним або непарним.</li><li><strong>Оцінка.</strong> За числовим балом від 0 до 100 визначте рівень
+результату за допомогою <code>if / else if / else</code>.</li><li><strong>День тижня.</strong> За номером від 1 до 7 виведіть назву дня за
+допомогою <code>switch</code>.</li><li><strong>Доступ до системи.</strong> Перевірте вік користувача та наявність
+дозволу, використовуючи <code>&&</code>.</li><li><strong>Тернарний оператор.</strong> Визначте, чи є число додатним або від&rsquo;ємним,
+використовуючи <code>?:</code>.</li></ol><h2 id=10-часті-запитання-faq>10. Часті запитання (FAQ)</h2><h3 id=що-таке-умовна-конструкція-в-c>Що таке умовна конструкція в C#?</h3><p>Умовна конструкція &mdash; це засіб керування потоком виконання програми,
+який дає змогу виконати певний код залежно від результату логічної
+перевірки.</p><h3 id=чим-відрізняються-if-та-switch>Чим відрізняються if та switch?</h3><p><code>if</code> перевіряє довільні булеві умови, зокрема порівняння та діапазони.
+<code>switch</code> зіставляє значення з набором варіантів і зручний для вибору
+однієї гілки серед багатьох.</p><h3 id=чи-обовязково-використовувати-default-у-switch>Чи обов&rsquo;язково використовувати default у switch?</h3><p>Ні, секція <code>default</code> необов&rsquo;язкова. Проте вона корисна, якщо потрібно
+передбачити поведінку для значень, які не збігаються з жодним <code>case</code>.</p><h3 id=коли-краще-використовувати-тернарний-оператор>Коли краще використовувати тернарний оператор?</h3><p>Коли потрібно коротко вибрати одне з двох значень. Якщо логіка складна
+або містить кілька дій, краще використати звичайний <code>if / else</code>.</p><h3 id=який-тип-має-повертати-умова-if>Який тип має повертати умова if?</h3><p>Умова <code>if</code> у C# повинна мати тип <code>bool</code>. На відміну від деяких інших
+мов, числове значення не можна безпосередньо використовувати як логічну
+умову.</p><h2 id=висновок>Висновок</h2><p>Умовні конструкції &mdash; одна з основ керування потоком виконання програми
+в C#. <code>if / else</code> підходить для перевірки логічних умов, <code>switch</code> &mdash;
+для вибору між багатьма варіантами, а тернарний оператор <code>?:</code> допомагає
+компактно записати простий вибір значення.</p><p>Вибирайте конструкцію, яка найкраще передає логіку програми та
+залишається зрозумілою для інших розробників.</p><h2 id=корисні-посилання>Корисні посилання</h2><ul><li><a href=https://learn.microsoft.com/dotnet/csharp/language-reference/statements/selection-statements#if-statement>Документація Microsoft: оператор
+if</a></li><li><a href=https://learn.microsoft.com/dotnet/csharp/language-reference/statements/selection-statements#the-switch-statement>Документація Microsoft: оператор
+switch</a></li><li><a href=https://learn.microsoft.com/dotnet/csharp/language-reference/operators/switch-expression>Документація Microsoft: вираз
+switch</a></li><li><a href=https://learn.microsoft.com/dotnet/csharp/language-reference/operators/conditional-operator>Документація Microsoft: умовний оператор
+?:</a></li></ul><h2 id=інтерактивний-приклад>Інтерактивний приклад</h2><p>Спробуйте змінити значення змінних і перевірити, як змінюється результат
+виконання коду.</p><iframe width=100% height=475 src=https://dotnetfiddle.net/widget/sTyuY5 frameborder=0></iframe></article><div class="pt-4 border-top"><div class="d-flex flex-wrap gap-2 align-items-center"><span class="text-secondary small fw-bold">Tags:</span>
+<span class="badge bg-body-secondary text-body border">csharp</span>
+<span class="badge bg-body-secondary text-body border">dotnet</span>
+<span class="badge bg-body-secondary text-body border">programming</span>
+<span class="badge bg-body-secondary text-body border">умовні-конструкції</span></div></div></div></div></div></main><footer class="border-top bg-body py-4 mt-auto"><div class="container d-flex flex-wrap justify-content-between align-items-center text-secondary small"><div><span>© 2026 elkrot.</span>
+<span class="ms-2 opacity-75">Hugo + Bootstrap 5 + React Islands</span></div><div class="d-flex gap-3 mt-2 mt-md-0"><a href=/contacts/ class="text-secondary text-decoration-none">Контакти</a>
+<a href=https://github.com/example target=_blank rel=noopener class="text-secondary text-decoration-none">GitHub</a>
+<a href=https://t.me/example target=_blank rel=noopener class="text-secondary text-decoration-none">Telegram</a></div></div></footer><script src=https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js integrity=sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz crossorigin=anonymous></script><script src=/js/react-islands.min.8eb3c11835b291b7623191155de23bc35afe96171fe3d6261b3597210a16ecfc.js type=module defer></script></body></html>
