@@ -49,5 +49,5 @@ other = "Публікації"
 [nav_blog]
 other = "Блог"
 
-[nav_contacts]
-other = "Контакти"
+[filter_all]
+other = "Всі"

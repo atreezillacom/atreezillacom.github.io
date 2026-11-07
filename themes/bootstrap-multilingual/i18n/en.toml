@@ -51,3 +51,6 @@ other = "Blog"
 
 [nav_contacts]
 other = "Contacts"
+
+[filter_all]
+other = "All"
