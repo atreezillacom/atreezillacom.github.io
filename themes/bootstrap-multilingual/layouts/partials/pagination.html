@@ -1,0 +1,61 @@
+{{/* Bootstrap 5 Pagination Partial with uglyURLs & Multilingual Support */}}
+{{ $paginator := .Paginator }}
+{{ if gt $paginator.TotalPages 1 }}
+<nav aria-label="Page navigation" class="my-5">
+  <ul class="pagination pagination-md justify-content-center flex-wrap gap-1">
+    <!-- First & Previous -->
+    {{ if $paginator.HasPrev }}
+      <li class="page-item">
+        <a class="page-link rounded shadow-sm px-3" href="{{ $paginator.First.URL }}" aria-label="First">&laquo;&laquo;</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link rounded shadow-sm px-3" href="{{ $paginator.Prev.URL }}" aria-label="Previous">&laquo;</a>
+      </li>
+    {{ else }}
+      <li class="page-item disabled">
+        <span class="page-link rounded text-muted px-3">&laquo;&laquo;</span>
+      </li>
+      <li class="page-item disabled">
+        <span class="page-link rounded text-muted px-3">&laquo;</span>
+      </li>
+    {{ end }}
+
+    <!-- Numbered Page Links -->
+    {{ range $paginator.Pagers }}
+      <li class="page-item {{ if eq . $paginator }}active{{ end }}">
+        {{ if eq . $paginator }}
+          <span class="page-link rounded fw-bold shadow-sm px-3">{{ .PageNumber }}</span>
+        {{ else }}
+          <a class="page-link rounded shadow-sm px-3" href="{{ .URL }}">{{ .PageNumber }}</a>
+        {{ end }}
+      </li>
+    {{ end }}
+
+    <!-- Next & Last -->
+    {{ if $paginator.HasNext }}
+      <li class="page-item">
+        <a class="page-link rounded shadow-sm px-3" href="{{ $paginator.Next.URL }}" aria-label="Next">&raquo;</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link rounded shadow-sm px-3" href="{{ $paginator.Last.URL }}" aria-label="Last">&raquo;&raquo;</a>
+      </li>
+    {{ else }}
+      <li class="page-item disabled">
+        <span class="page-link rounded text-muted px-3">&raquo;</span>
+      </li>
+      <li class="page-item disabled">
+        <span class="page-link rounded text-muted px-3">&raquo;&raquo;</span>
+      </li>
+    {{ end }}
+  </ul>
+  <div class="text-center text-muted small mt-2">
+    {{ if eq .Site.Language.Lang "uk" }}
+      Сторінка {{ $paginator.PageNumber }} з {{ $paginator.TotalPages }} (всього: {{ $paginator.TotalNumberOfElements }})
+    {{ else if eq .Site.Language.Lang "ru" }}
+      Страница {{ $paginator.PageNumber }} из {{ $paginator.TotalPages }} (всего: {{ $paginator.TotalNumberOfElements }})
+    {{ else }}
+      Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }} (total: {{ $paginator.TotalNumberOfElements }})
+    {{ end }}
+  </div>
+</nav>
+{{ end }}

@@ -7,11 +7,6 @@
   {{ $limitBlog      := .Site.Params.homeLimits.blog | default 3 }}
   {{ $limitChronicle := .Site.Params.homeLimits.chronicle | default 5 }}
 
-  <!-- Top Logo -->
-  <div class="text-center mb-4">
-    <img src="{{ "logo.webp" | relURL }}" alt="{{ .Site.Title }}" class="img-fluid" style="max-height: 120px; object-fit: contain;">
-  </div>
-
   <!-- Hero Section -->
   <div class="row align-items-center g-5 py-4 border-bottom mb-5">
     <div class="col-lg-7">

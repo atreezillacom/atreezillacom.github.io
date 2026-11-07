@@ -9,6 +9,8 @@ uglyURLs = true
 
 [pagination]
   pagerSize = 6
+  
+  
 [languages]
   [languages.uk]
     languageCode = 'uk-UA'
@@ -44,6 +46,9 @@ uglyURLs = true
   telegramUrl = 'https://t.me/example'
   email = 'elkrot@gmail.com'
   copyright = 'elkrot. All rights reserved.'
+  postsPerPage = 6       # 
+  blogPerPage = 4        # Для раздела /blog/
+  portfolioPerPage = 3   # Для раздела /portfolio/
 
 [menu]
   [[menu.main]]

@@ -29,7 +29,7 @@
     <div class="d-flex flex-wrap align-items-center gap-1.5 pt-2 border-top">
       <span class="fw-semibold small text-body-secondary me-1">Стек:</span>
       <button type="button" class="btn btn-sm btn-dark portfolio-stack-btn active" data-stack="all" onclick="filterPortfolio(this, 'stack')">Всі стеки</button>
-      {{ $stacks := slice "React" "TypeScript" "Go" "Python" "Docker" "PostgreSQL" "FastAPI" "Kubernetes" "AWS" "GraphQL" "Next.js" "Tailwind" }}
+      {{ $stacks := slice "React1" "TypeScript" "Go" "Python" "Docker" "PostgreSQL" "FastAPI" "Kubernetes" "AWS" "GraphQL" "Next.js" "Tailwind" }}
       {{ range $stacks }}
         <button type="button" class="btn btn-sm btn-outline-secondary portfolio-stack-btn font-monospace" data-stack="{{ . | lower }}" onclick="filterPortfolio(this, 'stack')">{{ . }}</button>
       {{ end }}
@@ -87,9 +87,20 @@
   </div>
   {{ end }}
 
+  {{/* Регулювання кількості постів на сторінці з hugo.toml ([params.postsPerPage] або глобальний paginate) */}}
+{{ $pageSize := .Site.Params.postsPerPage | default .Site.Params.paginate | default 6 }}
+{{ if eq .Section "portfolio" }}
+  {{ $pageSize = .Site.Params.portfolioPerPage | default $pageSize }}
+{{ else if eq .Section "blog" }}
+  {{ $pageSize = .Site.Params.blogPerPage | default $pageSize }}
+{{ else if eq .Section "life" }}
+  {{ $pageSize = .Site.Params.lifePerPage | default $pageSize }}
+{{ end }}
+{{ $paginator := .Paginate .Pages $pageSize }}
   <!-- Cards Grid -->
+ 
   <div class="row g-4" id="portfolioGrid">
-    {{ range .Pages }}
+    {{ range $paginator.Pages }}
       {{ $cardTech := slice }}
       {{ with .Params.stack }}{{ $cardTech = $cardTech | append . }}{{ end }}
       {{ with .Params.tags }}{{ $cardTech = $cardTech | append . }}{{ end }}
@@ -143,7 +154,7 @@
               <h4 class="card-title fw-bold">
                 <a href="{{ .Permalink }}" class="text-decoration-none text-body-emphasis">{{ .Title }}</a>
               </h4>
-              <p class="card-text text-secondary small mt-2">{{ .Summary }}</p>
+              <p class="card-text text-secondary small mt-2">{{ .Params.summary | default .Summary | default .Description }}</p>
 
               {{ if gt (len $cardTech) 0 }}
                 <div class="d-flex flex-wrap gap-1 mt-3">
@@ -173,8 +184,66 @@
     <button type="button" class="btn btn-sm btn-outline-primary" onclick="resetPortfolioFilters()">Скинути фільтри</button>
   </div>
 
-  <!-- Pagination -->
-  {{ template "_internal/pagination.html" . }}
+  <!-- Bootstrap 5 Responsive Pagination with uglyURLs & Multilingual Support -->
+  {{ if gt $paginator.TotalPages 1 }}
+  <nav aria-label="Page navigation" class="my-5">
+    <ul class="pagination pagination-md justify-content-center flex-wrap gap-1">
+      <!-- First & Previous -->
+      {{ if $paginator.HasPrev }}
+        <li class="page-item">
+          <a class="page-link rounded shadow-sm px-3" href="{{ $paginator.First.URL }}" aria-label="First">&laquo;&laquo;</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link rounded shadow-sm px-3" href="{{ $paginator.Prev.URL }}" aria-label="Previous">&laquo;</a>
+        </li>
+      {{ else }}
+        <li class="page-item disabled">
+          <span class="page-link rounded text-muted px-3">&laquo;&laquo;</span>
+        </li>
+        <li class="page-item disabled">
+          <span class="page-link rounded text-muted px-3">&laquo;</span>
+        </li>
+      {{ end }}
+
+      <!-- Page Numbers -->
+      {{ range $paginator.Pagers }}
+        <li class="page-item {{ if eq . $paginator }}active{{ end }}">
+          {{ if eq . $paginator }}
+            <span class="page-link rounded fw-bold shadow-sm px-3">{{ .PageNumber }}</span>
+          {{ else }}
+            <a class="page-link rounded shadow-sm px-3" href="{{ .URL }}">{{ .PageNumber }}</a>
+          {{ end }}
+        </li>
+      {{ end }}
+
+      <!-- Next & Last -->
+      {{ if $paginator.HasNext }}
+        <li class="page-item">
+          <a class="page-link rounded shadow-sm px-3" href="{{ $paginator.Next.URL }}" aria-label="Next">&raquo;</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link rounded shadow-sm px-3" href="{{ $paginator.Last.URL }}" aria-label="Last">&raquo;&raquo;</a>
+        </li>
+      {{ else }}
+        <li class="page-item disabled">
+          <span class="page-link rounded text-muted px-3">&raquo;</span>
+        </li>
+        <li class="page-item disabled">
+          <span class="page-link rounded text-muted px-3">&raquo;&raquo;</span>
+        </li>
+      {{ end }}
+    </ul>
+    <div class="text-center text-muted small mt-2">
+      {{ if eq .Site.Language.Lang "uk" }}
+        Сторінка {{ $paginator.PageNumber }} з {{ $paginator.TotalPages }} (всього статей: {{ $paginator.TotalNumberOfElements }})
+      {{ else if eq .Site.Language.Lang "ru" }}
+        Страница {{ $paginator.PageNumber }} из {{ $paginator.TotalPages }} (всего статей: {{ $paginator.TotalNumberOfElements }})
+      {{ else }}
+        Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }} (total: {{ $paginator.TotalNumberOfElements }})
+      {{ end }}
+    </div>
+  </nav>
+  {{ end }}
 </div>
 
 <script>
