@@ -87,3 +87,53 @@ uglyURLs = true
     life = 3        # Количество историй в блоке "Сім'я та хобі"
     blog = 3        # Количество статей в блоке "Блог"
     chronicle = 5   # Количество событий в блоке "Стрічка новин 
+ # ==============================================================================
+  # Параметри фільтрації для розділів (Portfolio, Posts, Life, Blog)
+  # Можна редагувати прямо тут, додавати або прибирати категорії та теги!
+  # ==============================================================================
+  [params.filters]
+
+    # 1. Розділ "Портфоліо" (/portfolio/)
+    [params.filters.portfolio]
+      categories = [
+        { id = "frontend", name = "Frontend" },
+        { id = "backend", name = "Backend" },
+        { id = "python-ai", name = "Python & AI" },
+        { id = "fullstack", name = "Fullstack" },
+        { id = "cloud-devops", name = "Cloud & DevOps" },
+        { id = "mobile", name = "Mobile" }
+      ]
+      stacks = ["React", "TypeScript", "Go", "Python", "Docker", "PostgreSQL", "FastAPI", "Kubernetes", "AWS", "GraphQL", "Next.js", "Tailwind"]
+
+    # 2. Розділ "Публікації" (/posts/)
+    [params.filters.posts]
+      categories = [
+        { id = "csharp", name = "C# & .NET" },
+        { id = "architecture", name = "Архітектура" },
+        { id = "devops", name = "DevOps" },
+        { id = "backend", name = "Backend" },
+        { id = "frontend", name = "Frontend" }
+      ]
+      tags = ["C#", ".NET", "Go", "Kubernetes", "Docker", "Python", "Linux", "TypeScript", "Architecture"]
+
+    # 3. Розділ "Сім'я та життя" (/life/)
+    [params.filters.life]
+      categories = [
+        { id = "family", name = "Сім'я" },
+        { id = "wife", name = "Дружина" },
+        { id = "kids", name = "Діти" },
+        { id = "travel", name = "Подорожі" },
+        { id = "hobbies", name = "Хоббі" }
+      ]
+      tags = ["Сім'я", "Діти", "Подорожі", "Спорт", "Фотографія"]
+
+    # 4. Розділ "Блог" (/blog/)
+    [params.filters.blog]
+      categories = [
+        { id = "hugo", name = "Hugo & SSG" },
+        { id = "bootstrap", name = "Bootstrap" },
+        { id = "react", name = "React" },
+        { id = "performance", name = "Оптимізація" }
+      ]
+      tags = ["Hugo", "Bootstrap 5", "i18n", "React", "SSG", "CSS"]
+

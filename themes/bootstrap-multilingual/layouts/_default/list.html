@@ -11,7 +11,7 @@
     {{ end }}
   </div>
 
-  <!-- Interactive Filter Toolbar (Adapts to Portfolio, Posts, Life, Blog) -->
+  <!-- Interactive Filter Toolbar (Adapts to Portfolio, Posts, Life, Blog from .Site.Params.filters) -->
   {{ if eq .Section "portfolio" }}
   <div class="card p-3 mb-4 border bg-body-tertiary shadow-sm">
     <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
@@ -19,17 +19,18 @@
       <button type="button" class="btn btn-sm btn-primary active portfolio-cat-btn" data-category="all" onclick="filterPortfolio(this, 'category')">
         {{ i18n "filter_all" }}
       </button>
-      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="frontend" onclick="filterPortfolio(this, 'category')">Frontend</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="backend" onclick="filterPortfolio(this, 'category')">Backend</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="python-ai" onclick="filterPortfolio(this, 'category')">Python & AI</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="fullstack" onclick="filterPortfolio(this, 'category')">Fullstack</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="cloud-devops" onclick="filterPortfolio(this, 'category')">Cloud & DevOps</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="mobile" onclick="filterPortfolio(this, 'category')">Mobile</button>
+      {{ $portCats := .Site.Params.filters.portfolio.categories | default (slice (dict "id" "frontend" "name" "Frontend") (dict "id" "backend" "name" "Backend") (dict "id" "python-ai" "name" "Python & AI") (dict "id" "fullstack" "name" "Fullstack") (dict "id" "cloud-devops" "name" "Cloud & DevOps") (dict "id" "mobile" "name" "Mobile")) }}
+      {{ range $portCats }}
+        {{ $cId := .id | default (.name | urlize) }}
+        {{ $cName := .name | default . }}
+        {{ if not (reflect.IsMap .) }}{{ $cId = . | urlize }}{{ $cName = . }}{{ end }}
+        <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="{{ $cId | lower }}" onclick="filterPortfolio(this, 'category')">{{ $cName }}</button>
+      {{ end }}
     </div>
     <div class="d-flex flex-wrap align-items-center gap-1.5 pt-2 border-top">
       <span class="fw-semibold small text-body-secondary me-1">Стек:</span>
       <button type="button" class="btn btn-sm btn-dark portfolio-stack-btn active" data-stack="all" onclick="filterPortfolio(this, 'stack')">Всі стеки</button>
-      {{ $stacks := slice "React1" "TypeScript" "Go" "Python" "Docker" "PostgreSQL" "FastAPI" "Kubernetes" "AWS" "GraphQL" "Next.js" "Tailwind" }}
+      {{ $stacks := .Site.Params.filters.portfolio.stacks | default (slice "React" "TypeScript" "Go" "Python" "Docker" "PostgreSQL" "FastAPI" "Kubernetes" "AWS" "GraphQL" "Next.js" "Tailwind") }}
       {{ range $stacks }}
         <button type="button" class="btn btn-sm btn-outline-secondary portfolio-stack-btn font-monospace" data-stack="{{ . | lower }}" onclick="filterPortfolio(this, 'stack')">{{ . }}</button>
       {{ end }}
@@ -40,15 +41,18 @@
     <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
       <span class="fw-semibold small text-body-secondary me-1">Категорії:</span>
       <button type="button" class="btn btn-sm btn-primary active portfolio-cat-btn" data-category="all" onclick="filterPortfolio(this, 'category')">{{ i18n "filter_all" }}</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="architecture" onclick="filterPortfolio(this, 'category')">Архітектура</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="devops" onclick="filterPortfolio(this, 'category')">DevOps</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="backend" onclick="filterPortfolio(this, 'category')">Backend</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="frontend" onclick="filterPortfolio(this, 'category')">Frontend</button>
+      {{ $postsCats := .Site.Params.filters.posts.categories | default (slice (dict "id" "csharp" "name" "C# & .NET") (dict "id" "architecture" "name" "Архітектура") (dict "id" "devops" "name" "DevOps") (dict "id" "backend" "name" "Backend") (dict "id" "frontend" "name" "Frontend")) }}
+      {{ range $postsCats }}
+        {{ $cId := .id | default (.name | urlize) }}
+        {{ $cName := .name | default . }}
+        {{ if not (reflect.IsMap .) }}{{ $cId = . | urlize }}{{ $cName = . }}{{ end }}
+        <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="{{ $cId | lower }}" onclick="filterPortfolio(this, 'category')">{{ $cName }}</button>
+      {{ end }}
     </div>
     <div class="d-flex flex-wrap align-items-center gap-1.5 pt-2 border-top">
       <span class="fw-semibold small text-body-secondary me-1">Теги:</span>
       <button type="button" class="btn btn-sm btn-dark portfolio-stack-btn active" data-stack="all" onclick="filterPortfolio(this, 'stack')">Всі теги</button>
-      {{ $pTags := slice "Go" "Kubernetes" "Docker" "Python" "Linux" "TypeScript" "Architecture" }}
+      {{ $pTags := .Site.Params.filters.posts.tags | default (slice "C#" ".NET" "Go" "Kubernetes" "Docker" "Python" "Linux" "TypeScript" "Architecture") }}
       {{ range $pTags }}
         <button type="button" class="btn btn-sm btn-outline-secondary portfolio-stack-btn font-monospace" data-stack="{{ . | lower }}" onclick="filterPortfolio(this, 'stack')">{{ . }}</button>
       {{ end }}
@@ -59,27 +63,41 @@
     <div class="d-flex flex-wrap align-items-center gap-2">
       <span class="fw-semibold small text-body-secondary me-1">Розділи:</span>
       <button type="button" class="btn btn-sm btn-primary active portfolio-cat-btn" data-category="all" onclick="filterPortfolio(this, 'category')">{{ i18n "filter_all" }}</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="family" onclick="filterPortfolio(this, 'category')">Сім'я</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="wife" onclick="filterPortfolio(this, 'category')">Дружина</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="kids" onclick="filterPortfolio(this, 'category')">Діти</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="travel" onclick="filterPortfolio(this, 'category')">Подорожі</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="hobbies" onclick="filterPortfolio(this, 'category')">Хоббі</button>
+      {{ $lifeCats := .Site.Params.filters.life.categories | default (slice (dict "id" "family" "name" "Сім'я") (dict "id" "wife" "name" "Дружина") (dict "id" "kids" "name" "Діти") (dict "id" "travel" "name" "Подорожі") (dict "id" "hobbies" "name" "Хоббі")) }}
+      {{ range $lifeCats }}
+        {{ $cId := .id | default (.name | urlize) }}
+        {{ $cName := .name | default . }}
+        {{ if not (reflect.IsMap .) }}{{ $cId = . | urlize }}{{ $cName = . }}{{ end }}
+        <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="{{ $cId | lower }}" onclick="filterPortfolio(this, 'category')">{{ $cName }}</button>
+      {{ end }}
     </div>
+    {{ with .Site.Params.filters.life.tags }}
+    <div class="d-flex flex-wrap align-items-center gap-1.5 pt-2 border-top mt-2">
+      <span class="fw-semibold small text-body-secondary me-1">Теги:</span>
+      <button type="button" class="btn btn-sm btn-dark portfolio-stack-btn active" data-stack="all" onclick="filterPortfolio(this, 'stack')">Всі теги</button>
+      {{ range . }}
+        <button type="button" class="btn btn-sm btn-outline-secondary portfolio-stack-btn font-monospace" data-stack="{{ . | lower }}" onclick="filterPortfolio(this, 'stack')">{{ . }}</button>
+      {{ end }}
+    </div>
+    {{ end }}
   </div>
   {{ else if eq .Section "blog" }}
   <div class="card p-3 mb-4 border bg-body-tertiary shadow-sm">
     <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
       <span class="fw-semibold small text-body-secondary me-1">Теми:</span>
       <button type="button" class="btn btn-sm btn-primary active portfolio-cat-btn" data-category="all" onclick="filterPortfolio(this, 'category')">{{ i18n "filter_all" }}</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="hugo" onclick="filterPortfolio(this, 'category')">Hugo & SSG</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="bootstrap" onclick="filterPortfolio(this, 'category')">Bootstrap</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="react" onclick="filterPortfolio(this, 'category')">React</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="performance" onclick="filterPortfolio(this, 'category')">Оптимізація</button>
+      {{ $blogCats := .Site.Params.filters.blog.categories | default (slice (dict "id" "hugo" "name" "Hugo & SSG") (dict "id" "bootstrap" "name" "Bootstrap") (dict "id" "react" "name" "React") (dict "id" "performance" "name" "Оптимізація")) }}
+      {{ range $blogCats }}
+        {{ $cId := .id | default (.name | urlize) }}
+        {{ $cName := .name | default . }}
+        {{ if not (reflect.IsMap .) }}{{ $cId = . | urlize }}{{ $cName = . }}{{ end }}
+        <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="{{ $cId | lower }}" onclick="filterPortfolio(this, 'category')">{{ $cName }}</button>
+      {{ end }}
     </div>
     <div class="d-flex flex-wrap align-items-center gap-1.5 pt-2 border-top">
       <span class="fw-semibold small text-body-secondary me-1">Теги:</span>
       <button type="button" class="btn btn-sm btn-dark portfolio-stack-btn active" data-stack="all" onclick="filterPortfolio(this, 'stack')">Всі теги</button>
-      {{ $bTags := slice "Hugo" "Bootstrap 5" "i18n" "React" "SSG" "CSS" }}
+      {{ $bTags := .Site.Params.filters.blog.tags | default (slice "Hugo" "Bootstrap 5" "i18n" "React" "SSG" "CSS") }}
       {{ range $bTags }}
         <button type="button" class="btn btn-sm btn-outline-secondary portfolio-stack-btn font-monospace" data-stack="{{ . | lower }}" onclick="filterPortfolio(this, 'stack')">{{ . }}</button>
       {{ end }}
@@ -87,18 +105,18 @@
   </div>
   {{ end }}
 
-  {{/* Регулювання кількості постів на сторінці з hugo.toml ([params.postsPerPage] або глобальний paginate) */}}
-{{ $pageSize := .Site.Params.postsPerPage | default .Site.Params.paginate | default 6 }}
-{{ if eq .Section "portfolio" }}
-  {{ $pageSize = .Site.Params.portfolioPerPage | default $pageSize }}
-{{ else if eq .Section "blog" }}
-  {{ $pageSize = .Site.Params.blogPerPage | default $pageSize }}
-{{ else if eq .Section "life" }}
-  {{ $pageSize = .Site.Params.lifePerPage | default $pageSize }}
-{{ end }}
-{{ $paginator := .Paginate .Pages $pageSize }}
+  {{/* Регулювання кількості постів на сторінці з hugo.toml ([params.postsPerPage] або default 6) */}}
+  {{ $pageSize := .Site.Params.postsPerPage | default .Site.Params.paginate | default 6 }}
+  {{ if eq .Section "portfolio" }}
+    {{ $pageSize = .Site.Params.portfolioPerPage | default $pageSize }}
+  {{ else if eq .Section "blog" }}
+    {{ $pageSize = .Site.Params.blogPerPage | default $pageSize }}
+  {{ else if eq .Section "life" }}
+    {{ $pageSize = .Site.Params.lifePerPage | default $pageSize }}
+  {{ end }}
+  {{ $paginator := .Paginate .Pages $pageSize }}
+
   <!-- Cards Grid -->
- 
   <div class="row g-4" id="portfolioGrid">
     {{ range $paginator.Pages }}
       {{ $cardTech := slice }}
@@ -251,7 +269,7 @@
   let activeStack = 'all';
 
   function cleanStr(s) {
-    return (s || '').toString().toLowerCase().replace(/[^a-z0-9]/g, '');
+    return (s || '').toString().toLowerCase().trim().replace(/[-\s_]+/g, '');
   }
 
   function filterPortfolio(btn, type) {

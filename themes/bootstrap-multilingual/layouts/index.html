@@ -28,10 +28,18 @@
         </a>
       </div>
     </div>
-    
+
   </div>
 
 
+
+  <!-- Universal Unicode-safe string normalizer for Homepage Filters -->
+  <script>
+    function cleanStrHome(s) {
+      return (s || '').toString().toLowerCase().trim().replace(/[-\s_]+/g, '');
+    }
+    window.cleanStrHome = cleanStrHome;
+  </script>
 
   <!-- Programming Stack Portfolio Section -->
   <section class="mb-5">
@@ -47,39 +55,30 @@
 
     <!-- Interactive Tech Stack & Category Filter on Homepage -->
     <div class="card p-3 mb-4 border bg-body-tertiary shadow-sm rounded-3">
-      <!-- Category Filter Pills -->
+      <!-- Category Filter Pills from hugo.toml ([params.filters.portfolio.categories]) -->
       <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
         <span class="fw-semibold small text-body-secondary me-1">Категорії:</span>
         <button type="button" class="btn btn-sm btn-primary active home-cat-btn" data-category="all" onclick="filterHomePortfolio(this, 'category')">
           {{ i18n "filter_all" }}
         </button>
-        <button type="button" class="btn btn-sm btn-outline-secondary home-cat-btn" data-category="frontend" onclick="filterHomePortfolio(this, 'category')">
-          Frontend
-        </button>
-        <button type="button" class="btn btn-sm btn-outline-secondary home-cat-btn" data-category="backend" onclick="filterHomePortfolio(this, 'category')">
-          Backend
-        </button>
-        <button type="button" class="btn btn-sm btn-outline-secondary home-cat-btn" data-category="python-ai" onclick="filterHomePortfolio(this, 'category')">
-          Python & AI
-        </button>
-        <button type="button" class="btn btn-sm btn-outline-secondary home-cat-btn" data-category="fullstack" onclick="filterHomePortfolio(this, 'category')">
-          Fullstack
-        </button>
-        <button type="button" class="btn btn-sm btn-outline-secondary home-cat-btn" data-category="cloud-devops" onclick="filterHomePortfolio(this, 'category')">
-          Cloud & DevOps
-        </button>
-        <button type="button" class="btn btn-sm btn-outline-secondary home-cat-btn" data-category="mobile" onclick="filterHomePortfolio(this, 'category')">
-          Mobile
-        </button>
+        {{ $portCats := .Site.Params.filters.portfolio.categories | default (slice (dict "id" "frontend" "name" "Frontend") (dict "id" "backend" "name" "Backend") (dict "id" "python-ai" "name" "Python & AI") (dict "id" "fullstack" "name" "Fullstack") (dict "id" "cloud-devops" "name" "Cloud & DevOps") (dict "id" "mobile" "name" "Mobile")) }}
+        {{ range $portCats }}
+          {{ $cId := .id | default (.name | urlize) }}
+          {{ $cName := .name | default . }}
+          {{ if not (reflect.IsMap .) }}{{ $cId = . | urlize }}{{ $cName = . }}{{ end }}
+          <button type="button" class="btn btn-sm btn-outline-secondary home-cat-btn" data-category="{{ $cId | lower }}" onclick="filterHomePortfolio(this, 'category')">
+            {{ $cName }}
+          </button>
+        {{ end }}
       </div>
 
-      <!-- Tech Stack Filter Pills -->
+      <!-- Tech Stack Filter Pills from hugo.toml ([params.filters.portfolio.stacks]) -->
       <div class="d-flex flex-wrap align-items-center gap-1.5 pt-2 border-top">
         <span class="fw-semibold small text-body-secondary me-1">Стек:</span>
         <button type="button" class="btn btn-sm btn-dark home-stack-btn active" data-stack="all" onclick="filterHomePortfolio(this, 'stack')">
           Всі стеки
         </button>
-        {{ $homeStacks := slice "React" "TypeScript" "Go" "Python" "Docker" "PostgreSQL" "FastAPI" "Kubernetes" "AWS" "GraphQL" "Next.js" "Tailwind" }}
+        {{ $homeStacks := .Site.Params.filters.portfolio.stacks | default (slice "React" "TypeScript" "Go" "Python" "Docker" "PostgreSQL" "FastAPI" "Kubernetes" "AWS" "GraphQL" "Next.js" "Tailwind") }}
         {{ range $homeStacks }}
           <button type="button" class="btn btn-sm btn-outline-secondary home-stack-btn font-monospace" data-stack="{{ . | lower }}" onclick="filterHomePortfolio(this, 'stack')">
             {{ . }}
@@ -144,7 +143,7 @@
                 <h5 class="card-title fw-bold">
                   <a href="{{ .Permalink }}" class="text-decoration-none text-body-emphasis">{{ .Title }}</a>
                 </h5>
-                <p class="card-text text-secondary small mt-2">{{ .Summary }}</p>
+                <p class="card-text text-secondary small mt-2">{{ .Params.summary | default .Summary | default .Description }}</p>
 
                 {{ if gt (len $cardTech) 0 }}
                   <div class="d-flex flex-wrap gap-1 mt-3">
@@ -180,7 +179,7 @@
     let homeActiveStack = 'all';
 
     function cleanStrHome(s) {
-      return (s || '').toString().toLowerCase().replace(/[^a-z0-9]/g, '');
+      return (s || '').toString().toLowerCase().trim().replace(/[-\s_]+/g, '');
     }
 
     function filterHomePortfolio(btn, type) {
@@ -275,25 +274,30 @@
       </a>
     </div>
 
-    <!-- Posts Filter Bar -->
+    <!-- Posts Filter Bar (from .Site.Params.filters.posts) -->
     <div class="card p-3 mb-4 border bg-body-tertiary shadow-sm rounded-3">
       <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
         <span class="fw-semibold small text-body-secondary me-1">Категорії:</span>
         <button type="button" class="btn btn-sm btn-primary active home-posts-cat-btn" data-category="all" onclick="filterHomePosts(this, 'category')">
           {{ i18n "filter_all" }}
         </button>
-        <button type="button" class="btn btn-sm btn-outline-secondary home-posts-cat-btn" data-category="architecture" onclick="filterHomePosts(this, 'category')">Архітектура</button>
-        <button type="button" class="btn btn-sm btn-outline-secondary home-posts-cat-btn" data-category="devops" onclick="filterHomePosts(this, 'category')">DevOps</button>
-        <button type="button" class="btn btn-sm btn-outline-secondary home-posts-cat-btn" data-category="backend" onclick="filterHomePosts(this, 'category')">Backend</button>
-        <button type="button" class="btn btn-sm btn-outline-secondary home-posts-cat-btn" data-category="frontend" onclick="filterHomePosts(this, 'category')">Frontend</button>
+        {{ $postsCats := .Site.Params.filters.posts.categories | default (slice (dict "id" "csharp" "name" "C# & .NET") (dict "id" "architecture" "name" "Архітектура") (dict "id" "devops" "name" "DevOps") (dict "id" "backend" "name" "Backend") (dict "id" "frontend" "name" "Frontend")) }}
+        {{ range $postsCats }}
+          {{ $cId := .id | default (.name | urlize) }}
+          {{ $cName := .name | default . }}
+          {{ if not (reflect.IsMap .) }}{{ $cId = . | urlize }}{{ $cName = . }}{{ end }}
+          <button type="button" class="btn btn-sm btn-outline-secondary home-posts-cat-btn" data-category="{{ $cId | lower }}" onclick="filterHomePosts(this, 'category')">
+            {{ $cName }}
+          </button>
+        {{ end }}
       </div>
       <div class="d-flex flex-wrap align-items-center gap-1.5 pt-2 border-top">
         <span class="fw-semibold small text-body-secondary me-1">Теги:</span>
         <button type="button" class="btn btn-sm btn-dark home-posts-tag-btn active" data-tag="all" onclick="filterHomePosts(this, 'tag')">
           Всі теги
         </button>
-        {{ $postTags := slice "Go" "Kubernetes" "Docker" "Python" "Linux" "TypeScript" "Architecture" }}
-        {{ range $postTags }}
+        {{ $postsTags := .Site.Params.filters.posts.tags | default (slice "C#" ".NET" "Go" "Kubernetes" "Docker" "Python" "Linux" "TypeScript" "Architecture") }}
+        {{ range $postsTags }}
           <button type="button" class="btn btn-sm btn-outline-secondary home-posts-tag-btn font-monospace" data-tag="{{ . | lower }}" onclick="filterHomePosts(this, 'tag')">
             {{ . }}
           </button>
@@ -356,7 +360,7 @@
                 <h5 class="card-title fw-bold">
                   <a href="{{ .Permalink }}" class="text-decoration-none text-body-emphasis">{{ .Title }}</a>
                 </h5>
-                <p class="card-text text-secondary small">{{ .Summary }}</p>
+                <p class="card-text text-secondary small">{{ .Params.summary | default .Summary | default .Description }}</p>
 
                 {{ if gt (len $pTags) 0 }}
                   <div class="d-flex flex-wrap gap-1 mt-3">
@@ -446,11 +450,11 @@
     function applyHomePostsFilters() {
       const items = document.querySelectorAll('.home-post-item');
       let visibleCount = 0;
-      const catClean = (homePostsActiveCategory || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+      const catClean = cleanStrHome(homePostsActiveCategory);
       const tagClean = (homePostsActiveTag || '').toLowerCase().trim();
 
       items.forEach(item => {
-        const itemCat = (item.getAttribute('data-category') || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+        const itemCat = cleanStrHome(item.getAttribute('data-category'));
         const itemTags = (item.getAttribute('data-tags') || '').toLowerCase();
 
         const matchCat = (homePostsActiveCategory === 'all' || itemCat.includes(catClean) || catClean.includes(itemCat));
@@ -481,19 +485,36 @@
       </a>
     </div>
 
-    <!-- Life Filter Bar -->
+    <!-- Life Filter Bar (from .Site.Params.filters.life) -->
     <div class="card p-3 mb-4 border bg-body-tertiary shadow-sm rounded-3">
       <div class="d-flex flex-wrap align-items-center gap-2">
         <span class="fw-semibold small text-body-secondary me-1">Розділи:</span>
         <button type="button" class="btn btn-sm btn-primary active home-life-cat-btn" data-category="all" onclick="filterHomeLife(this, 'category')">
           {{ i18n "filter_all" }}
         </button>
-        <button type="button" class="btn btn-sm btn-outline-secondary home-life-cat-btn" data-category="family" onclick="filterHomeLife(this, 'category')">Сім'я</button>
-        <button type="button" class="btn btn-sm btn-outline-secondary home-life-cat-btn" data-category="wife" onclick="filterHomeLife(this, 'category')">Дружина</button>
-        <button type="button" class="btn btn-sm btn-outline-secondary home-life-cat-btn" data-category="kids" onclick="filterHomeLife(this, 'category')">Діти</button>
-        <button type="button" class="btn btn-sm btn-outline-secondary home-life-cat-btn" data-category="travel" onclick="filterHomeLife(this, 'category')">Подорожі</button>
-        <button type="button" class="btn btn-sm btn-outline-secondary home-life-cat-btn" data-category="hobbies" onclick="filterHomeLife(this, 'category')">Хоббі</button>
+        {{ $lifeCats := .Site.Params.filters.life.categories | default (slice (dict "id" "family" "name" "Сім'я") (dict "id" "wife" "name" "Дружина") (dict "id" "kids" "name" "Діти") (dict "id" "travel" "name" "Подорожі") (dict "id" "hobbies" "name" "Хоббі")) }}
+        {{ range $lifeCats }}
+          {{ $cId := .id | default (.name | urlize) }}
+          {{ $cName := .name | default . }}
+          {{ if not (reflect.IsMap .) }}{{ $cId = . | urlize }}{{ $cName = . }}{{ end }}
+          <button type="button" class="btn btn-sm btn-outline-secondary home-life-cat-btn" data-category="{{ $cId | lower }}" onclick="filterHomeLife(this, 'category')">
+            {{ $cName }}
+          </button>
+        {{ end }}
       </div>
+      {{ with .Site.Params.filters.life.tags }}
+      <div class="d-flex flex-wrap align-items-center gap-1.5 pt-2 border-top mt-2">
+        <span class="fw-semibold small text-body-secondary me-1">Теги:</span>
+        <button type="button" class="btn btn-sm btn-dark home-life-tag-btn active" data-tag="all" onclick="filterHomeLife(this, 'tag')">
+          Всі теги
+        </button>
+        {{ range . }}
+          <button type="button" class="btn btn-sm btn-outline-secondary home-life-tag-btn font-monospace" data-tag="{{ . | lower }}" onclick="filterHomeLife(this, 'tag')">
+            {{ . }}
+          </button>
+        {{ end }}
+      </div>
+      {{ end }}
     </div>
 
     <div class="row g-4" id="homeLifeGrid">
@@ -557,39 +578,54 @@
 
   <script>
     let homeLifeActiveCategory = 'all';
+    let homeLifeActiveTag = 'all';
 
     function filterHomeLife(btn, type) {
-      homeLifeActiveCategory = btn.getAttribute('data-category') || 'all';
-      document.querySelectorAll('.home-life-cat-btn').forEach(b => {
-        b.classList.remove('btn-primary', 'active');
-        b.classList.add('btn-outline-secondary');
-      });
-      btn.classList.remove('btn-outline-secondary');
-      btn.classList.add('btn-primary', 'active');
+      if (type === 'category') {
+        homeLifeActiveCategory = btn.getAttribute('data-category') || 'all';
+        document.querySelectorAll('.home-life-cat-btn').forEach(b => {
+          b.classList.remove('btn-primary', 'active');
+          b.classList.add('btn-outline-secondary');
+        });
+        btn.classList.remove('btn-outline-secondary');
+        btn.classList.add('btn-primary', 'active');
+      } else if (type === 'tag') {
+        homeLifeActiveTag = btn.getAttribute('data-tag') || 'all';
+        document.querySelectorAll('.home-life-tag-btn').forEach(b => {
+          b.classList.remove('btn-dark', 'active');
+          b.classList.add('btn-outline-secondary');
+        });
+        btn.classList.remove('btn-outline-secondary');
+        btn.classList.add('btn-dark', 'active');
+      }
       applyHomeLifeFilters();
     }
 
     function filterHomeLifeByTag(tag) {
-      const items = document.querySelectorAll('.home-life-item');
-      let visibleCount = 0;
-      const tagLower = (tag || '').toLowerCase().trim();
-      items.forEach(item => {
-        const itemTags = (item.getAttribute('data-tags') || '').toLowerCase();
-        if (itemTags.includes(tagLower)) {
-          item.style.display = '';
-          visibleCount++;
+      homeLifeActiveTag = (tag || '').toLowerCase().trim();
+      document.querySelectorAll('.home-life-tag-btn').forEach(b => {
+        const bTag = (b.getAttribute('data-tag') || '').toLowerCase().trim();
+        if (bTag === homeLifeActiveTag) {
+          b.classList.remove('btn-outline-secondary');
+          b.classList.add('btn-dark', 'active');
         } else {
-          item.style.display = 'none';
+          b.classList.remove('btn-dark', 'active');
+          b.classList.add('btn-outline-secondary');
         }
       });
-      const noRes = document.getElementById('homeLifeNoResults');
-      if (noRes) noRes.style.display = visibleCount === 0 ? 'block' : 'none';
+      applyHomeLifeFilters();
     }
 
     function resetHomeLifeFilters() {
       homeLifeActiveCategory = 'all';
+      homeLifeActiveTag = 'all';
       document.querySelectorAll('.home-life-cat-btn').forEach((b, i) => {
         b.classList.toggle('btn-primary', i === 0);
+        b.classList.toggle('active', i === 0);
+        b.classList.toggle('btn-outline-secondary', i !== 0);
+      });
+      document.querySelectorAll('.home-life-tag-btn').forEach((b, i) => {
+        b.classList.toggle('btn-dark', i === 0);
         b.classList.toggle('active', i === 0);
         b.classList.toggle('btn-outline-secondary', i !== 0);
       });
@@ -599,12 +635,15 @@
     function applyHomeLifeFilters() {
       const items = document.querySelectorAll('.home-life-item');
       let visibleCount = 0;
-      const catClean = (homeLifeActiveCategory || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+      const catClean = cleanStrHome(homeLifeActiveCategory);
+      const tagClean = (homeLifeActiveTag || '').toLowerCase().trim();
 
       items.forEach(item => {
-        const itemCat = (item.getAttribute('data-category') || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+        const itemCat = cleanStrHome(item.getAttribute('data-category'));
+        const itemTags = (item.getAttribute('data-tags') || '').toLowerCase();
         const matchCat = (homeLifeActiveCategory === 'all' || itemCat.includes(catClean) || catClean.includes(itemCat));
-        if (matchCat) {
+        const matchTag = (homeLifeActiveTag === 'all' || itemTags.includes(tagClean));
+        if (matchCat && matchTag) {
           item.style.display = '';
           visibleCount++;
         } else {
@@ -629,24 +668,29 @@
       </a>
     </div>
 
-    <!-- Blog Filter Bar -->
+    <!-- Blog Filter Bar (from .Site.Params.filters.blog) -->
     <div class="card p-3 mb-4 border bg-body-tertiary shadow-sm rounded-3">
       <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
         <span class="fw-semibold small text-body-secondary me-1">Теми:</span>
         <button type="button" class="btn btn-sm btn-primary active home-blog-cat-btn" data-category="all" onclick="filterHomeBlog(this, 'category')">
           {{ i18n "filter_all" }}
         </button>
-        <button type="button" class="btn btn-sm btn-outline-secondary home-blog-cat-btn" data-category="hugo" onclick="filterHomeBlog(this, 'category')">Hugo & SSG</button>
-        <button type="button" class="btn btn-sm btn-outline-secondary home-blog-cat-btn" data-category="bootstrap" onclick="filterHomeBlog(this, 'category')">Bootstrap</button>
-        <button type="button" class="btn btn-sm btn-outline-secondary home-blog-cat-btn" data-category="react" onclick="filterHomeBlog(this, 'category')">React</button>
-        <button type="button" class="btn btn-sm btn-outline-secondary home-blog-cat-btn" data-category="performance" onclick="filterHomeBlog(this, 'category')">Оптимізація</button>
+        {{ $blogCats := .Site.Params.filters.blog.categories | default (slice (dict "id" "hugo" "name" "Hugo & SSG") (dict "id" "bootstrap" "name" "Bootstrap") (dict "id" "react" "name" "React") (dict "id" "performance" "name" "Оптимізація")) }}
+        {{ range $blogCats }}
+          {{ $cId := .id | default (.name | urlize) }}
+          {{ $cName := .name | default . }}
+          {{ if not (reflect.IsMap .) }}{{ $cId = . | urlize }}{{ $cName = . }}{{ end }}
+          <button type="button" class="btn btn-sm btn-outline-secondary home-blog-cat-btn" data-category="{{ $cId | lower }}" onclick="filterHomeBlog(this, 'category')">
+            {{ $cName }}
+          </button>
+        {{ end }}
       </div>
       <div class="d-flex flex-wrap align-items-center gap-1.5 pt-2 border-top">
         <span class="fw-semibold small text-body-secondary me-1">Теги:</span>
         <button type="button" class="btn btn-sm btn-dark home-blog-tag-btn active" data-tag="all" onclick="filterHomeBlog(this, 'tag')">
           Всі теги
         </button>
-        {{ $blogTags := slice "Hugo" "Bootstrap 5" "i18n" "React" "SSG" "CSS" }}
+        {{ $blogTags := .Site.Params.filters.blog.tags | default (slice "Hugo" "Bootstrap 5" "i18n" "React" "SSG" "CSS") }}
         {{ range $blogTags }}
           <button type="button" class="btn btn-sm btn-outline-secondary home-blog-tag-btn font-monospace" data-tag="{{ . | lower }}" onclick="filterHomeBlog(this, 'tag')">
             {{ . }}
@@ -709,7 +753,7 @@
                 <h5 class="card-title fw-bold">
                   <a href="{{ .Permalink }}" class="text-decoration-none text-body-emphasis">{{ .Title }}</a>
                 </h5>
-                <p class="card-text text-secondary small">{{ .Summary }}</p>
+                <p class="card-text text-secondary small">{{ .Params.summary | default .Summary | default .Description }}</p>
 
                 {{ if gt (len $bTags) 0 }}
                   <div class="d-flex flex-wrap gap-1 mt-3">
@@ -799,11 +843,11 @@
     function applyHomeBlogFilters() {
       const items = document.querySelectorAll('.home-blog-item');
       let visibleCount = 0;
-      const catClean = (homeBlogActiveCategory || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+      const catClean = cleanStrHome(homeBlogActiveCategory);
       const tagClean = (homeBlogActiveTag || '').toLowerCase().trim();
 
       items.forEach(item => {
-        const itemCat = (item.getAttribute('data-category') || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+        const itemCat = cleanStrHome(item.getAttribute('data-category'));
         const itemTags = (item.getAttribute('data-tags') || '').toLowerCase();
 
         const matchCat = (homeBlogActiveCategory === 'all' || itemCat.includes(catClean) || catClean.includes(itemCat));
