@@ -7,7 +7,7 @@ tags = ["3D", "Blender","Ehor"]
 draft = false
 image = "yehor-pirate-s-trophy.webp"
 +++
-
+ 
 An overview of artwork and 3D projects by 3D artist Yehor Kolodiazhnyi, featured on ArtStation.
 
 ![Yehor Kolodiazhnyi 3D Showcase](yehor-tbrender.webp)
