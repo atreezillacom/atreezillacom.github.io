@@ -1,4 +1,4 @@
----
++++
 author = "elkrot"
 title = "Portfolio: Єгора Колодяжного"
 date = 2026-12-11
@@ -6,7 +6,7 @@ category = "Blender & 3D"
 tags = ["3D", "Blender","Ehor"]
 draft = false
 image = "yehor-pirate-s-trophy.webp"
----
++++
 
 Огляд творчого доробку та 3D-проєктів 3D-художника Єгора Колодяжного (Yehor Kolodiazhnyi), презентованих на платформі ArtStation.
 
