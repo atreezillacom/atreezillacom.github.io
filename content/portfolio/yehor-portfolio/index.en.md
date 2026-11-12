@@ -1,14 +1,15 @@
 +++
 author = "elkrot"
 title = "Portfolio: Yehor Kolodiazhnyi"
-date = 2026-12-11
+date = "2026-12-11"
+description = "Portfolio: Єгора Колодяжного"
 category = "Blender & 3D"
 tags = ["3D", "Blender","Ehor"]
 draft = false
 image = "yehor-pirate-s-trophy.webp"
 +++
  
-An overview of artwork and 3D projects by 3D artist Yehor Kolodiazhnyi, featured on ArtStation.
+An overview of artwork and 3D projects by 3D artist Yehor Kolodiazhnyi, featured on ArtStation.<!--more-->
 
 ![Yehor Kolodiazhnyi 3D Showcase](yehor-tbrender.webp)
 

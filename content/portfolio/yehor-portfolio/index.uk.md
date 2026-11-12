@@ -1,14 +1,15 @@
 +++
 author = "elkrot"
 title = "Portfolio: Єгора Колодяжного"
-date = 2026-12-11
+date = "2026-11-12"
+description = "Portfolio: Єгора Колодяжного"
 category = "Blender & 3D"
 tags = ["3D", "Blender","Ehor"]
 draft = false
-image = "yehor-pirate-s-trophy.webp"
+image = "yehor-tbrender.webp"
 +++
 
-Огляд творчого доробку та 3D-проєктів 3D-художника Єгора Колодяжного (Yehor Kolodiazhnyi), презентованих на платформі ArtStation.
+Огляд творчого доробку та 3D-проєктів 3D-художника Єгора Колодяжного (Yehor Kolodiazhnyi), презентованих на платформі ArtStation.<!--more-->
 
 ![Таверна — 3D сценічний проєкт Єгора Колодяжного](ehor-tavern.jpg)
 
