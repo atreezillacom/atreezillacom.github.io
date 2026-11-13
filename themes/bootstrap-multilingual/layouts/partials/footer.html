@@ -5,6 +5,9 @@
       <span class="ms-2 opacity-75">Hugo + Bootstrap 5 + React Islands</span>
     </div>
     <div class="d-flex gap-3 mt-2 mt-md-0">
+      {{ $footerTagsUrl := "/tags/" | relLangURL }}
+      {{ with .Site.GetPage "/tags" }}{{ $footerTagsUrl = .RelPermalink }}{{ else }}{{ if .Site.Params.uglyURLs | default true }}{{ $footerTagsUrl = "/tags.html" | relLangURL }}{{ end }}{{ end }}
+      <a href="{{ $footerTagsUrl }}" class="text-secondary text-decoration-none font-monospace">#{{ i18n "tags" | default "Теги" }}</a>
       <a href="{{ "/contacts/" | relLangURL }}" class="text-secondary text-decoration-none">{{ i18n "nav_contacts" }}</a>
       {{ with .Site.Params.githubUrl }}
         <a href="{{ . }}" target="_blank" rel="noopener" class="text-secondary text-decoration-none">GitHub</a>

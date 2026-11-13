@@ -70,15 +70,54 @@
         {{ .Content }}
       </article>
 
-      <!-- Tags & Footer -->
-      {{ with .Params.tags }}
-        <div class="pt-4 border-top">
-          <div class="d-flex flex-wrap gap-2 align-items-center">
-            <span class="text-secondary small fw-bold">Tags:</span>
-            {{ range . }}
-              <span class="badge bg-body-secondary text-body border">{{ . }}</span>
-            {{ end }}
-          </div>
+      <!-- Tags, Stacks & Taxonomy Links -->
+      {{ $singleTags := slice }}
+      {{ range .GetTerms "tags" }}
+        {{ $singleTags = $singleTags | append (dict "name" .LinkTitle "url" .RelPermalink) }}
+      {{ end }}
+      {{ if not $singleTags }}
+        {{ range .Params.tags }}
+          {{ $tUrl := printf "/tags/%s/" (. | urlize) | relLangURL }}
+          {{ if $.Site.Params.uglyURLs | default true }}{{ $tUrl = printf "/tags/%s.html" (. | urlize) | relLangURL }}{{ end }}
+          {{ $singleTags = $singleTags | append (dict "name" . "url" $tUrl) }}
+        {{ end }}
+      {{ end }}
+      {{ $singleStacks := slice }}
+      {{ range .GetTerms "stacks" }}
+        {{ $singleStacks = $singleStacks | append (dict "name" .LinkTitle "url" .RelPermalink) }}
+      {{ end }}
+      {{ if not $singleStacks }}
+        {{ range .Params.stack }}
+          {{ $sUrl := printf "/stacks/%s/" (. | urlize) | relLangURL }}
+          {{ if $.Site.Params.uglyURLs | default true }}{{ $sUrl = printf "/stacks/%s.html" (. | urlize) | relLangURL }}{{ end }}
+          {{ $singleStacks = $singleStacks | append (dict "name" . "url" $sUrl) }}
+        {{ end }}
+      {{ end }}
+      {{ $allTagsUrl := "/tags/" | relLangURL }}
+      {{ with .Site.GetPage "/tags" }}{{ $allTagsUrl = .RelPermalink }}{{ else }}{{ if $.Site.Params.uglyURLs | default true }}{{ $allTagsUrl = "/tags.html" | relLangURL }}{{ end }}{{ end }}
+      {{ if or (gt (len $singleTags) 0) (gt (len $singleStacks) 0) }}
+        <div class="pt-4 border-top d-flex flex-column gap-2">
+          {{ if gt (len $singleTags) 0 }}
+            <div class="d-flex flex-wrap gap-2 align-items-center">
+              <span class="text-secondary small fw-bold">{{ i18n "tags" | default "Теги" }}:</span>
+              {{ range $singleTags }}
+                <a href="{{ .url }}" class="badge bg-body-secondary text-body text-decoration-none border px-2.5 py-1.5 font-monospace hover-shadow" title="Переглянути всі записи з тегом #{{ .name }}">
+                  #{{ .name }}
+                </a>
+              {{ end }}
+              <a href="{{ $allTagsUrl }}" class="small text-primary text-decoration-none ms-2">{{ i18n "all_tags" | default "Усі теги" }} &rarr;</a>
+            </div>
+          {{ end }}
+          {{ if gt (len $singleStacks) 0 }}
+            <div class="d-flex flex-wrap gap-2 align-items-center">
+              <span class="text-secondary small fw-bold">Стек:</span>
+              {{ range $singleStacks }}
+                <a href="{{ .url }}" class="badge bg-primary-subtle text-primary text-decoration-none border border-primary-subtle px-2.5 py-1.5 font-monospace" title="Проекти на {{ .name }}">
+                  {{ .name }}
+                </a>
+              {{ end }}
+            </div>
+          {{ end }}
         </div>
       {{ end }}
     </div>

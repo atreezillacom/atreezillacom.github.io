@@ -8,12 +8,12 @@ tags = ["BIM", "Archicad"]
 draft = false
 image = "leksei-portfolio.webp"
 +++
-In modern construction and interior design, high-quality 3D rendering is only half the battle. The key to executing any interior project "exactly as envisioned" is a technically sound, thoroughly detailed set of working drawings. This article provides an overview of the portfolio of **Oleksii Kolodiazhnyi**, a specialist in working documentation and procurement, focused on building fast and accurate BIM models.
+This article provides an overview of the portfolio of **Oleksii Kolodiazhnyi**, a specialist in working documentation and procurement, focused on building fast and accurate BIM models.
 <!--more-->
 {{</* pdf src="oleksii-portfolio.pdf" title="Portfolio: Олексія Колодяжного" height="650px" */>}}
 # Working Documentation Portfolio: Comprehensive Interior Design Projects in ArchiCAD (2025–2026)
 
-
+In modern construction and interior design, high-quality 3D rendering is only half the battle. The key to executing any interior project "exactly as envisioned" is a technically sound, thoroughly detailed set of working drawings. 
 
 ## About the Specialist & Key Skills
 

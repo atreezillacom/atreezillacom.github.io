@@ -1,7 +1,7 @@
 +++
 author = "elkrot"
 title = "Portfolio: Yehor Kolodiazhnyi"
-date = "2026-12-11"
+date = "2026-11-12"
 description = "Portfolio: Єгора Колодяжного"
 category = "Blender & 3D"
 tags = ["3D", "Blender","Ehor"]

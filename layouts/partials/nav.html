@@ -3,7 +3,7 @@
     <!-- Zone 1: Brand Logo & Wordmark -->
     <a class="navbar-brand d-flex align-items-center gap-2 fw-bold tracking-tight text-body-emphasis" href="{{ "/" | relLangURL }}">
       <img src="{{ "logo.webp" | relURL }}" alt="{{ .Site.Title }}" class="img-fluid" style="max-height: 40px; width: auto; object-fit: contain;">
-      
+     
     </a>
 
     <!-- Mobile Toggler -->
@@ -32,6 +32,13 @@
         <li class="nav-item">
           <a class="nav-link {{ if eq .Section "blog" }}active fw-semibold text-primary{{ end }}" href="{{ "/blog/" | relLangURL }}">
             {{ i18n "nav_blog" }}
+          </a>
+        </li>
+        {{ $navTagsUrl := "/tags/" | relLangURL }}
+        {{ with .Site.GetPage "/tags" }}{{ $navTagsUrl = .RelPermalink }}{{ else }}{{ if .Site.Params.uglyURLs | default true }}{{ $navTagsUrl = "/tags.html" | relLangURL }}{{ end }}{{ end }}
+        <li class="nav-item">
+          <a class="nav-link {{ if eq .Data.Plural "tags" }}active fw-semibold text-primary{{ end }}" href="{{ $navTagsUrl }}">
+            #{{ i18n "tags" | default "Теги" }}
           </a>
         </li>
         <li class="nav-item">

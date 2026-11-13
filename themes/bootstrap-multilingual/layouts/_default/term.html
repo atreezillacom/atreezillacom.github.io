@@ -1,29 +1,98 @@
 {{ define "main" }}
 <div class="container py-5">
-  <div class="mb-4 pb-3 border-bottom">
-    <div class="text-primary small text-uppercase fw-semibold mb-1">
-      {{ .Data.Singular | upper }}
+  {{ $parentUrl := "/tags/" | relLangURL }}
+  {{ with .Parent }}{{ $parentUrl = .RelPermalink }}{{ else }}{{ if $.Site.Params.uglyURLs | default true }}{{ $parentUrl = "/tags.html" | relLangURL }}{{ end }}{{ end }}
+  {{ $pagesCount := 0 }}
+  {{ with .Pages }}{{ $pagesCount = len . }}{{ end }}
+
+  <div class="mb-4 pb-3 border-bottom d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3">
+    <div>
+      <div class="text-primary small text-uppercase fw-semibold mb-1">
+        {{ with .Data.Singular }}{{ . | upper }} · {{ end }}{{ $pagesCount }}
+      </div>
+      <h1 class="display-5 fw-bold text-body-emphasis mb-2">#{{ .Title }}</h1>
+      <p class="lead text-secondary mb-0">Всі матеріали з тегом «{{ .Title }}» / All content tagged with «{{ .Title }}»</p>
     </div>
-    <h1 class="display-5 fw-bold text-body-emphasis mb-2">#{{ .Title }}</h1>
-    <p class="lead text-secondary">Всі матеріали з цим тегом / All content tagged with «{{ .Title }}»</p>
+    <a href="{{ $parentUrl }}" class="btn btn-sm btn-outline-secondary">
+      &larr; {{ i18n "all_tags" | default "Усі теги" }}
+    </a>
   </div>
 
+  {{ $currentTerm := .Title | lower }}
   <div class="row g-4">
     {{ range .Pages }}
       <div class="col-md-6 col-lg-4">
         <div class="card h-100 border shadow-sm">
+          {{ $pItem := . }}
+          {{ $termImg := "" }}
           {{ with .Params.image }}
+            {{ with $pItem.Resources.GetMatch . }}
+              {{ $termImg = .RelPermalink }}
+            {{ else }}
+              {{ with $pItem.Resources.GetMatch (path.Base .) }}
+                {{ $termImg = .RelPermalink }}
+              {{ else }}
+                {{ with $pItem.Resources.GetMatch (printf "*%s*" (path.Base .)) }}
+                  {{ $termImg = .RelPermalink }}
+                {{ else }}
+                  {{ if or (hasPrefix . "http://") (hasPrefix . "https://") }}
+                    {{ $termImg = . }}
+                  {{ else }}
+                    {{ $termImg = . | relURL }}
+                  {{ end }}
+                {{ end }}
+              {{ end }}
+            {{ end }}
+          {{ else }}
+            {{ with .Resources.GetMatch "*cover*" }}
+              {{ $termImg = .RelPermalink }}
+            {{ else }}
+              {{ with .Resources.GetMatch "*feature*" }}
+                {{ $termImg = .RelPermalink }}
+              {{ end }}
+            {{ end }}
+          {{ end }}
+          {{ if not $termImg }}
+            {{ with index (.Resources.ByType "image") 0 }}
+              {{ $termImg = .RelPermalink }}
+            {{ end }}
+          {{ end }}
+          {{ with $termImg }}
             <div class="card-img-wrapper">
-              <img src="{{ . | relURL }}" class="card-img-top" alt="{{ $.Title }}" loading="lazy">
+              <img src="{{ . }}" class="card-img-top" alt="{{ $pItem.Title }}" loading="lazy">
             </div>
           {{ end }}
           <div class="card-body d-flex flex-column justify-content-between">
             <div>
-              <div class="text-muted small mb-2">{{ .Date.Format "02 Jan 2006" }}</div>
+              <div class="text-muted small mb-2 d-flex flex-wrap align-items-center gap-1">
+                <span class="badge bg-primary-subtle text-primary text-uppercase font-monospace">{{ .Section }}</span>
+                {{ with .Params.category }}<span class="badge bg-secondary-subtle text-secondary me-1">{{ . }}</span>{{ end }}
+                <span>{{ .Date.Format "02 Jan 2006" }}</span>
+              </div>
               <h5 class="card-title fw-bold">
                 <a href="{{ .Permalink }}" class="text-decoration-none text-body-emphasis">{{ .Title }}</a>
               </h5>
-              <p class="card-text text-secondary small mt-2">{{ .Summary }}</p>
+              <p class="card-text text-secondary small mt-2">{{ .Params.summary | default .Summary | default .Description }}</p>
+
+              {{ $cardTags := slice }}
+              {{ range .GetTerms "tags" }}
+                {{ $cardTags = $cardTags | append (dict "name" .LinkTitle "url" .RelPermalink) }}
+              {{ end }}
+              {{ if not $cardTags }}
+                {{ range .Params.tags }}
+                  {{ $tUrl := printf "/tags/%s/" (. | urlize) | relLangURL }}
+                  {{ if $.Site.Params.uglyURLs | default true }}{{ $tUrl = printf "/tags/%s.html" (. | urlize) | relLangURL }}{{ end }}
+                  {{ $cardTags = $cardTags | append (dict "name" . "url" $tUrl) }}
+                {{ end }}
+              {{ end }}
+              {{ if gt (len $cardTags) 0 }}
+                <div class="d-flex flex-wrap gap-1 mt-2">
+                  {{ range $cardTags }}
+                    {{ $isActiveTerm := eq (.name | lower) $currentTerm }}
+                    <a href="{{ .url }}" class="badge {{ if $isActiveTerm }}bg-primary text-white{{ else }}bg-body-secondary text-body{{ end }} text-decoration-none border font-monospace">#{{ .name }}</a>
+                  {{ end }}
+                </div>
+              {{ end }}
             </div>
             <div class="mt-3 pt-3 border-top d-flex justify-content-between align-items-center">
               <a href="{{ .Permalink }}" class="text-primary text-decoration-none fw-semibold small">

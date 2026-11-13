@@ -12,20 +12,26 @@
   </div>
 
   <!-- Interactive Filter Toolbar (Adapts to Portfolio, Posts, Life, Blog from .Site.Params.filters) -->
+  {{ $listTagsUrl := "/tags/" | relLangURL }}
+  {{ with .Site.GetPage "/tags" }}{{ $listTagsUrl = .RelPermalink }}{{ else }}{{ if .Site.Params.uglyURLs | default true }}{{ $listTagsUrl = "/tags.html" | relLangURL }}{{ end }}{{ end }}
+
   {{ if eq .Section "portfolio" }}
   <div class="card p-3 mb-4 border bg-body-tertiary shadow-sm">
-    <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
-      <span class="fw-semibold small text-body-secondary me-1">Категорії:</span>
-      <button type="button" class="btn btn-sm btn-primary active portfolio-cat-btn" data-category="all" onclick="filterPortfolio(this, 'category')">
-        {{ i18n "filter_all" }}
-      </button>
-      {{ $portCats := .Site.Params.filters.portfolio.categories | default (slice (dict "id" "frontend" "name" "Frontend") (dict "id" "backend" "name" "Backend") (dict "id" "python-ai" "name" "Python & AI") (dict "id" "fullstack" "name" "Fullstack") (dict "id" "cloud-devops" "name" "Cloud & DevOps") (dict "id" "mobile" "name" "Mobile")) }}
-      {{ range $portCats }}
-        {{ $cId := .id | default (.name | urlize) }}
-        {{ $cName := .name | default . }}
-        {{ if not (reflect.IsMap .) }}{{ $cId = . | urlize }}{{ $cName = . }}{{ end }}
-        <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="{{ $cId | lower }}" onclick="filterPortfolio(this, 'category')">{{ $cName }}</button>
-      {{ end }}
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+      <div class="d-flex flex-wrap align-items-center gap-2">
+        <span class="fw-semibold small text-body-secondary me-1">Категорії:</span>
+        <button type="button" class="btn btn-sm btn-primary active portfolio-cat-btn" data-category="all" onclick="filterPortfolio(this, 'category')">
+          {{ i18n "filter_all" | default "Всі" }}
+        </button>
+        {{ $portCats := .Site.Params.filters.portfolio.categories | default (slice (dict "id" "frontend" "name" "Frontend") (dict "id" "backend" "name" "Backend") (dict "id" "python-ai" "name" "Python & AI") (dict "id" "fullstack" "name" "Fullstack") (dict "id" "cloud-devops" "name" "Cloud & DevOps") (dict "id" "mobile" "name" "Mobile")) }}
+        {{ range $portCats }}
+          {{ $cId := .id | default (.name | urlize) }}
+          {{ $cName := .name | default . }}
+          {{ if not (reflect.IsMap .) }}{{ $cId = . | urlize }}{{ $cName = . }}{{ end }}
+          <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="{{ $cId | lower }}" onclick="filterPortfolio(this, 'category')">{{ $cName }}</button>
+        {{ end }}
+      </div>
+      <a href="{{ $listTagsUrl }}" class="small text-decoration-none font-monospace">#{{ i18n "all_tags" | default "Усі теги" }} &rarr;</a>
     </div>
     <div class="d-flex flex-wrap align-items-center gap-1.5 pt-2 border-top">
       <span class="fw-semibold small text-body-secondary me-1">Стек:</span>
@@ -35,72 +41,101 @@
         <button type="button" class="btn btn-sm btn-outline-secondary portfolio-stack-btn font-monospace" data-stack="{{ . | lower }}" onclick="filterPortfolio(this, 'stack')">{{ . }}</button>
       {{ end }}
     </div>
+    <div id="listActiveFilterBar" class="d-none align-items-center gap-2 pt-2 mt-2 border-top small">
+      <span class="text-body-secondary">Активний фільтр:</span>
+      <span id="listActiveFilterLabel" class="badge bg-dark font-monospace"></span>
+      <button type="button" class="btn btn-link btn-sm text-danger p-0 text-decoration-none" onclick="resetPortfolioFilters()">Скинути ×</button>
+    </div>
   </div>
   {{ else if eq .Section "posts" }}
   <div class="card p-3 mb-4 border bg-body-tertiary shadow-sm">
-    <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
-      <span class="fw-semibold small text-body-secondary me-1">Категорії:</span>
-      <button type="button" class="btn btn-sm btn-primary active portfolio-cat-btn" data-category="all" onclick="filterPortfolio(this, 'category')">{{ i18n "filter_all" }}</button>
-      {{ $postsCats := .Site.Params.filters.posts.categories | default (slice (dict "id" "csharp" "name" "C# & .NET") (dict "id" "architecture" "name" "Архітектура") (dict "id" "devops" "name" "DevOps") (dict "id" "backend" "name" "Backend") (dict "id" "frontend" "name" "Frontend")) }}
-      {{ range $postsCats }}
-        {{ $cId := .id | default (.name | urlize) }}
-        {{ $cName := .name | default . }}
-        {{ if not (reflect.IsMap .) }}{{ $cId = . | urlize }}{{ $cName = . }}{{ end }}
-        <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="{{ $cId | lower }}" onclick="filterPortfolio(this, 'category')">{{ $cName }}</button>
-      {{ end }}
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+      <div class="d-flex flex-wrap align-items-center gap-2">
+        <span class="fw-semibold small text-body-secondary me-1">Категорії:</span>
+        <button type="button" class="btn btn-sm btn-primary active portfolio-cat-btn" data-category="all" onclick="filterPortfolio(this, 'category')">{{ i18n "filter_all" | default "Всі" }}</button>
+        {{ $postsCats := .Site.Params.filters.posts.categories | default (slice (dict "id" "csharp" "name" "C# & .NET") (dict "id" "architecture" "name" "Архітектура") (dict "id" "devops" "name" "DevOps") (dict "id" "backend" "name" "Backend") (dict "id" "frontend" "name" "Frontend")) }}
+        {{ range $postsCats }}
+          {{ $cId := .id | default (.name | urlize) }}
+          {{ $cName := .name | default . }}
+          {{ if not (reflect.IsMap .) }}{{ $cId = . | urlize }}{{ $cName = . }}{{ end }}
+          <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="{{ $cId | lower }}" onclick="filterPortfolio(this, 'category')">{{ $cName }}</button>
+        {{ end }}
+      </div>
+      <a href="{{ $listTagsUrl }}" class="small text-decoration-none font-monospace">#{{ i18n "all_tags" | default "Усі теги" }} &rarr;</a>
     </div>
     <div class="d-flex flex-wrap align-items-center gap-1.5 pt-2 border-top">
       <span class="fw-semibold small text-body-secondary me-1">Теги:</span>
       <button type="button" class="btn btn-sm btn-dark portfolio-stack-btn active" data-stack="all" onclick="filterPortfolio(this, 'stack')">Всі теги</button>
       {{ $pTags := .Site.Params.filters.posts.tags | default (slice "C#" ".NET" "Go" "Kubernetes" "Docker" "Python" "Linux" "TypeScript" "Architecture") }}
       {{ range $pTags }}
-        <button type="button" class="btn btn-sm btn-outline-secondary portfolio-stack-btn font-monospace" data-stack="{{ . | lower }}" onclick="filterPortfolio(this, 'stack')">{{ . }}</button>
+        <button type="button" class="btn btn-sm btn-outline-secondary portfolio-stack-btn font-monospace" data-stack="{{ . | lower }}" onclick="filterPortfolio(this, 'stack')">#{{ . }}</button>
       {{ end }}
+    </div>
+    <div id="listActiveFilterBar" class="d-none align-items-center gap-2 pt-2 mt-2 border-top small">
+      <span class="text-body-secondary">Активний фільтр:</span>
+      <span id="listActiveFilterLabel" class="badge bg-dark font-monospace"></span>
+      <button type="button" class="btn btn-link btn-sm text-danger p-0 text-decoration-none" onclick="resetPortfolioFilters()">Скинути ×</button>
     </div>
   </div>
   {{ else if eq .Section "life" }}
   <div class="card p-3 mb-4 border bg-body-tertiary shadow-sm">
-    <div class="d-flex flex-wrap align-items-center gap-2">
-      <span class="fw-semibold small text-body-secondary me-1">Розділи:</span>
-      <button type="button" class="btn btn-sm btn-primary active portfolio-cat-btn" data-category="all" onclick="filterPortfolio(this, 'category')">{{ i18n "filter_all" }}</button>
-      {{ $lifeCats := .Site.Params.filters.life.categories | default (slice (dict "id" "family" "name" "Сім'я") (dict "id" "wife" "name" "Дружина") (dict "id" "kids" "name" "Діти") (dict "id" "travel" "name" "Подорожі") (dict "id" "hobbies" "name" "Хоббі")) }}
-      {{ range $lifeCats }}
-        {{ $cId := .id | default (.name | urlize) }}
-        {{ $cName := .name | default . }}
-        {{ if not (reflect.IsMap .) }}{{ $cId = . | urlize }}{{ $cName = . }}{{ end }}
-        <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="{{ $cId | lower }}" onclick="filterPortfolio(this, 'category')">{{ $cName }}</button>
-      {{ end }}
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+      <div class="d-flex flex-wrap align-items-center gap-2">
+        <span class="fw-semibold small text-body-secondary me-1">Розділи:</span>
+        <button type="button" class="btn btn-sm btn-primary active portfolio-cat-btn" data-category="all" onclick="filterPortfolio(this, 'category')">{{ i18n "filter_all" | default "Всі" }}</button>
+        {{ $lifeCats := .Site.Params.filters.life.categories | default (slice (dict "id" "family" "name" "Сім'я") (dict "id" "wife" "name" "Дружина") (dict "id" "kids" "name" "Діти") (dict "id" "travel" "name" "Подорожі") (dict "id" "hobbies" "name" "Хоббі")) }}
+        {{ range $lifeCats }}
+          {{ $cId := .id | default (.name | urlize) }}
+          {{ $cName := .name | default . }}
+          {{ if not (reflect.IsMap .) }}{{ $cId = . | urlize }}{{ $cName = . }}{{ end }}
+          <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="{{ $cId | lower }}" onclick="filterPortfolio(this, 'category')">{{ $cName }}</button>
+        {{ end }}
+      </div>
+      <a href="{{ $listTagsUrl }}" class="small text-decoration-none font-monospace">#{{ i18n "all_tags" | default "Усі теги" }} &rarr;</a>
     </div>
     {{ with .Site.Params.filters.life.tags }}
     <div class="d-flex flex-wrap align-items-center gap-1.5 pt-2 border-top mt-2">
       <span class="fw-semibold small text-body-secondary me-1">Теги:</span>
       <button type="button" class="btn btn-sm btn-dark portfolio-stack-btn active" data-stack="all" onclick="filterPortfolio(this, 'stack')">Всі теги</button>
       {{ range . }}
-        <button type="button" class="btn btn-sm btn-outline-secondary portfolio-stack-btn font-monospace" data-stack="{{ . | lower }}" onclick="filterPortfolio(this, 'stack')">{{ . }}</button>
+        <button type="button" class="btn btn-sm btn-outline-secondary portfolio-stack-btn font-monospace" data-stack="{{ . | lower }}" onclick="filterPortfolio(this, 'stack')">#{{ . }}</button>
       {{ end }}
     </div>
     {{ end }}
+    <div id="listActiveFilterBar" class="d-none align-items-center gap-2 pt-2 mt-2 border-top small">
+      <span class="text-body-secondary">Активний фільтр:</span>
+      <span id="listActiveFilterLabel" class="badge bg-dark font-monospace"></span>
+      <button type="button" class="btn btn-link btn-sm text-danger p-0 text-decoration-none" onclick="resetPortfolioFilters()">Скинути ×</button>
+    </div>
   </div>
   {{ else if eq .Section "blog" }}
   <div class="card p-3 mb-4 border bg-body-tertiary shadow-sm">
-    <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
-      <span class="fw-semibold small text-body-secondary me-1">Теми:</span>
-      <button type="button" class="btn btn-sm btn-primary active portfolio-cat-btn" data-category="all" onclick="filterPortfolio(this, 'category')">{{ i18n "filter_all" }}</button>
-      {{ $blogCats := .Site.Params.filters.blog.categories | default (slice (dict "id" "hugo" "name" "Hugo & SSG") (dict "id" "bootstrap" "name" "Bootstrap") (dict "id" "react" "name" "React") (dict "id" "performance" "name" "Оптимізація")) }}
-      {{ range $blogCats }}
-        {{ $cId := .id | default (.name | urlize) }}
-        {{ $cName := .name | default . }}
-        {{ if not (reflect.IsMap .) }}{{ $cId = . | urlize }}{{ $cName = . }}{{ end }}
-        <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="{{ $cId | lower }}" onclick="filterPortfolio(this, 'category')">{{ $cName }}</button>
-      {{ end }}
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+      <div class="d-flex flex-wrap align-items-center gap-2">
+        <span class="fw-semibold small text-body-secondary me-1">Теми:</span>
+        <button type="button" class="btn btn-sm btn-primary active portfolio-cat-btn" data-category="all" onclick="filterPortfolio(this, 'category')">{{ i18n "filter_all" | default "Всі" }}</button>
+        {{ $blogCats := .Site.Params.filters.blog.categories | default (slice (dict "id" "hugo" "name" "Hugo & SSG") (dict "id" "bootstrap" "name" "Bootstrap") (dict "id" "react" "name" "React") (dict "id" "performance" "name" "Оптимізація")) }}
+        {{ range $blogCats }}
+          {{ $cId := .id | default (.name | urlize) }}
+          {{ $cName := .name | default . }}
+          {{ if not (reflect.IsMap .) }}{{ $cId = . | urlize }}{{ $cName = . }}{{ end }}
+          <button type="button" class="btn btn-sm btn-outline-secondary portfolio-cat-btn" data-category="{{ $cId | lower }}" onclick="filterPortfolio(this, 'category')">{{ $cName }}</button>
+        {{ end }}
+      </div>
+      <a href="{{ $listTagsUrl }}" class="small text-decoration-none font-monospace">#{{ i18n "all_tags" | default "Усі теги" }} &rarr;</a>
     </div>
     <div class="d-flex flex-wrap align-items-center gap-1.5 pt-2 border-top">
       <span class="fw-semibold small text-body-secondary me-1">Теги:</span>
       <button type="button" class="btn btn-sm btn-dark portfolio-stack-btn active" data-stack="all" onclick="filterPortfolio(this, 'stack')">Всі теги</button>
       {{ $bTags := .Site.Params.filters.blog.tags | default (slice "Hugo" "Bootstrap 5" "i18n" "React" "SSG" "CSS") }}
       {{ range $bTags }}
-        <button type="button" class="btn btn-sm btn-outline-secondary portfolio-stack-btn font-monospace" data-stack="{{ . | lower }}" onclick="filterPortfolio(this, 'stack')">{{ . }}</button>
+        <button type="button" class="btn btn-sm btn-outline-secondary portfolio-stack-btn font-monospace" data-stack="{{ . | lower }}" onclick="filterPortfolio(this, 'stack')">#{{ . }}</button>
       {{ end }}
+    </div>
+    <div id="listActiveFilterBar" class="d-none align-items-center gap-2 pt-2 mt-2 border-top small">
+      <span class="text-body-secondary">Активний фільтр:</span>
+      <span id="listActiveFilterLabel" class="badge bg-dark font-monospace"></span>
+      <button type="button" class="btn btn-link btn-sm text-danger p-0 text-decoration-none" onclick="resetPortfolioFilters()">Скинути ×</button>
     </div>
   </div>
   {{ end }}
@@ -119,10 +154,19 @@
   <!-- Cards Grid -->
   <div class="row g-4" id="portfolioGrid">
     {{ range $paginator.Pages }}
+      {{ $itemCats := slice }}
+      {{ with .Params.category }}{{ $itemCats = $itemCats | append . }}{{ end }}
+      {{ range .Params.categories }}{{ $itemCats = $itemCats | append . }}{{ end }}
+      {{ $itemCats = $itemCats | uniq }}
+
       {{ $cardTech := slice }}
-      {{ with .Params.stack }}{{ $cardTech = $cardTech | append . }}{{ end }}
-      {{ with .Params.tags }}{{ $cardTech = $cardTech | append . }}{{ end }}
-      <div class="col-md-6 col-lg-4 portfolio-item" data-category="{{ .Params.category | default "" }}" data-stack="{{ delimit $cardTech " " | lower }}">
+      {{ range .Params.stack }}{{ $cardTech = $cardTech | append . }}{{ end }}
+      {{ range .Params.tags }}{{ $cardTech = $cardTech | append . }}{{ end }}
+      {{ if not $cardTech }}
+        {{ range .GetTerms "tags" }}{{ $cardTech = $cardTech | append .LinkTitle }}{{ end }}
+      {{ end }}
+      {{ $cardTech = $cardTech | uniq }}
+      <div class="col-md-6 col-lg-4 portfolio-item" data-category="|{{ delimit $itemCats "|" | lower }}|" data-stack="|{{ delimit $cardTech "|" | lower }}|">
         <div class="card h-100 border shadow-sm">
           {{ $pItem := . }}
           {{ $listImg := "" }}
@@ -166,7 +210,7 @@
           <div class="card-body d-flex flex-column justify-content-between">
             <div>
               <div class="text-muted small mb-2 d-flex flex-wrap align-items-center gap-1">
-                {{ with .Params.category }}<span class="badge bg-secondary-subtle text-secondary me-1">{{ . }}</span>{{ end }}
+                {{ range $itemCats }}<span class="badge bg-secondary-subtle text-secondary me-1">{{ . }}</span>{{ end }}
                 <span>{{ .Date.Format "2006-01-02" }}</span>
               </div>
               <h4 class="card-title fw-bold">
@@ -177,7 +221,7 @@
               {{ if gt (len $cardTech) 0 }}
                 <div class="d-flex flex-wrap gap-1 mt-3">
                   {{ range $cardTech }}
-                    <span class="badge bg-body-secondary text-body font-monospace" style="cursor:pointer;" onclick="filterBySingleStack('{{ . | lower }}')" title="Фільтрувати за цим стеком">{{ . }}</span>
+                    <span class="badge bg-body-secondary text-body font-monospace" style="cursor:pointer;" onclick="filterBySingleStack('{{ . | lower }}')" title="Фільтрувати за тегом #{{ . }}">#{{ . }}</span>
                   {{ end }}
                 </div>
               {{ end }}
@@ -198,7 +242,7 @@
   </div>
 
   <div id="noResultsNotice" class="col-12 py-5 text-center text-muted" style="display:none;">
-    <p class="lead">Не знайдено проектів за обраними критеріями стеку.</p>
+    <p class="lead">Не знайдено записів за обраними критеріями категорії або тегів.</p>
     <button type="button" class="btn btn-sm btn-outline-primary" onclick="resetPortfolioFilters()">Скинути фільтри</button>
   </div>
 
@@ -272,71 +316,69 @@
     return (s || '').toString().toLowerCase().trim().replace(/[-\s_]+/g, '');
   }
 
+  function parsePipeList(val) {
+    return (val || '').toString().toLowerCase().split('|').map(function(v) { return v.trim(); }).filter(Boolean);
+  }
+
+  function matchCategoryPipe(rawCat, activeCat) {
+    if (activeCat === 'all') return true;
+    const catClean = cleanStr(activeCat);
+    if (!catClean) return true;
+    const catList = parsePipeList(rawCat).map(cleanStr).filter(Boolean);
+    return catList.some(function(c) { return c === catClean || c.includes(catClean) || catClean.includes(c); });
+  }
+
+  function syncToolbarButtons() {
+    document.querySelectorAll('.portfolio-cat-btn').forEach(b => {
+      const isMatch = (b.getAttribute('data-category') || 'all').toLowerCase().trim() === activeCategory;
+      b.classList.toggle('btn-primary', isMatch);
+      b.classList.toggle('active', isMatch);
+      b.classList.toggle('btn-outline-secondary', !isMatch);
+    });
+    document.querySelectorAll('.portfolio-stack-btn').forEach(b => {
+      const bStack = (b.getAttribute('data-stack') || 'all').toLowerCase().trim();
+      const isMatch = bStack === activeStack;
+      b.classList.toggle('btn-dark', isMatch);
+      b.classList.toggle('active', isMatch);
+      b.classList.toggle('btn-outline-secondary', !isMatch);
+    });
+  }
+
   function filterPortfolio(btn, type) {
     if (type === 'category') {
-      activeCategory = btn.getAttribute('data-category') || 'all';
-      document.querySelectorAll('.portfolio-cat-btn').forEach(b => {
-        b.classList.remove('btn-primary', 'active');
-        b.classList.add('btn-outline-secondary');
-      });
-      btn.classList.remove('btn-outline-secondary');
-      btn.classList.add('btn-primary', 'active');
+      const nextCat = (btn.getAttribute('data-category') || 'all').toLowerCase().trim();
+      activeCategory = (nextCat !== 'all' && nextCat === activeCategory) ? 'all' : nextCat;
     } else if (type === 'stack') {
-      activeStack = btn.getAttribute('data-stack') || 'all';
-      document.querySelectorAll('.portfolio-stack-btn').forEach(b => {
-        b.classList.remove('btn-dark', 'active');
-        b.classList.add('btn-outline-secondary');
-      });
-      btn.classList.remove('btn-outline-secondary');
-      btn.classList.add('btn-dark', 'active');
+      const nextStack = (btn.getAttribute('data-stack') || 'all').toLowerCase().trim();
+      activeStack = (nextStack !== 'all' && nextStack === activeStack) ? 'all' : nextStack;
     }
-
+    syncToolbarButtons();
     applyFilters();
   }
 
   function filterBySingleStack(stackName) {
-    activeStack = (stackName || '').toLowerCase().trim();
-    document.querySelectorAll('.portfolio-stack-btn').forEach(b => {
-      const bStack = (b.getAttribute('data-stack') || '').toLowerCase().trim();
-      if (bStack === activeStack) {
-        b.classList.remove('btn-outline-secondary');
-        b.classList.add('btn-dark', 'active');
-      } else {
-        b.classList.remove('btn-dark', 'active');
-        b.classList.add('btn-outline-secondary');
-      }
-    });
+    const normalized = (stackName || '').toLowerCase().trim();
+    activeStack = (normalized && normalized === activeStack) ? 'all' : (normalized || 'all');
+    syncToolbarButtons();
     applyFilters();
   }
 
   function resetPortfolioFilters() {
     activeCategory = 'all';
     activeStack = 'all';
-    document.querySelectorAll('.portfolio-cat-btn').forEach((b, i) => {
-      b.classList.toggle('btn-primary', i === 0);
-      b.classList.toggle('active', i === 0);
-      b.classList.toggle('btn-outline-secondary', i !== 0);
-    });
-    document.querySelectorAll('.portfolio-stack-btn').forEach((b, i) => {
-      b.classList.toggle('btn-dark', i === 0);
-      b.classList.toggle('active', i === 0);
-      b.classList.toggle('btn-outline-secondary', i !== 0);
-    });
+    syncToolbarButtons();
     applyFilters();
   }
 
   function applyFilters() {
     const items = document.querySelectorAll('.portfolio-item');
     let visibleCount = 0;
-    const catClean = cleanStr(activeCategory);
     const stackClean = (activeStack || '').toLowerCase().trim();
 
     items.forEach(item => {
-      const itemCat = cleanStr(item.getAttribute('data-category'));
-      const itemStack = (item.getAttribute('data-stack') || '').toLowerCase();
-
-      const matchCat = (activeCategory === 'all' || itemCat.includes(catClean) || catClean.includes(itemCat));
-      const matchStack = (activeStack === 'all' || itemStack.includes(stackClean));
+      const matchCat = matchCategoryPipe(item.getAttribute('data-category'), activeCategory);
+      const stackList = parsePipeList(item.getAttribute('data-stack'));
+      const matchStack = (activeStack === 'all' || stackList.includes(stackClean));
 
       if (matchCat && matchStack) {
         item.style.display = '';
@@ -346,17 +388,40 @@
       }
     });
 
+    const activeBar = document.getElementById('listActiveFilterBar');
+    const activeLabel = document.getElementById('listActiveFilterLabel');
+    if (activeBar && activeLabel) {
+      if (activeStack !== 'all' || activeCategory !== 'all') {
+        const parts = [];
+        if (activeCategory !== 'all') parts.push(activeCategory);
+        if (activeStack !== 'all') parts.push('#' + activeStack);
+        activeLabel.textContent = parts.join(' · ');
+        activeBar.classList.remove('d-none');
+        activeBar.classList.add('d-flex');
+      } else {
+        activeBar.classList.add('d-none');
+        activeBar.classList.remove('d-flex');
+      }
+    }
+
     const noResults = document.getElementById('noResultsNotice');
     if (noResults) {
       noResults.style.display = visibleCount === 0 ? 'block' : 'none';
     }
-
-    console.log('[Portfolio Filter] Applied:', {
-      category: activeCategory,
-      stack: activeStack,
-      totalItems: items.length,
-      visibleItems: visibleCount
-    });
   }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const qTag = params.get('tag') || params.get('stack');
+      const qCat = params.get('category');
+      if (qCat) activeCategory = qCat.toLowerCase().trim();
+      if (qTag) activeStack = qTag.toLowerCase().trim();
+      if (qCat || qTag) {
+        syncToolbarButtons();
+        applyFilters();
+      }
+    } catch (e) {}
+  });
 </script>
 {{ end }}

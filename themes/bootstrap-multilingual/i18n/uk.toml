@@ -49,5 +49,17 @@ other = "Публікації"
 [nav_blog]
 other = "Блог"
 
+[nav_contacts]
+other = "Контакти"
+
+[tags]
+other = "Теги"
+
+[all_tags]
+other = "Усі теги"
+
 [filter_all]
 other = "Всі"
+
+[reset_filters]
+other = "Скинути фільтри"

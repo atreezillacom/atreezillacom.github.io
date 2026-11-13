@@ -1,0 +1,80 @@
+{{ define "main" }}
+<div class="container py-5">
+  {{ $termsCount := 0 }}
+  {{ with .Data.Terms }}{{ $termsCount = len . }}{{ end }}
+  <div class="mb-4 pb-3 border-bottom d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3">
+    <div>
+      <h1 class="display-5 fw-bold text-body-emphasis mb-2">#{{ .Title }}</h1>
+      <p class="lead text-secondary mb-0">Усі теги та категорії / All topics & tags ({{ $termsCount }})</p>
+    </div>
+    <div class="d-flex flex-wrap align-items-center gap-2">
+      <input id="termsSearchInput" type="search" class="form-control form-control-sm" style="min-width: 220px;" placeholder="Пошук тегу..." oninput="filterTermsList()">
+      <div class="btn-group btn-group-sm" role="group">
+        <button type="button" id="termsSortAlphaBtn" class="btn btn-primary" onclick="sortTermsList('alpha')">A–Z</button>
+        <button type="button" id="termsSortCountBtn" class="btn btn-outline-secondary" onclick="sortTermsList('count')">Популярні</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-3" id="termsGrid">
+    {{ with .Data.Terms }}
+      {{ range .Alphabetical }}
+        <div class="col-6 col-md-4 col-lg-3 term-card-item" data-name="{{ .Page.Title | lower }}" data-count="{{ .Count }}">
+          <a href="{{ .Page.Permalink }}" class="card p-3 border shadow-sm text-decoration-none h-100 d-flex flex-row justify-content-between align-items-center hover-shadow">
+            <span class="fw-semibold text-body-emphasis font-monospace">#{{ .Page.Title }}</span>
+            <span class="badge bg-primary rounded-pill">{{ .Count }}</span>
+          </a>
+        </div>
+      {{ else }}
+        <div class="col-12 py-5 text-center text-muted">
+          <p class="lead">{{ i18n "no_items_found" }}</p>
+        </div>
+      {{ end }}
+    {{ else }}
+      <div class="col-12 py-5 text-center text-muted">
+        <p class="lead">{{ i18n "no_items_found" }}</p>
+      </div>
+    {{ end }}
+  </div>
+
+  <div id="termsNoResults" class="py-5 text-center text-muted" style="display:none;">
+    <p class="lead">Тегів за таким запитом не знайдено.</p>
+  </div>
+</div>
+
+<script>
+  function filterTermsList() {
+    const q = (document.getElementById('termsSearchInput')?.value || '').toLowerCase().trim();
+    const items = document.querySelectorAll('#termsGrid .term-card-item');
+    let visible = 0;
+    items.forEach(item => {
+      const name = item.getAttribute('data-name') || '';
+      const show = !q || name.includes(q);
+      item.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    const noRes = document.getElementById('termsNoResults');
+    if (noRes) noRes.style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  function sortTermsList(mode) {
+    const grid = document.getElementById('termsGrid');
+    if (!grid) return;
+    const items = Array.from(grid.querySelectorAll('.term-card-item'));
+    items.sort((a, b) => {
+      if (mode === 'count') {
+        const diff = Number(b.getAttribute('data-count') || 0) - Number(a.getAttribute('data-count') || 0);
+        if (diff !== 0) return diff;
+      }
+      return (a.getAttribute('data-name') || '').localeCompare(b.getAttribute('data-name') || '');
+    });
+    items.forEach(item => grid.appendChild(item));
+    const alphaBtn = document.getElementById('termsSortAlphaBtn');
+    const countBtn = document.getElementById('termsSortCountBtn');
+    if (alphaBtn && countBtn) {
+      alphaBtn.className = mode === 'alpha' ? 'btn btn-primary' : 'btn btn-outline-secondary';
+      countBtn.className = mode === 'count' ? 'btn btn-primary' : 'btn btn-outline-secondary';
+    }
+  }
+</script>
+{{ end }}

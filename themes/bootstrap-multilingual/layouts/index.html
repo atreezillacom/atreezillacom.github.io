@@ -28,18 +28,33 @@
         </a>
       </div>
     </div>
-
+    
   </div>
 
 
 
-  <!-- Universal Unicode-safe string normalizer for Homepage Filters -->
+  <!-- Universal Unicode-safe string helpers & URL query parameter support -->
   <script>
     function cleanStrHome(s) {
       return (s || '').toString().toLowerCase().trim().replace(/[-\s_]+/g, '');
     }
+    function parsePipeListHome(val) {
+      return (val || '').toString().toLowerCase().split('|').map(function(v) { return v.trim(); }).filter(Boolean);
+    }
+    function matchCategoryPipeHome(rawCat, activeCat) {
+      if (activeCat === 'all') return true;
+      const catClean = cleanStrHome(activeCat);
+      if (!catClean) return true;
+      const catList = parsePipeListHome(rawCat).map(cleanStrHome).filter(Boolean);
+      return catList.some(function(c) { return c === catClean || c.includes(catClean) || catClean.includes(c); });
+    }
     window.cleanStrHome = cleanStrHome;
+    window.parsePipeListHome = parsePipeListHome;
+    window.matchCategoryPipeHome = matchCategoryPipeHome;
   </script>
+
+  {{ $homeTagsUrl := "/tags/" | relLangURL }}
+  {{ with .Site.GetPage "/tags" }}{{ $homeTagsUrl = .RelPermalink }}{{ else }}{{ if .Site.Params.uglyURLs | default true }}{{ $homeTagsUrl = "/tags.html" | relLangURL }}{{ end }}{{ end }}
 
   <!-- Programming Stack Portfolio Section -->
   <section class="mb-5">
@@ -48,9 +63,12 @@
         <h2 class="h3 fw-bold mb-1">{{ i18n "programming_title" }}</h2>
         <p class="text-secondary small mb-0">{{ i18n "programming_subtitle" }}</p>
       </div>
-      <a href="{{ "/portfolio/" | relLangURL }}" class="btn btn-sm btn-outline-primary">
-        {{ i18n "all_projects" }} &rarr;
-      </a>
+      <div class="d-flex gap-2">
+        <a href="{{ $homeTagsUrl }}" class="btn btn-sm btn-outline-secondary font-monospace">#{{ i18n "tags" | default "Теги" }}</a>
+        <a href="{{ "/portfolio/" | relLangURL }}" class="btn btn-sm btn-outline-primary">
+          {{ i18n "all_projects" }} &rarr;
+        </a>
+      </div>
     </div>
 
     <!-- Interactive Tech Stack & Category Filter on Homepage -->
@@ -59,7 +77,7 @@
       <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
         <span class="fw-semibold small text-body-secondary me-1">Категорії:</span>
         <button type="button" class="btn btn-sm btn-primary active home-cat-btn" data-category="all" onclick="filterHomePortfolio(this, 'category')">
-          {{ i18n "filter_all" }}
+          {{ i18n "filter_all" | default "Всі" }}
         </button>
         {{ $portCats := .Site.Params.filters.portfolio.categories | default (slice (dict "id" "frontend" "name" "Frontend") (dict "id" "backend" "name" "Backend") (dict "id" "python-ai" "name" "Python & AI") (dict "id" "fullstack" "name" "Fullstack") (dict "id" "cloud-devops" "name" "Cloud & DevOps") (dict "id" "mobile" "name" "Mobile")) }}
         {{ range $portCats }}
@@ -85,15 +103,29 @@
           </button>
         {{ end }}
       </div>
+
+      <div id="homePortfolioActiveBar" class="d-none align-items-center gap-2 pt-2 mt-2 border-top small">
+        <span class="text-body-secondary">Активний фільтр:</span>
+        <span id="homePortfolioActiveLabel" class="badge bg-primary font-monospace"></span>
+        <button type="button" class="btn btn-link btn-sm text-danger p-0 text-decoration-none" onclick="resetHomePortfolioFilters()">Скинути ×</button>
+      </div>
     </div>
 
     <!-- Portfolio Cards Grid -->
     <div class="row g-4" id="homePortfolioGrid">
       {{ range first $limitPortfolio (where .Site.RegularPages "Section" "portfolio") }}
+        {{ $cardCats := slice }}
+        {{ with .Params.category }}{{ $cardCats = $cardCats | append . }}{{ end }}
+        {{ range .Params.categories }}{{ $cardCats = $cardCats | append . }}{{ end }}
+        {{ $cardCats = $cardCats | uniq }}
         {{ $cardTech := slice }}
-        {{ with .Params.stack }}{{ $cardTech = $cardTech | append . }}{{ end }}
-        {{ with .Params.tags }}{{ $cardTech = $cardTech | append . }}{{ end }}
-        <div class="col-md-6 col-lg-4 home-portfolio-item" data-category="{{ .Params.category | default "" }}" data-stack="{{ delimit $cardTech " " | lower }}">
+        {{ range .Params.stack }}{{ $cardTech = $cardTech | append . }}{{ end }}
+        {{ range .Params.tags }}{{ $cardTech = $cardTech | append . }}{{ end }}
+        {{ if not $cardTech }}
+          {{ range .GetTerms "tags" }}{{ $cardTech = $cardTech | append .LinkTitle }}{{ end }}
+        {{ end }}
+        {{ $cardTech = $cardTech | uniq }}
+        <div class="col-md-6 col-lg-4 home-portfolio-item" data-category="|{{ delimit $cardCats "|" | lower }}|" data-stack="|{{ delimit $cardTech "|" | lower }}|">
           <div class="card h-100 border shadow-sm">
             {{ $pItem := . }}
             {{ $cardImg := "" }}
@@ -137,7 +169,7 @@
             <div class="card-body d-flex flex-column justify-content-between">
               <div>
                 <div class="text-muted small mb-2 d-flex flex-wrap align-items-center gap-1">
-                  {{ with .Params.category }}<span class="badge bg-secondary-subtle text-secondary me-1">{{ . }}</span>{{ end }}
+                  {{ range $cardCats }}<span class="badge bg-secondary-subtle text-secondary me-1">{{ . }}</span>{{ end }}
                   <span>{{ .Date.Format "2006-01-02" }}</span>
                 </div>
                 <h5 class="card-title fw-bold">
@@ -148,7 +180,7 @@
                 {{ if gt (len $cardTech) 0 }}
                   <div class="d-flex flex-wrap gap-1 mt-3">
                     {{ range $cardTech }}
-                      <span class="badge bg-body-secondary text-body font-monospace" style="cursor:pointer;" onclick="filterHomeBySingleStack('{{ . | lower }}')" title="Фільтрувати за цим стеком">{{ . }}</span>
+                      <span class="badge bg-body-secondary text-body font-monospace" style="cursor:pointer;" onclick="filterHomeBySingleStack('{{ . | lower }}')" title="Фільтрувати за цим стеком">#{{ . }}</span>
                     {{ end }}
                   </div>
                 {{ end }}
@@ -178,42 +210,39 @@
     let homeActiveCategory = 'all';
     let homeActiveStack = 'all';
 
-    function cleanStrHome(s) {
-      return (s || '').toString().toLowerCase().trim().replace(/[-\s_]+/g, '');
-    }
-
     function filterHomePortfolio(btn, type) {
       if (type === 'category') {
-        homeActiveCategory = btn.getAttribute('data-category') || 'all';
+        const nextCat = btn.getAttribute('data-category') || 'all';
+        homeActiveCategory = (nextCat !== 'all' && nextCat === homeActiveCategory) ? 'all' : nextCat;
         document.querySelectorAll('.home-cat-btn').forEach(b => {
-          b.classList.remove('btn-primary', 'active');
-          b.classList.add('btn-outline-secondary');
+          const isMatch = (b.getAttribute('data-category') || 'all') === homeActiveCategory;
+          b.classList.toggle('btn-primary', isMatch);
+          b.classList.toggle('active', isMatch);
+          b.classList.toggle('btn-outline-secondary', !isMatch);
         });
-        btn.classList.remove('btn-outline-secondary');
-        btn.classList.add('btn-primary', 'active');
       } else if (type === 'stack') {
-        homeActiveStack = btn.getAttribute('data-stack') || 'all';
+        const nextStack = (btn.getAttribute('data-stack') || 'all').toLowerCase().trim();
+        homeActiveStack = (nextStack !== 'all' && nextStack === homeActiveStack) ? 'all' : nextStack;
         document.querySelectorAll('.home-stack-btn').forEach(b => {
-          b.classList.remove('btn-dark', 'active');
-          b.classList.add('btn-outline-secondary');
+          const bStack = (b.getAttribute('data-stack') || '').toLowerCase().trim();
+          const isMatch = bStack === homeActiveStack;
+          b.classList.toggle('btn-dark', isMatch);
+          b.classList.toggle('active', isMatch);
+          b.classList.toggle('btn-outline-secondary', !isMatch);
         });
-        btn.classList.remove('btn-outline-secondary');
-        btn.classList.add('btn-dark', 'active');
       }
       applyHomeFilters();
     }
 
     function filterHomeBySingleStack(stackName) {
-      homeActiveStack = (stackName || '').toLowerCase().trim();
+      const normalized = (stackName || '').toLowerCase().trim();
+      homeActiveStack = (normalized && normalized === homeActiveStack) ? 'all' : (normalized || 'all');
       document.querySelectorAll('.home-stack-btn').forEach(b => {
         const bStack = (b.getAttribute('data-stack') || '').toLowerCase().trim();
-        if (bStack === homeActiveStack) {
-          b.classList.remove('btn-outline-secondary');
-          b.classList.add('btn-dark', 'active');
-        } else {
-          b.classList.remove('btn-dark', 'active');
-          b.classList.add('btn-outline-secondary');
-        }
+        const isMatch = bStack === homeActiveStack;
+        b.classList.toggle('btn-dark', isMatch);
+        b.classList.toggle('active', isMatch);
+        b.classList.toggle('btn-outline-secondary', !isMatch);
       });
       applyHomeFilters();
     }
@@ -237,15 +266,12 @@
     function applyHomeFilters() {
       const items = document.querySelectorAll('.home-portfolio-item');
       let visibleCount = 0;
-      const catClean = cleanStrHome(homeActiveCategory);
       const stackClean = (homeActiveStack || '').toLowerCase().trim();
 
       items.forEach(item => {
-        const itemCat = cleanStrHome(item.getAttribute('data-category'));
-        const itemStack = (item.getAttribute('data-stack') || '').toLowerCase();
-
-        const matchCat = (homeActiveCategory === 'all' || itemCat.includes(catClean) || catClean.includes(itemCat));
-        const matchStack = (homeActiveStack === 'all' || itemStack.includes(stackClean));
+        const matchCat = matchCategoryPipeHome(item.getAttribute('data-category'), homeActiveCategory);
+        const stackList = parsePipeListHome(item.getAttribute('data-stack'));
+        const matchStack = (homeActiveStack === 'all' || stackList.includes(stackClean));
 
         if (matchCat && matchStack) {
           item.style.display = '';
@@ -254,6 +280,22 @@
           item.style.display = 'none';
         }
       });
+
+      const activeBar = document.getElementById('homePortfolioActiveBar');
+      const activeLabel = document.getElementById('homePortfolioActiveLabel');
+      if (activeBar && activeLabel) {
+        if (homeActiveStack !== 'all' || homeActiveCategory !== 'all') {
+          const parts = [];
+          if (homeActiveCategory !== 'all') parts.push(homeActiveCategory);
+          if (homeActiveStack !== 'all') parts.push('#' + homeActiveStack);
+          activeLabel.textContent = parts.join(' · ');
+          activeBar.classList.remove('d-none');
+          activeBar.classList.add('d-flex');
+        } else {
+          activeBar.classList.add('d-none');
+          activeBar.classList.remove('d-flex');
+        }
+      }
 
       const noResults = document.getElementById('homeNoResultsNotice');
       if (noResults) {
@@ -279,7 +321,7 @@
       <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
         <span class="fw-semibold small text-body-secondary me-1">Категорії:</span>
         <button type="button" class="btn btn-sm btn-primary active home-posts-cat-btn" data-category="all" onclick="filterHomePosts(this, 'category')">
-          {{ i18n "filter_all" }}
+          {{ i18n "filter_all" | default "Всі" }}
         </button>
         {{ $postsCats := .Site.Params.filters.posts.categories | default (slice (dict "id" "csharp" "name" "C# & .NET") (dict "id" "architecture" "name" "Архітектура") (dict "id" "devops" "name" "DevOps") (dict "id" "backend" "name" "Backend") (dict "id" "frontend" "name" "Frontend")) }}
         {{ range $postsCats }}
@@ -299,18 +341,31 @@
         {{ $postsTags := .Site.Params.filters.posts.tags | default (slice "C#" ".NET" "Go" "Kubernetes" "Docker" "Python" "Linux" "TypeScript" "Architecture") }}
         {{ range $postsTags }}
           <button type="button" class="btn btn-sm btn-outline-secondary home-posts-tag-btn font-monospace" data-tag="{{ . | lower }}" onclick="filterHomePosts(this, 'tag')">
-            {{ . }}
+            #{{ . }}
           </button>
         {{ end }}
+      </div>
+      <div id="homePostsActiveBar" class="d-none align-items-center gap-2 pt-2 mt-2 border-top small">
+        <span class="text-body-secondary">Активний фільтр:</span>
+        <span id="homePostsActiveLabel" class="badge bg-dark font-monospace"></span>
+        <button type="button" class="btn btn-link btn-sm text-danger p-0 text-decoration-none" onclick="resetHomePostsFilters()">Скинути ×</button>
       </div>
     </div>
 
     <div class="row g-4" id="homePostsGrid">
       {{ range first $limitPosts (where .Site.RegularPages "Section" "posts") }}
+        {{ $pCats := slice }}
+        {{ with .Params.category }}{{ $pCats = $pCats | append . }}{{ end }}
+        {{ range .Params.categories }}{{ $pCats = $pCats | append . }}{{ end }}
+        {{ $pCats = $pCats | uniq }}
         {{ $pTags := slice }}
-        {{ with .Params.tags }}{{ $pTags = $pTags | append . }}{{ end }}
-        {{ with .Params.stack }}{{ $pTags = $pTags | append . }}{{ end }}
-        <div class="col-md-6 col-lg-4 home-post-item" data-category="{{ .Params.category | default "" }}" data-tags="{{ delimit $pTags " " | lower }}">
+        {{ range .Params.tags }}{{ $pTags = $pTags | append . }}{{ end }}
+        {{ range .Params.stack }}{{ $pTags = $pTags | append . }}{{ end }}
+        {{ if not $pTags }}
+          {{ range .GetTerms "tags" }}{{ $pTags = $pTags | append .LinkTitle }}{{ end }}
+        {{ end }}
+        {{ $pTags = $pTags | uniq }}
+        <div class="col-md-6 col-lg-4 home-post-item" data-category="|{{ delimit $pCats "|" | lower }}|" data-tags="|{{ delimit $pTags "|" | lower }}|">
           <div class="card h-100 border shadow-sm">
             {{ $pItem := . }}
             {{ $postImg := "" }}
@@ -354,7 +409,7 @@
             <div class="card-body d-flex flex-column justify-content-between">
               <div>
                 <div class="text-muted small mb-2 d-flex flex-wrap align-items-center gap-1">
-                  {{ with .Params.category }}<span class="badge bg-secondary-subtle text-secondary me-1">{{ . }}</span>{{ end }}
+                  {{ range $pCats }}<span class="badge bg-secondary-subtle text-secondary me-1">{{ . }}</span>{{ end }}
                   <span>{{ .Date.Format "02 Jan 2006" }}</span>
                 </div>
                 <h5 class="card-title fw-bold">
@@ -365,7 +420,7 @@
                 {{ if gt (len $pTags) 0 }}
                   <div class="d-flex flex-wrap gap-1 mt-3">
                     {{ range $pTags }}
-                      <span class="badge bg-body-secondary text-body font-monospace" style="cursor:pointer;" onclick="filterHomePostsBySingleTag('{{ . | lower }}')">{{ . }}</span>
+                      <span class="badge bg-body-secondary text-body font-monospace" style="cursor:pointer;" onclick="filterHomePostsBySingleTag('{{ . | lower }}')" title="Фільтрувати за тегом #{{ . }}">#{{ . }}</span>
                     {{ end }}
                   </div>
                 {{ end }}
@@ -397,36 +452,37 @@
 
     function filterHomePosts(btn, type) {
       if (type === 'category') {
-        homePostsActiveCategory = btn.getAttribute('data-category') || 'all';
+        const nextCat = btn.getAttribute('data-category') || 'all';
+        homePostsActiveCategory = (nextCat !== 'all' && nextCat === homePostsActiveCategory) ? 'all' : nextCat;
         document.querySelectorAll('.home-posts-cat-btn').forEach(b => {
-          b.classList.remove('btn-primary', 'active');
-          b.classList.add('btn-outline-secondary');
+          const isMatch = (b.getAttribute('data-category') || 'all') === homePostsActiveCategory;
+          b.classList.toggle('btn-primary', isMatch);
+          b.classList.toggle('active', isMatch);
+          b.classList.toggle('btn-outline-secondary', !isMatch);
         });
-        btn.classList.remove('btn-outline-secondary');
-        btn.classList.add('btn-primary', 'active');
       } else if (type === 'tag') {
-        homePostsActiveTag = btn.getAttribute('data-tag') || 'all';
+        const nextTag = (btn.getAttribute('data-tag') || 'all').toLowerCase().trim();
+        homePostsActiveTag = (nextTag !== 'all' && nextTag === homePostsActiveTag) ? 'all' : nextTag;
         document.querySelectorAll('.home-posts-tag-btn').forEach(b => {
-          b.classList.remove('btn-dark', 'active');
-          b.classList.add('btn-outline-secondary');
+          const bTag = (b.getAttribute('data-tag') || '').toLowerCase().trim();
+          const isMatch = bTag === homePostsActiveTag;
+          b.classList.toggle('btn-dark', isMatch);
+          b.classList.toggle('active', isMatch);
+          b.classList.toggle('btn-outline-secondary', !isMatch);
         });
-        btn.classList.remove('btn-outline-secondary');
-        btn.classList.add('btn-dark', 'active');
       }
       applyHomePostsFilters();
     }
 
     function filterHomePostsBySingleTag(tag) {
-      homePostsActiveTag = (tag || '').toLowerCase().trim();
+      const normalized = (tag || '').toLowerCase().trim();
+      homePostsActiveTag = (normalized && normalized === homePostsActiveTag) ? 'all' : (normalized || 'all');
       document.querySelectorAll('.home-posts-tag-btn').forEach(b => {
         const bTag = (b.getAttribute('data-tag') || '').toLowerCase().trim();
-        if (bTag === homePostsActiveTag) {
-          b.classList.remove('btn-outline-secondary');
-          b.classList.add('btn-dark', 'active');
-        } else {
-          b.classList.remove('btn-dark', 'active');
-          b.classList.add('btn-outline-secondary');
-        }
+        const isMatch = bTag === homePostsActiveTag;
+        b.classList.toggle('btn-dark', isMatch);
+        b.classList.toggle('active', isMatch);
+        b.classList.toggle('btn-outline-secondary', !isMatch);
       });
       applyHomePostsFilters();
     }
@@ -450,15 +506,12 @@
     function applyHomePostsFilters() {
       const items = document.querySelectorAll('.home-post-item');
       let visibleCount = 0;
-      const catClean = cleanStrHome(homePostsActiveCategory);
       const tagClean = (homePostsActiveTag || '').toLowerCase().trim();
 
       items.forEach(item => {
-        const itemCat = cleanStrHome(item.getAttribute('data-category'));
-        const itemTags = (item.getAttribute('data-tags') || '').toLowerCase();
-
-        const matchCat = (homePostsActiveCategory === 'all' || itemCat.includes(catClean) || catClean.includes(itemCat));
-        const matchTag = (homePostsActiveTag === 'all' || itemTags.includes(tagClean));
+        const matchCat = matchCategoryPipeHome(item.getAttribute('data-category'), homePostsActiveCategory);
+        const tagsList = parsePipeListHome(item.getAttribute('data-tags'));
+        const matchTag = (homePostsActiveTag === 'all' || tagsList.includes(tagClean));
 
         if (matchCat && matchTag) {
           item.style.display = '';
@@ -467,6 +520,22 @@
           item.style.display = 'none';
         }
       });
+
+      const activeBar = document.getElementById('homePostsActiveBar');
+      const activeLabel = document.getElementById('homePostsActiveLabel');
+      if (activeBar && activeLabel) {
+        if (homePostsActiveTag !== 'all' || homePostsActiveCategory !== 'all') {
+          const parts = [];
+          if (homePostsActiveCategory !== 'all') parts.push(homePostsActiveCategory);
+          if (homePostsActiveTag !== 'all') parts.push('#' + homePostsActiveTag);
+          activeLabel.textContent = parts.join(' · ');
+          activeBar.classList.remove('d-none');
+          activeBar.classList.add('d-flex');
+        } else {
+          activeBar.classList.add('d-none');
+          activeBar.classList.remove('d-flex');
+        }
+      }
 
       const noRes = document.getElementById('homePostsNoResults');
       if (noRes) noRes.style.display = visibleCount === 0 ? 'block' : 'none';
@@ -490,7 +559,7 @@
       <div class="d-flex flex-wrap align-items-center gap-2">
         <span class="fw-semibold small text-body-secondary me-1">Розділи:</span>
         <button type="button" class="btn btn-sm btn-primary active home-life-cat-btn" data-category="all" onclick="filterHomeLife(this, 'category')">
-          {{ i18n "filter_all" }}
+          {{ i18n "filter_all" | default "Всі" }}
         </button>
         {{ $lifeCats := .Site.Params.filters.life.categories | default (slice (dict "id" "family" "name" "Сім'я") (dict "id" "wife" "name" "Дружина") (dict "id" "kids" "name" "Діти") (dict "id" "travel" "name" "Подорожі") (dict "id" "hobbies" "name" "Хоббі")) }}
         {{ range $lifeCats }}
@@ -510,19 +579,33 @@
         </button>
         {{ range . }}
           <button type="button" class="btn btn-sm btn-outline-secondary home-life-tag-btn font-monospace" data-tag="{{ . | lower }}" onclick="filterHomeLife(this, 'tag')">
-            {{ . }}
+            #{{ . }}
           </button>
         {{ end }}
       </div>
       {{ end }}
+      <div id="homeLifeActiveBar" class="d-none align-items-center gap-2 pt-2 mt-2 border-top small">
+        <span class="text-body-secondary">Активний фільтр:</span>
+        <span id="homeLifeActiveLabel" class="badge bg-dark font-monospace"></span>
+        <button type="button" class="btn btn-link btn-sm text-danger p-0 text-decoration-none" onclick="resetHomeLifeFilters()">Скинути ×</button>
+      </div>
     </div>
 
     <div class="row g-4" id="homeLifeGrid">
       {{ range first $limitLife (where .Site.RegularPages "Section" "life") }}
+        {{ $lCats := slice }}
+        {{ with .Params.category }}{{ $lCats = $lCats | append . }}{{ end }}
+        {{ range .Params.categories }}{{ $lCats = $lCats | append . }}{{ end }}
+        {{ $lCats = $lCats | uniq }}
         {{ $lTags := slice }}
-        {{ with .Params.tags }}{{ $lTags = $lTags | append . }}{{ end }}
-        <div class="col-md-6 col-lg-4 home-life-item" data-category="{{ .Params.category | default "" }}" data-tags="{{ delimit $lTags " " | lower }}">
+        {{ range .Params.tags }}{{ $lTags = $lTags | append . }}{{ end }}
+        {{ if not $lTags }}
+          {{ range .GetTerms "tags" }}{{ $lTags = $lTags | append .LinkTitle }}{{ end }}
+        {{ end }}
+        {{ $lTags = $lTags | uniq }}
+        <div class="col-md-6 col-lg-4 home-life-item" data-category="|{{ delimit $lCats "|" | lower }}|" data-tags="|{{ delimit $lTags "|" | lower }}|">
           <div class="card h-100 border shadow-sm">
+            {{ $pItem := . }}
             {{ $lifeImg := "" }}
             {{ with .Resources.GetMatch (.Params.image | default "*cover*") }}
               {{ $lifeImg = .RelPermalink }}
@@ -531,26 +614,31 @@
                 {{ $lifeImg = . | relURL }}
               {{ end }}
             {{ end }}
+            {{ if not $lifeImg }}
+              {{ with index (.Resources.ByType "image") 0 }}
+                {{ $lifeImg = .RelPermalink }}
+              {{ end }}
+            {{ end }}
             {{ with $lifeImg }}
               <div class="card-img-wrapper">
-                <img src="{{ . }}" class="card-img-top" alt="{{ $.Title }}" loading="lazy">
+                <img src="{{ . }}" class="card-img-top" alt="{{ $pItem.Title }}" loading="lazy">
               </div>
             {{ end }}
             <div class="card-body d-flex flex-column justify-content-between">
               <div>
                 <div class="text-muted small mb-2 d-flex flex-wrap align-items-center gap-1">
-                  {{ with .Params.category }}<span class="badge bg-secondary-subtle text-secondary me-1">{{ . }}</span>{{ end }}
+                  {{ range $lCats }}<span class="badge bg-secondary-subtle text-secondary me-1">{{ . }}</span>{{ end }}
                   <span>{{ .Date.Format "02 Jan 2006" }}</span>
                 </div>
                 <h5 class="card-title fw-bold">
                   <a href="{{ .Permalink }}" class="text-decoration-none text-body-emphasis">{{ .Title }}</a>
                 </h5>
-                <p class="card-text text-secondary small">{{ .Summary }}</p>
+                <p class="card-text text-secondary small">{{ .Params.summary | default .Summary | default .Description }}</p>
 
                 {{ if gt (len $lTags) 0 }}
                   <div class="d-flex flex-wrap gap-1 mt-3">
                     {{ range $lTags }}
-                      <span class="badge bg-body-secondary text-body" style="cursor:pointer;" onclick="filterHomeLifeByTag('{{ . | lower }}')">{{ . }}</span>
+                      <span class="badge bg-body-secondary text-body font-monospace" style="cursor:pointer;" onclick="filterHomeLifeByTag('{{ . | lower }}')" title="Фільтрувати за тегом #{{ . }}">#{{ . }}</span>
                     {{ end }}
                   </div>
                 {{ end }}
@@ -571,7 +659,7 @@
     </div>
 
     <div id="homeLifeNoResults" class="col-12 py-4 text-center text-muted" style="display:none;">
-      <p class="lead">Не знайдено записів за обраною категорією.</p>
+      <p class="lead">Не знайдено записів за обраною категорією або тегом.</p>
       <button type="button" class="btn btn-sm btn-outline-primary" onclick="resetHomeLifeFilters()">Скинути фільтри</button>
     </div>
   </section>
@@ -582,36 +670,37 @@
 
     function filterHomeLife(btn, type) {
       if (type === 'category') {
-        homeLifeActiveCategory = btn.getAttribute('data-category') || 'all';
+        const nextCat = btn.getAttribute('data-category') || 'all';
+        homeLifeActiveCategory = (nextCat !== 'all' && nextCat === homeLifeActiveCategory) ? 'all' : nextCat;
         document.querySelectorAll('.home-life-cat-btn').forEach(b => {
-          b.classList.remove('btn-primary', 'active');
-          b.classList.add('btn-outline-secondary');
+          const isMatch = (b.getAttribute('data-category') || 'all') === homeLifeActiveCategory;
+          b.classList.toggle('btn-primary', isMatch);
+          b.classList.toggle('active', isMatch);
+          b.classList.toggle('btn-outline-secondary', !isMatch);
         });
-        btn.classList.remove('btn-outline-secondary');
-        btn.classList.add('btn-primary', 'active');
       } else if (type === 'tag') {
-        homeLifeActiveTag = btn.getAttribute('data-tag') || 'all';
+        const nextTag = (btn.getAttribute('data-tag') || 'all').toLowerCase().trim();
+        homeLifeActiveTag = (nextTag !== 'all' && nextTag === homeLifeActiveTag) ? 'all' : nextTag;
         document.querySelectorAll('.home-life-tag-btn').forEach(b => {
-          b.classList.remove('btn-dark', 'active');
-          b.classList.add('btn-outline-secondary');
+          const bTag = (b.getAttribute('data-tag') || '').toLowerCase().trim();
+          const isMatch = bTag === homeLifeActiveTag;
+          b.classList.toggle('btn-dark', isMatch);
+          b.classList.toggle('active', isMatch);
+          b.classList.toggle('btn-outline-secondary', !isMatch);
         });
-        btn.classList.remove('btn-outline-secondary');
-        btn.classList.add('btn-dark', 'active');
       }
       applyHomeLifeFilters();
     }
 
     function filterHomeLifeByTag(tag) {
-      homeLifeActiveTag = (tag || '').toLowerCase().trim();
+      const normalized = (tag || '').toLowerCase().trim();
+      homeLifeActiveTag = (normalized && normalized === homeLifeActiveTag) ? 'all' : (normalized || 'all');
       document.querySelectorAll('.home-life-tag-btn').forEach(b => {
         const bTag = (b.getAttribute('data-tag') || '').toLowerCase().trim();
-        if (bTag === homeLifeActiveTag) {
-          b.classList.remove('btn-outline-secondary');
-          b.classList.add('btn-dark', 'active');
-        } else {
-          b.classList.remove('btn-dark', 'active');
-          b.classList.add('btn-outline-secondary');
-        }
+        const isMatch = bTag === homeLifeActiveTag;
+        b.classList.toggle('btn-dark', isMatch);
+        b.classList.toggle('active', isMatch);
+        b.classList.toggle('btn-outline-secondary', !isMatch);
       });
       applyHomeLifeFilters();
     }
@@ -635,14 +724,12 @@
     function applyHomeLifeFilters() {
       const items = document.querySelectorAll('.home-life-item');
       let visibleCount = 0;
-      const catClean = cleanStrHome(homeLifeActiveCategory);
       const tagClean = (homeLifeActiveTag || '').toLowerCase().trim();
 
       items.forEach(item => {
-        const itemCat = cleanStrHome(item.getAttribute('data-category'));
-        const itemTags = (item.getAttribute('data-tags') || '').toLowerCase();
-        const matchCat = (homeLifeActiveCategory === 'all' || itemCat.includes(catClean) || catClean.includes(itemCat));
-        const matchTag = (homeLifeActiveTag === 'all' || itemTags.includes(tagClean));
+        const matchCat = matchCategoryPipeHome(item.getAttribute('data-category'), homeLifeActiveCategory);
+        const tagsList = parsePipeListHome(item.getAttribute('data-tags'));
+        const matchTag = (homeLifeActiveTag === 'all' || tagsList.includes(tagClean));
         if (matchCat && matchTag) {
           item.style.display = '';
           visibleCount++;
@@ -650,6 +737,22 @@
           item.style.display = 'none';
         }
       });
+
+      const activeBar = document.getElementById('homeLifeActiveBar');
+      const activeLabel = document.getElementById('homeLifeActiveLabel');
+      if (activeBar && activeLabel) {
+        if (homeLifeActiveTag !== 'all' || homeLifeActiveCategory !== 'all') {
+          const parts = [];
+          if (homeLifeActiveCategory !== 'all') parts.push(homeLifeActiveCategory);
+          if (homeLifeActiveTag !== 'all') parts.push('#' + homeLifeActiveTag);
+          activeLabel.textContent = parts.join(' · ');
+          activeBar.classList.remove('d-none');
+          activeBar.classList.add('d-flex');
+        } else {
+          activeBar.classList.add('d-none');
+          activeBar.classList.remove('d-flex');
+        }
+      }
 
       const noRes = document.getElementById('homeLifeNoResults');
       if (noRes) noRes.style.display = visibleCount === 0 ? 'block' : 'none';
@@ -673,7 +776,7 @@
       <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
         <span class="fw-semibold small text-body-secondary me-1">Теми:</span>
         <button type="button" class="btn btn-sm btn-primary active home-blog-cat-btn" data-category="all" onclick="filterHomeBlog(this, 'category')">
-          {{ i18n "filter_all" }}
+          {{ i18n "filter_all" | default "Всі" }}
         </button>
         {{ $blogCats := .Site.Params.filters.blog.categories | default (slice (dict "id" "hugo" "name" "Hugo & SSG") (dict "id" "bootstrap" "name" "Bootstrap") (dict "id" "react" "name" "React") (dict "id" "performance" "name" "Оптимізація")) }}
         {{ range $blogCats }}
@@ -693,17 +796,30 @@
         {{ $blogTags := .Site.Params.filters.blog.tags | default (slice "Hugo" "Bootstrap 5" "i18n" "React" "SSG" "CSS") }}
         {{ range $blogTags }}
           <button type="button" class="btn btn-sm btn-outline-secondary home-blog-tag-btn font-monospace" data-tag="{{ . | lower }}" onclick="filterHomeBlog(this, 'tag')">
-            {{ . }}
+            #{{ . }}
           </button>
         {{ end }}
+      </div>
+      <div id="homeBlogActiveBar" class="d-none align-items-center gap-2 pt-2 mt-2 border-top small">
+        <span class="text-body-secondary">Активний фільтр:</span>
+        <span id="homeBlogActiveLabel" class="badge bg-dark font-monospace"></span>
+        <button type="button" class="btn btn-link btn-sm text-danger p-0 text-decoration-none" onclick="resetHomeBlogFilters()">Скинути ×</button>
       </div>
     </div>
 
     <div class="row g-4" id="homeBlogGrid">
       {{ range first $limitBlog (where .Site.RegularPages "Section" "blog") }}
+        {{ $bCats := slice }}
+        {{ with .Params.category }}{{ $bCats = $bCats | append . }}{{ end }}
+        {{ range .Params.categories }}{{ $bCats = $bCats | append . }}{{ end }}
+        {{ $bCats = $bCats | uniq }}
         {{ $bTags := slice }}
-        {{ with .Params.tags }}{{ $bTags = $bTags | append . }}{{ end }}
-        <div class="col-md-6 col-lg-4 home-blog-item" data-category="{{ .Params.category | default "" }}" data-tags="{{ delimit $bTags " " | lower }}">
+        {{ range .Params.tags }}{{ $bTags = $bTags | append . }}{{ end }}
+        {{ if not $bTags }}
+          {{ range .GetTerms "tags" }}{{ $bTags = $bTags | append .LinkTitle }}{{ end }}
+        {{ end }}
+        {{ $bTags = $bTags | uniq }}
+        <div class="col-md-6 col-lg-4 home-blog-item" data-category="|{{ delimit $bCats "|" | lower }}|" data-tags="|{{ delimit $bTags "|" | lower }}|">
           <div class="card h-100 border shadow-sm">
             {{ $pItem := . }}
             {{ $blogImg := "" }}
@@ -747,7 +863,7 @@
             <div class="card-body d-flex flex-column justify-content-between">
               <div>
                 <div class="text-muted small mb-2 d-flex flex-wrap align-items-center gap-1">
-                  {{ with .Params.category }}<span class="badge bg-secondary-subtle text-secondary me-1">{{ . }}</span>{{ end }}
+                  {{ range $bCats }}<span class="badge bg-secondary-subtle text-secondary me-1">{{ . }}</span>{{ end }}
                   <span>{{ .Date.Format "02 Jan 2006" }}</span>
                 </div>
                 <h5 class="card-title fw-bold">
@@ -758,7 +874,7 @@
                 {{ if gt (len $bTags) 0 }}
                   <div class="d-flex flex-wrap gap-1 mt-3">
                     {{ range $bTags }}
-                      <span class="badge bg-body-secondary text-body font-monospace" style="cursor:pointer;" onclick="filterHomeBlogBySingleTag('{{ . | lower }}')">{{ . }}</span>
+                      <span class="badge bg-body-secondary text-body font-monospace" style="cursor:pointer;" onclick="filterHomeBlogBySingleTag('{{ . | lower }}')" title="Фільтрувати за тегом #{{ . }}">#{{ . }}</span>
                     {{ end }}
                   </div>
                 {{ end }}
@@ -790,36 +906,37 @@
 
     function filterHomeBlog(btn, type) {
       if (type === 'category') {
-        homeBlogActiveCategory = btn.getAttribute('data-category') || 'all';
+        const nextCat = btn.getAttribute('data-category') || 'all';
+        homeBlogActiveCategory = (nextCat !== 'all' && nextCat === homeBlogActiveCategory) ? 'all' : nextCat;
         document.querySelectorAll('.home-blog-cat-btn').forEach(b => {
-          b.classList.remove('btn-primary', 'active');
-          b.classList.add('btn-outline-secondary');
+          const isMatch = (b.getAttribute('data-category') || 'all') === homeBlogActiveCategory;
+          b.classList.toggle('btn-primary', isMatch);
+          b.classList.toggle('active', isMatch);
+          b.classList.toggle('btn-outline-secondary', !isMatch);
         });
-        btn.classList.remove('btn-outline-secondary');
-        btn.classList.add('btn-primary', 'active');
       } else if (type === 'tag') {
-        homeBlogActiveTag = btn.getAttribute('data-tag') || 'all';
+        const nextTag = (btn.getAttribute('data-tag') || 'all').toLowerCase().trim();
+        homeBlogActiveTag = (nextTag !== 'all' && nextTag === homeBlogActiveTag) ? 'all' : nextTag;
         document.querySelectorAll('.home-blog-tag-btn').forEach(b => {
-          b.classList.remove('btn-dark', 'active');
-          b.classList.add('btn-outline-secondary');
+          const bTag = (b.getAttribute('data-tag') || '').toLowerCase().trim();
+          const isMatch = bTag === homeBlogActiveTag;
+          b.classList.toggle('btn-dark', isMatch);
+          b.classList.toggle('active', isMatch);
+          b.classList.toggle('btn-outline-secondary', !isMatch);
         });
-        btn.classList.remove('btn-outline-secondary');
-        btn.classList.add('btn-dark', 'active');
       }
       applyHomeBlogFilters();
     }
 
     function filterHomeBlogBySingleTag(tag) {
-      homeBlogActiveTag = (tag || '').toLowerCase().trim();
+      const normalized = (tag || '').toLowerCase().trim();
+      homeBlogActiveTag = (normalized && normalized === homeBlogActiveTag) ? 'all' : (normalized || 'all');
       document.querySelectorAll('.home-blog-tag-btn').forEach(b => {
         const bTag = (b.getAttribute('data-tag') || '').toLowerCase().trim();
-        if (bTag === homeBlogActiveTag) {
-          b.classList.remove('btn-outline-secondary');
-          b.classList.add('btn-dark', 'active');
-        } else {
-          b.classList.remove('btn-dark', 'active');
-          b.classList.add('btn-outline-secondary');
-        }
+        const isMatch = bTag === homeBlogActiveTag;
+        b.classList.toggle('btn-dark', isMatch);
+        b.classList.toggle('active', isMatch);
+        b.classList.toggle('btn-outline-secondary', !isMatch);
       });
       applyHomeBlogFilters();
     }
@@ -843,15 +960,12 @@
     function applyHomeBlogFilters() {
       const items = document.querySelectorAll('.home-blog-item');
       let visibleCount = 0;
-      const catClean = cleanStrHome(homeBlogActiveCategory);
       const tagClean = (homeBlogActiveTag || '').toLowerCase().trim();
 
       items.forEach(item => {
-        const itemCat = cleanStrHome(item.getAttribute('data-category'));
-        const itemTags = (item.getAttribute('data-tags') || '').toLowerCase();
-
-        const matchCat = (homeBlogActiveCategory === 'all' || itemCat.includes(catClean) || catClean.includes(itemCat));
-        const matchTag = (homeBlogActiveTag === 'all' || itemTags.includes(tagClean));
+        const matchCat = matchCategoryPipeHome(item.getAttribute('data-category'), homeBlogActiveCategory);
+        const tagsList = parsePipeListHome(item.getAttribute('data-tags'));
+        const matchTag = (homeBlogActiveTag === 'all' || tagsList.includes(tagClean));
 
         if (matchCat && matchTag) {
           item.style.display = '';
@@ -860,6 +974,22 @@
           item.style.display = 'none';
         }
       });
+
+      const activeBar = document.getElementById('homeBlogActiveBar');
+      const activeLabel = document.getElementById('homeBlogActiveLabel');
+      if (activeBar && activeLabel) {
+        if (homeBlogActiveTag !== 'all' || homeBlogActiveCategory !== 'all') {
+          const parts = [];
+          if (homeBlogActiveCategory !== 'all') parts.push(homeBlogActiveCategory);
+          if (homeBlogActiveTag !== 'all') parts.push('#' + homeBlogActiveTag);
+          activeLabel.textContent = parts.join(' · ');
+          activeBar.classList.remove('d-none');
+          activeBar.classList.add('d-flex');
+        } else {
+          activeBar.classList.add('d-none');
+          activeBar.classList.remove('d-flex');
+        }
+      }
 
       const noRes = document.getElementById('homeBlogNoResults');
       if (noRes) noRes.style.display = visibleCount === 0 ? 'block' : 'none';
@@ -878,7 +1008,7 @@
       </div>
       <div class="d-flex flex-wrap gap-1">
         <button type="button" class="btn btn-sm btn-primary active home-chronicle-btn" data-section="all" onclick="filterHomeChronicle(this, 'all')">
-          {{ i18n "filter_all" }}
+          {{ i18n "filter_all" | default "Всі" }}
         </button>
         <button type="button" class="btn btn-sm btn-outline-secondary home-chronicle-btn" data-section="blog" onclick="filterHomeChronicle(this, 'blog')">
           {{ i18n "nav_blog" }}
@@ -916,11 +1046,22 @@
             <h5 class="fw-bold mb-1">
               <a href="{{ .Permalink }}" class="text-decoration-none text-body-emphasis">{{ .Title }}</a>
             </h5>
-            <p class="text-secondary small mb-2">{{ .Summary | truncate 180 }}</p>
-            {{ with .Params.tags }}
+            <p class="text-secondary small mb-2">{{ .Params.summary | default .Summary | default .Description | truncate 180 }}</p>
+            {{ $cTags := slice }}
+            {{ range .GetTerms "tags" }}
+              {{ $cTags = $cTags | append (dict "name" .LinkTitle "url" .RelPermalink) }}
+            {{ end }}
+            {{ if not $cTags }}
+              {{ range .Params.tags }}
+                {{ $tUrl := printf "/tags/%s/" (. | urlize) | relLangURL }}
+                {{ if $.Site.Params.uglyURLs | default true }}{{ $tUrl = printf "/tags/%s.html" (. | urlize) | relLangURL }}{{ end }}
+                {{ $cTags = $cTags | append (dict "name" . "url" $tUrl) }}
+              {{ end }}
+            {{ end }}
+            {{ if gt (len $cTags) 0 }}
               <div class="d-flex flex-wrap gap-1">
-                {{ range . }}
-                  <span class="badge bg-body-secondary text-body font-monospace" style="font-size: 0.7rem;">{{ . }}</span>
+                {{ range $cTags }}
+                  <a href="{{ .url }}" class="badge bg-body-secondary text-body text-decoration-none border font-monospace" style="font-size: 0.7rem;">#{{ .name }}</a>
                 {{ end }}
               </div>
             {{ end }}
